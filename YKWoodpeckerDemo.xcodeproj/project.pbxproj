@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2800D0CC21D5CA1B008BFD90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2800D0CB21D5CA1B008BFD90 /* AppDelegate.m */; };
+		2800D0CF21D5CA1B008BFD90 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2800D0CE21D5CA1B008BFD90 /* ViewController.m */; };
+		2800D0D421D5CA1D008BFD90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2800D0D321D5CA1D008BFD90 /* Assets.xcassets */; };
+		2800D0DA21D5CA1D008BFD90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2800D0D921D5CA1D008BFD90 /* main.m */; };
+		2800D0E121D5CEA7008BFD90 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2800D0E021D5CEA7008BFD90 /* Launch Screen.storyboard */; };
+		D0A100D9F8D5B704066C8F9C /* Pods_YKWoodpeckerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1960BDFD464B505D7816C07A /* Pods-YKWoodpeckerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKWoodpeckerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		2800D0C721D5CA1B008BFD90 /* YKWoodpeckerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YKWoodpeckerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2800D0CA21D5CA1B008BFD90 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2800D0CB21D5CA1B008BFD90 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2800D0CD21D5CA1B008BFD90 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2800D0CE21D5CA1B008BFD90 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2800D0D321D5CA1D008BFD90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2800D0D821D5CA1D008BFD90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2800D0D921D5CA1D008BFD90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2800D0E021D5CEA7008BFD90 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2800D0FB21D64B1C008BFD90 /* YKWoodpecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YKWoodpecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YKWoodpeckerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CF516241C38EDC4F97F28BC /* Pods-YKWoodpeckerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKWoodpeckerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2800D0C421D5CA1B008BFD90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A100D9F8D5B704066C8F9C /* Pods_YKWoodpeckerDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2800D0BE21D5CA1B008BFD90 = {
+			isa = PBXGroup;
+			children = (
+				2800D0C921D5CA1B008BFD90 /* YKWoodpeckerDemo */,
+				2800D0C821D5CA1B008BFD90 /* Products */,
+				C5CCF6195D635A6E1C7AA1F0 /* Pods */,
+				EE069BC5DE559725E873E6CF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2800D0C821D5CA1B008BFD90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2800D0C721D5CA1B008BFD90 /* YKWoodpeckerDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2800D0C921D5CA1B008BFD90 /* YKWoodpeckerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2800D0CA21D5CA1B008BFD90 /* AppDelegate.h */,
+				2800D0CB21D5CA1B008BFD90 /* AppDelegate.m */,
+				2800D0CD21D5CA1B008BFD90 /* ViewController.h */,
+				2800D0CE21D5CA1B008BFD90 /* ViewController.m */,
+				2800D0E021D5CEA7008BFD90 /* Launch Screen.storyboard */,
+				2800D0D321D5CA1D008BFD90 /* Assets.xcassets */,
+				2800D0D821D5CA1D008BFD90 /* Info.plist */,
+				2800D0D921D5CA1D008BFD90 /* main.m */,
+			);
+			path = YKWoodpeckerDemo;
+			sourceTree = "<group>";
+		};
+		C5CCF6195D635A6E1C7AA1F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1960BDFD464B505D7816C07A /* Pods-YKWoodpeckerDemo.debug.xcconfig */,
+				8CF516241C38EDC4F97F28BC /* Pods-YKWoodpeckerDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EE069BC5DE559725E873E6CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2800D0FB21D64B1C008BFD90 /* YKWoodpecker.framework */,
+				6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2800D0C621D5CA1B008BFD90 /* YKWoodpeckerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2800D0DD21D5CA1D008BFD90 /* Build configuration list for PBXNativeTarget "YKWoodpeckerDemo" */;
+			buildPhases = (
+				EC70EDE0062ABC2C3F41F5BF /* [CP] Check Pods Manifest.lock */,
+				2800D0C321D5CA1B008BFD90 /* Sources */,
+				2800D0C421D5CA1B008BFD90 /* Frameworks */,
+				2800D0C521D5CA1B008BFD90 /* Resources */,
+				9F3AEDFE221822F1BACAA5AF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YKWoodpeckerDemo;
+			productName = YKWoodpeckerDemo;
+			productReference = 2800D0C721D5CA1B008BFD90 /* YKWoodpeckerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2800D0BF21D5CA1B008BFD90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Youku;
+				TargetAttributes = {
+					2800D0C621D5CA1B008BFD90 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2800D0C221D5CA1B008BFD90 /* Build configuration list for PBXProject "YKWoodpeckerDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 2800D0BE21D5CA1B008BFD90;
+			productRefGroup = 2800D0C821D5CA1B008BFD90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2800D0C621D5CA1B008BFD90 /* YKWoodpeckerDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2800D0C521D5CA1B008BFD90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2800D0E121D5CEA7008BFD90 /* Launch Screen.storyboard in Resources */,
+				2800D0D421D5CA1D008BFD90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F3AEDFE221822F1BACAA5AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YKWoodpecker/YKWoodpecker.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YKWoodpecker.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC70EDE0062ABC2C3F41F5BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YKWoodpeckerDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2800D0C321D5CA1B008BFD90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2800D0CF21D5CA1B008BFD90 /* ViewController.m in Sources */,
+				2800D0DA21D5CA1D008BFD90 /* main.m in Sources */,
+				2800D0CC21D5CA1B008BFD90 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2800D0DB21D5CA1D008BFD90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2800D0DC21D5CA1D008BFD90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2800D0DE21D5CA1D008BFD90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1960BDFD464B505D7816C07A /* Pods-YKWoodpeckerDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K356S4D63Q;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				INFOPLIST_FILE = YKWoodpeckerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PODS_ROOT = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpeckerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2800D0DF21D5CA1D008BFD90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CF516241C38EDC4F97F28BC /* Pods-YKWoodpeckerDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K356S4D63Q;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				INFOPLIST_FILE = YKWoodpeckerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
+				PODS_ROOT = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpeckerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2800D0C221D5CA1B008BFD90 /* Build configuration list for PBXProject "YKWoodpeckerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2800D0DB21D5CA1D008BFD90 /* Debug */,
+				2800D0DC21D5CA1D008BFD90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2800D0DD21D5CA1D008BFD90 /* Build configuration list for PBXNativeTarget "YKWoodpeckerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2800D0DE21D5CA1D008BFD90 /* Debug */,
+				2800D0DF21D5CA1D008BFD90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2800D0BF21D5CA1B008BFD90 /* Project object */;
+}

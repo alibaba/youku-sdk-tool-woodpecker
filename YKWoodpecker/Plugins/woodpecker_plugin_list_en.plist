@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>pluginOff</key>
+		<false/>
+		<key>isSafePlugin</key>
+		<true/>
+		<key>pluginName</key>
+		<string>UI Check</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginIconName</key>
+		<string></string>
+		<key>pluginCharIconText</key>
+		<string>▣</string>
+		<key>pluginCharIconColorHex</key>
+		<string>000000</string>
+		<key>pluginCategoryName</key>
+		<string>Common Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWProbeRulerPlugin</string>
+		<key>pluginParameters</key>
+		<dict/>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Listening-In</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>~</string>
+		<key>pluginCategoryName</key>
+		<string>Common Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWCommandPlugin</string>
+	</dict>
+	<dict>
+		<key>isSafePlugin</key>
+		<true/>
+		<key>pluginName</key>
+		<string>System Info</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>ⓘ</string>
+		<key>pluginCategoryName</key>
+		<string>Common Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWSysInfoPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Po cmd</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>po</string>
+		<key>pluginCategoryName</key>
+		<string>Common Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWPoCommandPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>SandBox</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>▤</string>
+		<key>pluginCategoryName</key>
+		<string>Debug Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWSandBoxPlugin</string>
+	</dict>
+	<dict>
+		<key>isSafePlugin</key>
+		<true/>
+		<key>pluginName</key>
+		<string>Show Touch</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>◉</string>
+		<key>pluginCategoryName</key>
+		<string>UI Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWTouchIndicatorPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Resources</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>❉</string>
+		<key>pluginCategoryName</key>
+		<string>Debug Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWBundleResourcePlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Defaults</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>❃</string>
+		<key>pluginCategoryName</key>
+		<string>Debug Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWUserDefaultsPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Crash</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>☠</string>
+		<key>pluginCategoryName</key>
+		<string>Debug Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWCrashLogPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Clean Data</string>
+		<key>pluginInfo</key>
+		<string>From Internet</string>
+		<key>pluginCharIconText</key>
+		<string>☒</string>
+		<key>pluginCategoryName</key>
+		<string>Debug Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWClearDataPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>All Images</string>
+		<key>pluginInfo</key>
+		<string>by Better</string>
+		<key>pluginCharIconText</key>
+		<string>❏</string>
+		<key>pluginCategoryName</key>
+		<string>UI Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWAllImagesPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>UI Compare</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>۞</string>
+		<key>pluginCategoryName</key>
+		<string>UI Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWUIComparePlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>CPU</string>
+		<key>pluginInfo</key>
+		<string>From Internet</string>
+		<key>pluginCharIconText</key>
+		<string>▩</string>
+		<key>pluginCategoryName</key>
+		<string>Performance Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWCPUPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Memery</string>
+		<key>pluginInfo</key>
+		<string>From Internet</string>
+		<key>pluginCharIconText</key>
+		<string>▦</string>
+		<key>pluginCategoryName</key>
+		<string>Performance Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWMemoryPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>FPS</string>
+		<key>pluginInfo</key>
+		<string>From Internet</string>
+		<key>pluginCharIconText</key>
+		<string>❁</string>
+		<key>pluginCategoryName</key>
+		<string>Performance Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWFPSPlugin</string>
+	</dict>
+	<dict>
+		<key>pluginName</key>
+		<string>Net Flow</string>
+		<key>pluginInfo</key>
+		<string>From Internet</string>
+		<key>pluginCharIconText</key>
+		<string>✾</string>
+		<key>pluginCategoryName</key>
+		<string>Performance Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWDataFlowPlugin</string>
+	</dict>
+</array>
+</plist>
