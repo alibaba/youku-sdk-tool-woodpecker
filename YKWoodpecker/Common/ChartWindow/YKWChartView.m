@@ -101,7 +101,7 @@
         total += data;
     }
     
-    _yTitleLabel.text = [NSString stringWithFormat:@"%@/ max:%.2f min:%.2f avg:%.2f", _yTitle, _dataArray.count, _maxData, _minData, total / dataArray.count];
+    _yTitleLabel.text = [NSString stringWithFormat:@"%@/ max:%.2f min:%.2f avg:%.2f", _yTitle, _maxData, _minData, total / dataArray.count];
     [self setupYLabels];
     
     CGSize contentSize = CGSizeMake(_dataArray.count * _lineView.xStep + 10, 0);
