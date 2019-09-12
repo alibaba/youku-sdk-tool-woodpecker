@@ -34,6 +34,7 @@ iOS 8.0及以上。
 > ```
 >pod  'YKWoodpecker'   
 > ```
+啄幕鸟当前版本：1.0.0
 
 ## Get Started
 ##### 打开啄幕鸟
