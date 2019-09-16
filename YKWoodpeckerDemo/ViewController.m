@@ -31,6 +31,7 @@
 #import "YKWoodpecker.h"
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
+#import "TableViewController.h"
 
 @interface ViewController ()<YKWCmdCoreCmdParseDelegate>
 
@@ -41,18 +42,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.title = @"Demo";
     self.view.backgroundColor = [UIColor whiteColor];
  
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"tableView" style:UIBarButtonItemStylePlain target:self action:@selector(pushTableView)];
+    
     NSString *iconUrl = @"https://raw.githubusercontent.com/alibaba/youku-sdk-tool-woodpecker/master/woodpecker_logo_icon.png";
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    imageView.center = CGPointMake(self.view.frame.size.width / 2, 80);
+    imageView.center = CGPointMake(self.view.frame.size.width / 2, 100);
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
     [self.view addSubview:imageView];
     
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(0, 0, 180, 50);
-    btn1.center = CGPointMake(self.view.frame.size.width / 2, 120);
+    btn1.center = CGPointMake(self.view.frame.size.width / 2, 140);
     [btn1 setTitleColor:[UIColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:1.0] forState:UIControlStateNormal];
     [btn1 setTitle:@"啄幕鸟" forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(handleBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,6 +77,10 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)pushTableView {
+    [self.navigationController pushViewController:[TableViewController new] animated:YES];
 }
 
 #pragma mark - Actions
@@ -106,7 +114,7 @@
 //    [[YKWoodpeckerManager sharedInstance] openPluginNamed:@"方法监听"];
 }
 
-/// Send an af request, only for demo method-listening-in.
+/// Send an AF request, only for demo method-listening-in.
 - (void)request {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 60.0f;
@@ -134,7 +142,7 @@
     return YES;
 }
 
-// Demo for Plugin communication, see more in YKWPluginProtocol.h
+// Demo for plugin communication, see more in YKWPluginProtocol.h
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
     if ([notification.object isKindOfClass:[NSString class]]) {
         if ([notification.object isEqualToString:@"ProbePluginNotification"]) {
