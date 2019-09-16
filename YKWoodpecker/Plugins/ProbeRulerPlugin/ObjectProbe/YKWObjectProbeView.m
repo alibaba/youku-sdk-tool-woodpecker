@@ -62,7 +62,7 @@
         _logView.delegate = self;
         [self addSubview:_logView];
         
-        [_logView logInfo:YKWLocalizedString(@"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'h' to show input history.>")];
+        [_logView logInfo:YKWLocalizedString(@"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po ...' to run po-command, input 'h' to show input history.>")];
         
         _poCmdCore = [[YKWPoCommandCore alloc] init];
 

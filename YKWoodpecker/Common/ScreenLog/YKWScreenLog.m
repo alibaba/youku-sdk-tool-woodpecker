@@ -76,7 +76,11 @@
         }
         CGRect intersectionRect = CGRectIntersection(frame, [UIApplication sharedApplication].keyWindow.bounds);
         if (frame.size.width < 300 || frame.size.height < 200 || intersectionRect.size.width  < 100 || intersectionRect.size.height  < 100) {
-            frame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height/2 + 50);
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                frame = CGRectMake([UIApplication sharedApplication].keyWindow.bounds.size.width / 4., 0, [UIApplication sharedApplication].keyWindow.bounds.size.width / 2., [UIApplication sharedApplication].keyWindow.bounds.size.height / 2. + 50.);
+            } else {
+                frame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height / 2. + 50.);
+            }
         }
     }
     self = [super initWithFrame:frame];

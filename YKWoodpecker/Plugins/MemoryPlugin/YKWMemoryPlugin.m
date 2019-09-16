@@ -38,7 +38,10 @@ static YKWChartWindow *_chartWindow;
 - (void)runWithParameters:(NSDictionary *)paraDic {
     if (!_chartWindow) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
-        _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(0., 20, width - 1, 180.)];
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            width /= 2.;
+        }
+        _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(1, 20, width - 2, 180.)];
         _chartWindow.yTitle = @"MB";
         [_chartWindow makeKeyAndVisible];
     }
