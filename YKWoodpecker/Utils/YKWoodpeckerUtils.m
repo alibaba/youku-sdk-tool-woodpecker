@@ -66,8 +66,12 @@ static NSDictionary *_cnLocalizeDic = nil;
 }
 
 + (BOOL)isCnLocaleLanguage {
-    NSString* languageCode = [[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleLanguageCode];
-    return [languageCode rangeOfString:@"zh"].location != NSNotFound;
+    static BOOL isCn = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        isCn = [[[NSLocale preferredLanguages] firstObject] rangeOfString:@"zh-Hans"].location != NSNotFound;
+    });
+    return isCn;
 }
 
 + (NSString *)localizedStringForKey:(NSString *)key {
