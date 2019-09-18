@@ -398,7 +398,7 @@
             [info appendFormat:@"%@Url:%@\n", YKWLocalizedString(@"ImageOriginal"), url.absoluteString];
         }
         if (imageView.image) {
-            [info appendFormat:@"%@%@: w%.1f h%.1f\n",YKWLocalizedString(@"Image"), YKWLocalizedString(@"Size"), imageView.image.size.width, imageView.image.size.height];
+            [info appendFormat:@"%@%@: w%.1f h%.1f\n",YKWLocalizedString(@"Image"), YKWLocalizedString(@"Size"), imageView.image.size.width * imageView.image.scale, imageView.image.size.height * imageView.image.scale];
         }
         _infoLabel.lineBreakMode = NSLineBreakByCharWrapping;
         [_probeFuncBtn2 setTitle:YKWLocalizedString(@"ShareUrl") forState:UIControlStateNormal];
