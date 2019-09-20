@@ -347,6 +347,7 @@
     }
     [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Opacity"), view.alpha];
     [info appendFormat:@"Hidden: %@\n", view.hidden ? @"YES" : @"NO"];
+    [info appendFormat:@"ClipsToBounds: %@\n", view.clipsToBounds ? @"YES" : @"NO"];
     [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Corner Radius"), view.layer.cornerRadius];
     [info appendFormat:@"%@: ", YKWLocalizedString(@"Background Color")];
     if (_probeView.probedView.backgroundColor) {
