@@ -92,6 +92,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.minimumScaleFactor = 0.5;
     cell.textLabel.text = [_subpathsAry ykw_objectAtIndex:indexPath.row];
     
 //    long size = [self getPathSize:[_subpathsAry ykw_objectAtIndex:indexPath.row]];
