@@ -453,7 +453,7 @@
         _probeFuncBtn3.hidden = YES;
         [info appendString:@"\n"];
     } else {
-        _probeFuncBtn2.hidden = YES;
+        [_probeFuncBtn2 setTitle:YKWLocalizedString(@"Image") forState:UIControlStateNormal];
         _probeFuncBtn3.hidden = YES;
     }
     [info appendFormat:@"%@", YKWLocalizedString(@"\n<Tap to share, double tap to see all>")];
@@ -513,6 +513,18 @@
                     [YKWoodpeckerUtils showShareActivityWithItems:@[url.absoluteString]];
                 } else {
                     [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"Can't find image url")];
+                }
+            } else if ([_probeView.probedView isKindOfClass:[UIView class]]) {
+                UIView *view = _probeView.probedView;
+                if (view.layer.contents) {
+                    UIImage *image = [UIImage imageWithCGImage:(__bridge CGImageRef _Nonnull)(view.layer.contents)];
+                    if (image) {
+                        YKWImageTextPreview *preview = [[YKWImageTextPreview alloc] init];
+                        preview.image = image;
+                        [preview show];
+                    }
+                } else {
+                    [YKWoodpeckerMessage showMessage:@"layer.contents is nil"];
                 }
             }
         }break;
