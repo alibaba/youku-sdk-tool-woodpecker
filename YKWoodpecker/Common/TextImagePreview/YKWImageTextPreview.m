@@ -33,6 +33,7 @@
 @interface YKWImageTextPreview() {
     UIImageView *_imageView;
     UITextView *_txtView;
+    UILabel *_infoLabel;
 }
 
 @end
@@ -43,7 +44,8 @@
     frame = CGRectMake(0, 0, [UIApplication sharedApplication].keyWindow.bounds.size.width, [UIApplication sharedApplication].keyWindow.bounds.size.height);
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:(arc4random() % 100)/100. alpha:1.0];
+        float random = (arc4random() % 100)/100.;
+        self.backgroundColor = [UIColor colorWithWhite:random alpha:1.0];
     
         _imageView = [[UIImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -83,6 +85,15 @@
         [shareBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [shareBtn addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:shareBtn];
+        
+        _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(closeBtn.right, 40, shareBtn.left - closeBtn.right, 30)];
+        _infoLabel.textColor = [UIColor colorWithWhite:random > 0.5 ? 0:1 alpha:1.0];
+        _infoLabel.textAlignment = NSTextAlignmentCenter;
+        _infoLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        _infoLabel.font = [UIFont systemFontOfSize:14];
+        _infoLabel.numberOfLines = 3;
+        _infoLabel.adjustsFontSizeToFitWidth = YES;
+        [self addSubview:_infoLabel];
     }
     return self;
 }
@@ -132,11 +143,13 @@
 }
 
 - (void)show {
+    NSString *info = nil;
     if (self.sourceImageView) {
         _imageView.hidden = NO;
         _txtView.hidden = YES;
         
-        _imageView.image = self.sourceImageView.image;
+        _image = self.sourceImageView.image;
+        _imageView.image = _image;
         _imageView.highlightedImage = self.sourceImageView.highlightedImage;
         _imageView.animationImages = self.sourceImageView.animationImages;
         _imageView.highlightedAnimationImages = self.sourceImageView.highlightedAnimationImages;
@@ -167,6 +180,13 @@
         [YKWoodpeckerMessage showMessage:@"No content"];
         return;
     }
+    
+    if (_image) {
+        info = [NSString stringWithFormat:@"%@%@: w%.1f h%.1f @scale%.1f",YKWLocalizedString(@"Image"), YKWLocalizedString(@"Size"), _image.size.width, _image.size.height, _image.scale];
+    } else if (self.textUrl.length) {
+        info = self.textUrl;
+    }
+    _infoLabel.text = info;
     
     self.alpha = 0.0;
     if ([UIApplication sharedApplication].keyWindow.rootViewController) {
