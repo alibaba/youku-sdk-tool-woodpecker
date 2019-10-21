@@ -62,9 +62,11 @@
         [_scrollView addSubview:_lineView];
         
         _yTitleLabel = [[UILabel alloc] init];
-        _yTitleLabel.frame = CGRectMake(20, 15, frame.size.width, 15);
+        _yTitleLabel.frame = CGRectMake(20, 15, frame.size.width - 30, 15);
         _yTitleLabel.font = [UIFont systemFontOfSize:12];
         _yTitleLabel.textColor = [UIColor lightGrayColor];
+        _yTitleLabel.adjustsFontSizeToFitWidth = YES;
+        _yTitleLabel.minimumScaleFactor = 0.5;
         [self addSubview:_yTitleLabel];
         
         _yLabelsArray = [NSMutableArray array];
@@ -100,8 +102,15 @@
         }
         total += data;
     }
+    float avg = total / dataArray.count;
+    total = 0;
+    for (int i = 0; i < _dataArray.count; i++) {
+        float data = [_dataArray[i] floatValue];
+        total += pow(data - avg, 2);
+    }
+    float variance = sqrt(total / dataArray.count);
     
-    _yTitleLabel.text = [NSString stringWithFormat:@"%@/ max:%.2f min:%.2f avg:%.2f", _yTitle, _maxData, _minData, total / dataArray.count];
+    _yTitleLabel.text = [NSString stringWithFormat:@"%@/ max:%.2f min:%.2f avg:%.2f σ:%.2f", _yTitle, _maxData, _minData, avg, variance];
     [self setupYLabels];
     
     CGSize contentSize = CGSizeMake(_dataArray.count * _lineView.xStep + 10, 0);

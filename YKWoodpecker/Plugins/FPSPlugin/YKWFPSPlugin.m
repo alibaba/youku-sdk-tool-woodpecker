@@ -39,7 +39,7 @@ static YKWChartWindow *_chartWindow;
     if (!_chartWindow) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            width /= 2.;
+            width /= 2;
         }
         _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(1, 20, width - 2, 180.)];
         _chartWindow.yTitle = @"fps";
@@ -51,7 +51,7 @@ static YKWChartWindow *_chartWindow;
     _chartWindow.hidden = NO;
     [_chartWindow clearData];
     [_chartWindow startQueryDataWithInterval:1.0 block:^(NSMutableArray *dataAry) {
-        [dataAry addObject:[NSString stringWithFormat:@"%.1f", [[YKWFPSUtils sharedInstance] fps]]];
+        [dataAry addObject:[NSString stringWithFormat:@"%.2f", [[YKWFPSUtils sharedInstance] fps]]];
         while (dataAry.count > 50) {
             [dataAry removeObjectAtIndex:0];
         }
