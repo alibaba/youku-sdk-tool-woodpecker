@@ -108,7 +108,7 @@
     _contentView.frame = frame;
     [[UIApplication sharedApplication].windows.firstObject addSubview:_contentView];
     [UIView animateWithDuration:0.2 animations:^{
-        _contentView.alpha = 1.0;
+        self->_contentView.alpha = 1.0;
     } completion:^(BOOL finished) {
 
     }];
@@ -117,9 +117,9 @@
 - (void)hide {
     [self stopJsonGrab];
     [UIView animateWithDuration:0.2 animations:^{
-        _contentView.alpha = 0.0;
+        self->_contentView.alpha = 0.0;
     } completion:^(BOOL finished) {
-        [_contentView removeFromSuperview];
+        [self->_contentView removeFromSuperview];
     }];
 }
 
@@ -147,8 +147,8 @@
                 NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [_jsonsAry addObject:jsonStr];
-                    [_tableView reloadData];
+                    [self->_jsonsAry addObject:jsonStr];
+                    [self->_tableView reloadData];
                 });
             }
         }
@@ -173,11 +173,18 @@
     cell.textLabel.textColor = YKWForegroudColor;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.numberOfLines = 3;
+    
     NSString *json = [_jsonsAry ykw_objectAtIndex:indexPath.row];
-    if (json.length > 300) {
+    NSInteger length = json.length;
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"[length: %ld]", (long)length] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12], NSForegroundColorAttributeName : [YKWHighlightColor colorWithAlphaComponent:0.6 + length / 10000.]}];
+    if (length > 300) {
         json = [json substringToIndex:300];
     }
-    cell.textLabel.text = [[json stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    json = [[json stringByReplacingOccurrencesOfString:@"\n" withString:@" "] stringByReplacingOccurrencesOfString:@"\t" withString:@" "];
+    NSAttributedString *str1 = [[NSAttributedString alloc] initWithString:json attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12], NSForegroundColorAttributeName : YKWForegroudColor}];
+    [str appendAttributedString:str1];
+    cell.textLabel.attributedText = str;
     return cell;
 }
 
@@ -185,7 +192,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *json = [_jsonsAry ykw_objectAtIndex:indexPath.row];
+    if (json.length) {
+        _methodHook.disableHook = YES;
+        NSError *er = nil;
+        id jsonObj = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&er];
+        if (!er && jsonObj) {
+            er = nil;
+            NSData *data = [NSJSONSerialization dataWithJSONObject:jsonObj options:NSJSONWritingPrettyPrinted error:&er];
+            if (!er && data) {
+                json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            }
+        }
+        _methodHook.disableHook = NO;
+    }
+    
     YKWScreenLog *log = [[YKWScreenLog alloc] init];
+    log.inputable = NO;
     [log log:json];
     [log show];
 }

@@ -54,10 +54,4 @@
 
 - (void)clearFunctions;
 
-/**
- Check to output using NSJSONWritingPrettyPrinted
- */
-+ (NSString *)checkIfJsonString:(NSString *)str;
-+ (id)checkIfJsonObject:(id)obj;
-
 @end

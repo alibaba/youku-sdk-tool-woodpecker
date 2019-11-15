@@ -256,10 +256,6 @@
 }
 
 - (BOOL)isListeningClass:(Class)cls selector:(SEL)sel {
-    if (self.disableHook) {
-        return NO;
-    }
-    
     NSString *clsStr = NSStringFromClass(cls);
     NSString *selStr = NSStringFromSelector(sel);
     if (!clsStr || !selStr) return NO;
@@ -277,19 +273,23 @@
 
 - (void)ykwoodpecker_forwardInvocation:(NSInvocation *)anInvocation {
     if ([[YKWJSONGrabManager sharedInstance].methodHook isListeningClass:[self class] selector:anInvocation.selector]) {
-        NSMutableArray *parasAry = [NSMutableArray array];
-        [parasAry addObject:self];
-        
-        NSInteger paraCount = anInvocation.methodSignature.numberOfArguments;
-
-        for (int i = 2; i < paraCount; i++) {
-            [YKWObjcMethodHook parseArgumentType:anInvocation index:i parasAry:parasAry];
-        }
-        
         // Invoke original method
         SEL originSel = NSSelectorFromString([@"ykwoodpecker_" stringByAppendingString:NSStringFromSelector(anInvocation.selector)]);
         anInvocation.selector = originSel;
         [anInvocation invokeWithTarget:self];
+        
+        if ([YKWJSONGrabManager sharedInstance].methodHook.disableHook) {
+            return;
+        }
+        
+        NSMutableArray *parasAry = [NSMutableArray array];
+        [parasAry addObject:self];
+        
+        NSInteger paraCount = anInvocation.methodSignature.numberOfArguments;
+        
+        for (int i = 2; i < paraCount; i++) {
+            [YKWObjcMethodHook parseArgumentType:anInvocation index:i parasAry:parasAry];
+        }
         
         // Return value
         NSString *returnLog = nil;
@@ -481,36 +481,6 @@
     BOOL ret1 = ykwoodpeckerRuntimeAddMethod(cls, methodSignatureSelector, [self class], methodSignatureSelector);
     BOOL ret2 = ykwoodpeckerRuntimeSwizzleMethod(cls, selector, cls, methodSignatureSelector);
     return ret1 && ret2;
-}
-
-#pragma mark - Class method
-+ (NSString *)checkIfJsonString:(NSString *)str {
-    if (str.length) {
-        NSError *er = nil;
-        id jsonObj = [NSJSONSerialization JSONObjectWithData:[str dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&er];
-        if (!er && jsonObj) {
-            er = nil;
-            NSData *data = [NSJSONSerialization dataWithJSONObject:jsonObj options:NSJSONWritingPrettyPrinted error:&er];
-            if (!er && data) {
-                return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            }
-        }
-    }
-    return str;
-}
-
-+ (id)checkIfJsonObject:(id)obj {
-    [YKWJSONGrabManager sharedInstance].methodHook.disableHook = YES;
-    if (obj && [NSJSONSerialization isValidJSONObject:obj]) {
-        NSError *er = nil;
-        NSData *data = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:&er];
-        if (!er && data) {
-            [YKWJSONGrabManager sharedInstance].methodHook.disableHook = NO;
-            return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        }
-    }
-    [YKWJSONGrabManager sharedInstance].methodHook.disableHook = NO;
-    return obj;
 }
 
 @end
