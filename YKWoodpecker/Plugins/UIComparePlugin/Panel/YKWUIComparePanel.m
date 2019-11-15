@@ -90,7 +90,7 @@
         [self addSubview:slider];
 
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        hideButton.frame = CGRectMake(self.width - 22, -10, 30, 30);
+        hideButton.frame = CGRectMake(self.width - 30, -12, 40, 40);
         hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];

@@ -51,4 +51,28 @@
     self.center = CGPointMake(self.centerX + translation.x * self.followVelocity, self.centerY + translation.y * self.followVelocity);
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    
+    if (!self.followWoodpeckerIcon) {
+        return;
+    }
+    
+    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
+        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
+    }
+}
+
+- (void)setCenter:(CGPoint)center {
+    [super setCenter:center];
+    
+    if (!self.followWoodpeckerIcon) {
+        return;
+    }
+    
+    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
+        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
+    }
+}
+
 @end

@@ -104,7 +104,7 @@
         
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         hideButton.backgroundColor = [UIColor clearColor];
-        hideButton.frame = CGRectMake(self.width - 22, -10, 30, 30);
+        hideButton.frame = CGRectMake(_contentView.width - 30, -12, 40, 40);
         hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -174,22 +174,6 @@
 
     }
     return self;
-}
-
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-    
-    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
-        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
-    }
-}
-
-- (void)setCenter:(CGPoint)center {
-    [super setCenter:center];
-    
-    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
-        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
-    }
 }
 
 #pragma mark - Show & Hide

@@ -25,6 +25,20 @@
 		<dict/>
 	</dict>
 	<dict>
+		<key>isSafePlugin</key>
+		<true/>
+		<key>pluginName</key>
+		<string>JSON抓包</string>
+		<key>pluginInfo</key>
+		<string>by 氚雨</string>
+		<key>pluginCharIconText</key>
+		<string>✉</string>
+		<key>pluginCategoryName</key>
+		<string>常用工具</string>
+		<key>pluginClassName</key>
+		<string>YKWJSONGrabPlugin</string>
+	</dict>
+	<dict>
 		<key>pluginName</key>
 		<string>方法监听</string>
 		<key>pluginInfo</key>
@@ -46,7 +60,7 @@
 		<key>pluginCharIconText</key>
 		<string>ⓘ</string>
 		<key>pluginCategoryName</key>
-		<string>常用工具</string>
+		<string>调试工具</string>
 		<key>pluginClassName</key>
 		<string>YKWSysInfoPlugin</string>
 	</dict>

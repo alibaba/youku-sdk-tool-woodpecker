@@ -1,9 +1,9 @@
 //
-//  YKWFollowView.h
+//  YKWJSONGrabPlugin.h
 //  YKWoodpecker
 //
-//  Created by Zim on 2018/10/25.
-//  Copyright © 2018 Youku. All rights reserved.
+//  Created by Zim on 2019/11/15.
+//  Copyright © 2019 Youku. All rights reserved.
 //
 //  MIT License
 //
@@ -27,23 +27,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface YKWFollowView : UIView
-
-/**
- Following velocity, default is 1.0.
- */
-@property (nonatomic, assign) CGFloat followVelocity;
-
-/**
- The pan gesture recognizer to receive touch events.
- */
-@property (nonatomic, readonly) UIPanGestureRecognizer *panGestureRecognizer;
-
-/**
- If following the woodpecker icon.
- */
-@property (nonatomic, assign) BOOL followWoodpeckerIcon;
+@interface YKWJSONGrabPlugin : NSObject<YKWPluginProtocol>
 
 @end

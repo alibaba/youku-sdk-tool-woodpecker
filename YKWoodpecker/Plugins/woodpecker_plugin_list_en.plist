@@ -25,6 +25,20 @@
 		<dict/>
 	</dict>
 	<dict>
+		<key>isSafePlugin</key>
+		<true/>
+		<key>pluginName</key>
+		<string>Json Grab</string>
+		<key>pluginInfo</key>
+		<string>by Zim</string>
+		<key>pluginCharIconText</key>
+		<string>✉</string>
+		<key>pluginCategoryName</key>
+		<string>Common Tools</string>
+		<key>pluginClassName</key>
+		<string>YKWJSONGrabPlugin</string>
+	</dict>
+	<dict>
 		<key>pluginName</key>
 		<string>Listening-In</string>
 		<key>pluginInfo</key>
@@ -46,13 +60,13 @@
 		<key>pluginCharIconText</key>
 		<string>ⓘ</string>
 		<key>pluginCategoryName</key>
-		<string>Common Tools</string>
+		<string>Debug Tools</string>
 		<key>pluginClassName</key>
 		<string>YKWSysInfoPlugin</string>
 	</dict>
 	<dict>
 		<key>pluginName</key>
-		<string>Po cmd</string>
+		<string>po cmd</string>
 		<key>pluginInfo</key>
 		<string>by Zim</string>
 		<key>pluginCharIconText</key>

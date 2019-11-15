@@ -1,9 +1,9 @@
 //
-//  YKWFollowView.h
+//  YKWObjcMethodHook.h
 //  YKWoodpecker
 //
-//  Created by Zim on 2018/10/25.
-//  Copyright © 2018 Youku. All rights reserved.
+//  Created by Zim on 2019/11/15.
+//  Copyright © 2019 Youku. All rights reserved.
 //
 //  MIT License
 //
@@ -27,23 +27,37 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
-
-@interface YKWFollowView : UIView
+#import <Foundation/Foundation.h>
 
 /**
- Following velocity, default is 1.0.
+ For output.
  */
-@property (nonatomic, assign) CGFloat followVelocity;
+@class YKWObjcMethodHook;
+@protocol YKWObjcMethodHookDelegate <NSObject>
+
+@optional
+- (void)objcMethodHook:(YKWObjcMethodHook *)core didOutput:(NSString *)output;
+
+@end
+
+@interface YKWObjcMethodHook : NSObject
+
+@property (nonatomic, weak) id<YKWObjcMethodHookDelegate> delegate;
+
+@property (nonatomic) BOOL disableHook;
+
+@property (nonatomic) NSMutableArray *hadListenedParas;
+
+- (void)parseCommand:(NSString *)cmdStr;
+
+- (BOOL)isListeningClass:(Class)cls selector:(SEL)sel;
+
+- (void)clearFunctions;
 
 /**
- The pan gesture recognizer to receive touch events.
+ Check to output using NSJSONWritingPrettyPrinted
  */
-@property (nonatomic, readonly) UIPanGestureRecognizer *panGestureRecognizer;
-
-/**
- If following the woodpecker icon.
- */
-@property (nonatomic, assign) BOOL followWoodpeckerIcon;
++ (NSString *)checkIfJsonString:(NSString *)str;
++ (id)checkIfJsonObject:(id)obj;
 
 @end

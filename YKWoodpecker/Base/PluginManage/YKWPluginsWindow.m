@@ -91,7 +91,7 @@
         
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         hideButton.backgroundColor = [UIColor clearColor];
-        hideButton.frame = CGRectMake(self.width - 22, -10, 30, 30);
+        hideButton.frame = CGRectMake(_contentView.width - 30, -12, 40, 40);
         hideButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin;
         hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
