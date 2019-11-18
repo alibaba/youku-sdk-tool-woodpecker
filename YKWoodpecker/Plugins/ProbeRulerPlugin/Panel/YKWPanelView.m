@@ -321,7 +321,6 @@
     _probeFuncBtn2.hidden = NO;
     _probeFuncBtn3.hidden = NO;
     [_probeFuncBtn1 setTitle:YKWLocalizedString(@"Superview") forState:UIControlStateNormal];
-    _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSMutableString *info = [NSMutableString string];
     [info appendFormat:@"%@:\n", [view class]];
@@ -385,7 +384,7 @@
         if (imageView.image) {
             [info appendFormat:@"%@%@: w%.1f h%.1f\n",YKWLocalizedString(@"Image"), YKWLocalizedString(@"Size"), imageView.image.size.width * imageView.image.scale, imageView.image.size.height * imageView.image.scale];
         }
-        _infoLabel.lineBreakMode = NSLineBreakByCharWrapping;
+
         [_probeFuncBtn2 setTitle:YKWLocalizedString(@"ShareUrl") forState:UIControlStateNormal];
         [_probeFuncBtn3 setTitle:YKWLocalizedString(@"Image") forState:UIControlStateNormal];
     } else if ([view isKindOfClass:[UIButton class]]) {
