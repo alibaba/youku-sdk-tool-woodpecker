@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   spec.license      = "MIT"
   spec.name         = "YKWoodpecker"
-  spec.version      = "1.0.2"
+  spec.version      = "1.1.0"
   spec.summary      = "An in-app-debug tool for iOS."
 
   spec.description  = "This library provides a powerful collection of iOS develop tools, such as view picker, "  \
@@ -36,7 +36,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.xcconfig = { 
        "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)",
-       "ENABLE_STRICT_OBJC_MSGSEND" => "NO"
   }
 
 end

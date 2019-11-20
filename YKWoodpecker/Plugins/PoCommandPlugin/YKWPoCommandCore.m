@@ -113,6 +113,7 @@
         return NO;
     }
     self.isLastPoCmd = YES;
+    
     input = [input substringFromIndex:[input rangeOfString:@"["].location];
     input = [input stringByReplacingOccurrencesOfString:@"[ [" withString:@"[["];
     
@@ -247,1150 +248,1303 @@
 }
 
 - (void)runVoidReturnWithTarget:(id)target selector:(SEL)selector paraType:(NSString *)paraTypeStr paraAry:(NSArray<YKWPoCommandPara *> *)paraAry {
+    typedef id (*msgTypeOne)(id, SEL);
+    msgTypeOne msgSendOne = (msgTypeOne)objc_msgSend;
     switch (paraAry.count) {
         case 0:{
-            objc_msgSend(target, selector);
+            typedef void (*msgType)(id, SEL);
+            msgType msgSend = (msgType)objc_msgSend;
+            msgSend(target, selector);
         }break;
         case 1:{
             switch (paraTypeStr.integerValue) {
-                case 1:
-                    ((void (*)(id, SEL, id))objc_msgSend)
-                    (target, selector, objc_msgSend(paraAry[0], paraAry[0].getParaSelector));
-                    break;
-                case 2:
-                    ((void (*)(id, SEL, long long))objc_msgSend)
-                    (target, selector, paraAry[0].longlongPara);
-                    break;
-                case 3:
-                    ((void (*)(id, SEL, double))objc_msgSend)
-                    (target, selector, paraAry[0].doublePara);
-                    break;
-                default:
-                    break;
+                case 1:{
+                    typedef void (*msgType)(id, SEL, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector, msgSendOne(paraAry[0], paraAry[0].getParaSelector));
+                }break;
+                case 2:{
+                    typedef void (*msgType)(id, SEL, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector, paraAry[0].longlongPara);
+                }break;
+                case 3:{
+                    typedef void (*msgType)(id, SEL, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector, paraAry[0].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 2:{
             switch (paraTypeStr.integerValue) {
-                case 11:
-                    ((void (*)(id, SEL, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 12:
-                    ((void (*)(id, SEL, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara);
-                    break;
-                case 13:{
-                    ((void (*)(id, SEL, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara);
+                case 11:{
+                    typedef void (*msgType)(id, SEL, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector));
                 }break;
-                case 21:
-                    ((void (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 22:
-                    ((void (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 23:
-                    ((void (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].doublePara);
-                    break;
-                case 31:
-                    ((void (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 32:
-                    ((void (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 33:
-                    ((void (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].doublePara);
-                    break;
-                default:
-                    break;
+                case 12:{
+                    typedef void (*msgType)(id, SEL, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].longlongPara);
+                }break;
+                case 13:{
+                    typedef void (*msgType)(id, SEL, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].doublePara);
+                }break;
+                case 21:{
+                    typedef void (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].longlongPara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 22:{
+                    typedef void (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].longlongPara,
+                            paraAry[1].longlongPara);
+                }break;
+                case 23:{
+                    typedef void (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].longlongPara,
+                            paraAry[1].doublePara);
+                }break;
+                case 31:{
+                    typedef void (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].doublePara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 32:{
+                    typedef void (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].doublePara,
+                            paraAry[1].longlongPara);
+                }break;
+                case 33:{
+                    typedef void (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[0].doublePara,
+                            paraAry[1].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 3:{
             switch (paraTypeStr.integerValue) {
-                case 111:
-                    ((void (*)(id, SEL, id, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 112:
-                    ((void (*)(id, SEL, id, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 113:
-                    ((void (*)(id, SEL, id, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 121:
-                    ((void (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 122:
-                    ((void (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 123:
-                    ((void (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 131:
-                    ((void (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 132:
-                    ((void (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 133:
-                    ((void (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 111:{
+                    typedef void (*msgType)(id, SEL, id, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 112:{
+                    typedef void (*msgType)(id, SEL, id, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].longlongPara);
+                }break;
+                case 113:{
+                    typedef void (*msgType)(id, SEL, id, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].doublePara);
+                }break;
+                case 121:{
+                    typedef void (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].longlongPara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 122:{
+                    typedef void (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].longlongPara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 123:{
+                    typedef void (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].longlongPara,
+                            paraAry[2].doublePara);
+                }break;
+                case 131:{
+                    typedef void (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 132:{
+                    typedef void (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].doublePara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 133:{
+                    typedef void (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                            paraAry[1].doublePara,
+                            paraAry[2].doublePara);
+                }break;
                     
-                case 211:
-                    ((void (*)(id, SEL, long long, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 212:
-                    ((void (*)(id, SEL, long long, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 213:
-                    ((void (*)(id, SEL, long long, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 221:
-                    ((void (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 222:
-                    ((void (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 223:
-                    ((void (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 231:
-                    ((void (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 232:
-                    ((void (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 233:
-                    ((void (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 211:{
+                    typedef void (*msgType)(id, SEL, long long, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 212:{
+                    typedef void (*msgType)(id, SEL, long long, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].longlongPara);
+                }break;
+                case 213:{
+                    typedef void (*msgType)(id, SEL, long long, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].doublePara);
+                }break;
+                case 221:{
+                    typedef void (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].longlongPara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 222:{
+                    typedef void (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].longlongPara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 223:{
+                    typedef void (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].longlongPara,
+                            paraAry[2].doublePara);
+                }break;
+                case 231:{
+                    typedef void (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 232:{
+                    typedef void (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].doublePara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 233:{
+                    typedef void (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[2].longlongPara,
+                            paraAry[1].doublePara,
+                            paraAry[2].doublePara);
+                }break;
                     
-                case 311:
-                    ((void (*)(id, SEL, double, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 312:
-                    ((void (*)(id, SEL, double, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 313:
-                    ((void (*)(id, SEL, double, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 321:
-                    ((void (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 322:
-                    ((void (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 323:
-                    ((void (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 331:
-                    ((void (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 332:
-                    ((void (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 333:
-                    ((void (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
-                default:
-                    break;
+                case 311:{
+                    typedef void (*msgType)(id, SEL, double, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 312:{
+                    typedef void (*msgType)(id, SEL, double, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].longlongPara);
+                }break;
+                case 313:{
+                    typedef void (*msgType)(id, SEL, double, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                            paraAry[2].doublePara);
+                }break;
+                case 321:{
+                    typedef void (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].longlongPara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 322:{
+                    typedef void (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].longlongPara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 323:{
+                    typedef void (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].longlongPara,
+                            paraAry[2].doublePara);
+                }break;
+                case 331:{
+                    typedef void (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].doublePara,
+                            msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 332:{
+                    typedef void (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].doublePara,
+                            paraAry[2].longlongPara);
+                }break;
+                case 333:{
+                    typedef void (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    msgSend(target, selector,
+                            paraAry[1].doublePara,
+                            paraAry[1].doublePara,
+                            paraAry[2].doublePara);
+                }break;
+                default:break;
             }
         }break;
-        default:
-            break;
+        default:break;
     }
 }
 
 - (id)runIdReturnWithTarget:(id)target selector:(SEL)selector paraType:(NSString *)paraTypeStr paraAry:(NSArray<YKWPoCommandPara *> *)paraAry {
     id ret = nil;
+    typedef id (*msgTypeOne)(id, SEL);
+    msgTypeOne msgSendOne = (msgTypeOne)objc_msgSend;
     switch (paraAry.count) {
         case 0:{
-            ret = objc_msgSend(target, selector);
+            typedef id (*msgType)(id, SEL);
+            msgType msgSend = (msgType)objc_msgSend;
+            ret = msgSend(target, selector);
         }break;
         case 1:{
             switch (paraTypeStr.integerValue) {
-                case 1:
-                    ret = ((id (*)(id, SEL, id))objc_msgSend)
-                    (target, selector, objc_msgSend(paraAry[0], paraAry[0].getParaSelector));
-                    break;
-                case 2:
-                    ret = ((id (*)(id, SEL, long long))objc_msgSend)
-                    (target, selector, paraAry[0].longlongPara);
-                    break;
-                case 3:
-                    ret = ((id (*)(id, SEL, double))objc_msgSend)
-                    (target, selector, paraAry[0].doublePara);
-                    break;
-                default:
-                    break;
+                case 1:{
+                    typedef id (*msgType)(id, SEL, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, msgSendOne(paraAry[0], paraAry[0].getParaSelector));
+                }break;
+                case 2:{
+                    typedef id (*msgType)(id, SEL, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].longlongPara);
+                }break;
+                case 3:{
+                    typedef id (*msgType)(id, SEL, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 2:{
             switch (paraTypeStr.integerValue) {
-                case 11:
-                    ret = ((id (*)(id, SEL, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 12:
-                    ret = ((id (*)(id, SEL, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara);
-                    break;
-                case 13:{
-                    ret = ((id (*)(id, SEL, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara);
+                case 11:{
+                    typedef id (*msgType)(id, SEL, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
                 }break;
-                case 21:
-                    ret = ((id (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 22:
-                    ret = ((id (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 23:
-                    ret = ((id (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].doublePara);
-                    break;
-                case 31:
-                    ret = ((id (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 32:
-                    ret = ((id (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 33:
-                    ret = ((id (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].doublePara);
-                    break;
-                default:
-                    break;
+                case 12:{
+                    typedef id (*msgType)(id, SEL, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara);
+                }break;
+                case 13:{
+                    typedef id (*msgType)(id, SEL, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara);
+                }break;
+                case 21:{
+                    typedef id (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 22:{
+                    typedef id (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 23:{
+                    typedef id (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].doublePara);
+                }break;
+                case 31:{
+                    typedef id (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 32:{
+                    typedef id (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 33:{
+                    typedef id (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 3:{
             switch (paraTypeStr.integerValue) {
-                case 111:
-                    ret = ((id (*)(id, SEL, id, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 112:
-                    ret = ((id (*)(id, SEL, id, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 113:
-                    ret = ((id (*)(id, SEL, id, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 121:
-                    ret = ((id (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 122:
-                    ret = ((id (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 123:
-                    ret = ((id (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 131:
-                    ret = ((id (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 132:
-                    ret = ((id (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 133:
-                    ret = ((id (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 111:{
+                    typedef id (*msgType)(id, SEL, id, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 112:{
+                    typedef id (*msgType)(id, SEL, id, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 113:{
+                    typedef id (*msgType)(id, SEL, id, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 121:{
+                    typedef id (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 122:{
+                    typedef id (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 123:{
+                    typedef id (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 131:{
+                    typedef id (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 132:{
+                    typedef id (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 133:{
+                    typedef id (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 211:
-                    ret = ((id (*)(id, SEL, long long, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 212:
-                    ret = ((id (*)(id, SEL, long long, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 213:
-                    ret = ((id (*)(id, SEL, long long, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 221:
-                    ret = ((id (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 222:
-                    ret = ((id (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 223:
-                    ret = ((id (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 231:
-                    ret = ((id (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 232:
-                    ret = ((id (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 233:
-                    ret = ((id (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 211:{
+                    typedef id (*msgType)(id, SEL, long long, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 212:{
+                    typedef id (*msgType)(id, SEL, long long, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 213:{
+                    typedef id (*msgType)(id, SEL, long long, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 221:{
+                    typedef id (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 222:{
+                    typedef id (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 223:{
+                    typedef id (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 231:{
+                    typedef id (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 232:{
+                    typedef id (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 233:{
+                    typedef id (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 311:
-                    ret = ((id (*)(id, SEL, double, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 312:
-                    ret = ((id (*)(id, SEL, double, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 313:
-                    ret = ((id (*)(id, SEL, double, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 321:
-                    ret = ((id (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 322:
-                    ret = ((id (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 323:
-                    ret = ((id (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 331:
-                    ret = ((id (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 332:
-                    ret = ((id (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 333:
-                    ret = ((id (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
-                default:
-                    break;
+                case 311:{
+                    typedef id (*msgType)(id, SEL, double, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 312:{
+                    typedef id (*msgType)(id, SEL, double, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 313:{
+                    typedef id (*msgType)(id, SEL, double, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 321:{
+                    typedef id (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 322:{
+                    typedef id (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 323:{
+                    typedef id (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 331:{
+                    typedef id (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 332:{
+                    typedef id (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 333:{
+                    typedef id (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
+                default:break;
             }
         }break;
-        default:
-            return nil;
-            break;
+        default:break;
     }
-    return  ret;
+    return ret;
 }
 
 - (double)runDoubleReturnWithTarget:(id)target selector:(SEL)selector paraType:(NSString *)paraTypeStr paraAry:(NSArray<YKWPoCommandPara *> *)paraAry {
     double ret = 0;
+    typedef id (*msgTypeOne)(id, SEL);
+    msgTypeOne msgSendOne = (msgTypeOne)objc_msgSend;
     switch (paraAry.count) {
         case 0:{
-            ret = ((double (*)(id, SEL))objc_msgSend)(target, selector);
+            typedef double (*msgType)(id, SEL);
+            msgType msgSend = (msgType)objc_msgSend;
+            ret = msgSend(target, selector);
         }break;
         case 1:{
             switch (paraTypeStr.integerValue) {
-                case 1:
-                    ret = ((double (*)(id, SEL, id))objc_msgSend)
-                    (target, selector, objc_msgSend(paraAry[0], paraAry[0].getParaSelector));
-                    break;
-                case 2:
-                    ret = ((double (*)(id, SEL, long long))objc_msgSend)
-                    (target, selector, paraAry[0].longlongPara);
-                    break;
-                case 3:
-                    ret = ((double (*)(id, SEL, double))objc_msgSend)
-                    (target, selector, paraAry[0].doublePara);
-                    break;
-                default:
-                    break;
+                case 1:{
+                    typedef double (*msgType)(id, SEL, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, msgSendOne(paraAry[0], paraAry[0].getParaSelector));
+                }break;
+                case 2:{
+                    typedef double (*msgType)(id, SEL, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].longlongPara);
+                }break;
+                case 3:{
+                    typedef double (*msgType)(id, SEL, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 2:{
             switch (paraTypeStr.integerValue) {
-                case 11:
-                    ret = ((double (*)(id, SEL, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 12:
-                    ret = ((double (*)(id, SEL, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara);
-                    break;
-                case 13:
-                    ret = ((double (*)(id, SEL, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara);
-                    break;
-                case 21:
-                    ret = ((double (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 22:
-                    ret = ((double (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 23:
-                    ret = ((double (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].doublePara);
-                    break;
-                case 31:
-                    ret = ((double (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 32:
-                    ret = ((double (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 33:
-                    ret = ((double (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].doublePara);
-                    break;
-                default:
-                    break;
+                case 11:{
+                    typedef double (*msgType)(id, SEL, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 12:{
+                    typedef double (*msgType)(id, SEL, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara);
+                }break;
+                case 13:{
+                    typedef double (*msgType)(id, SEL, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara);
+                }break;
+                case 21:{
+                    typedef double (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 22:{
+                    typedef double (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 23:{
+                    typedef double (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].doublePara);
+                }break;
+                case 31:{
+                    typedef double (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 32:{
+                    typedef double (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 33:{
+                    typedef double (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 3:{
             switch (paraTypeStr.integerValue) {
-                case 111:
-                    ret = ((double (*)(id, SEL, id, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 112:
-                    ret = ((double (*)(id, SEL, id, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 113:
-                    ret = ((double (*)(id, SEL, id, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 121:
-                    ret = ((double (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 122:
-                    ret = ((double (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 123:
-                    ret = ((double (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 131:
-                    ret = ((double (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 132:
-                    ret = ((double (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 133:
-                    ret = ((double (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 111:{
+                    typedef double (*msgType)(id, SEL, id, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 112:{
+                    typedef double (*msgType)(id, SEL, id, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 113:{
+                    typedef double (*msgType)(id, SEL, id, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 121:{
+                    typedef double (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 122:{
+                    typedef double (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 123:{
+                    typedef double (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 131:{
+                    typedef double (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 132:{
+                    typedef double (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 133:{
+                    typedef double (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 211:
-                    ret = ((double (*)(id, SEL, long long, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 212:
-                    ret = ((double (*)(id, SEL, long long, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 213:
-                    ret = ((double (*)(id, SEL, long long, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 221:
-                    ret = ((double (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 222:
-                    ret = ((double (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 223:
-                    ret = ((double (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 231:
-                    ret = ((double (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 232:
-                    ret = ((double (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 233:
-                    ret = ((double (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 211:{
+                    typedef double (*msgType)(id, SEL, long long, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 212:{
+                    typedef double (*msgType)(id, SEL, long long, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 213:{
+                    typedef double (*msgType)(id, SEL, long long, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 221:{
+                    typedef double (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 222:{
+                    typedef double (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 223:{
+                    typedef double (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 231:{
+                    typedef double (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 232:{
+                    typedef double (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 233:{
+                    typedef double (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 311:
-                    ret = ((double (*)(id, SEL, double, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 312:
-                    ret = ((double (*)(id, SEL, double, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 313:
-                    ret = ((double (*)(id, SEL, double, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 321:
-                    ret = ((double (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 322:
-                    ret = ((double (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 323:
-                    ret = ((double (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 331:
-                    ret = ((double (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 332:
-                    ret = ((double (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 333:
-                    ret = ((double (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
-                default:
-                    break;
+                case 311:{
+                    typedef double (*msgType)(id, SEL, double, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 312:{
+                    typedef double (*msgType)(id, SEL, double, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 313:{
+                    typedef double (*msgType)(id, SEL, double, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 321:{
+                    typedef double (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 322:{
+                    typedef double (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 323:{
+                    typedef double (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 331:{
+                    typedef double (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 332:{
+                    typedef double (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 333:{
+                    typedef double (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
+                default:break;
             }
         }break;
-        default:
-            return 0;
-            break;
+        default:break;
     }
     return ret;
 }
 
 - (double)runLonglongReturnWithTarget:(id)target selector:(SEL)selector paraType:(NSString *)paraTypeStr paraAry:(NSArray<YKWPoCommandPara *> *)paraAry {
     long long ret = 0;
+    typedef id (*msgTypeOne)(id, SEL);
+    msgTypeOne msgSendOne = (msgTypeOne)objc_msgSend;
     switch (paraAry.count) {
         case 0:{
-            ret = ((long long (*)(id, SEL))objc_msgSend)(target, selector);
+            typedef long long (*msgType)(id, SEL);
+            msgType msgSend = (msgType)objc_msgSend;
+            ret = msgSend(target, selector);
         }break;
         case 1:{
             switch (paraTypeStr.integerValue) {
-                case 1:
-                    ret = ((long long (*)(id, SEL, id))objc_msgSend)
-                    (target, selector, objc_msgSend(paraAry[0], paraAry[0].getParaSelector));
-                    break;
-                case 2:
-                    ret = ((long long (*)(id, SEL, long long))objc_msgSend)
-                    (target, selector, paraAry[0].longlongPara);
-                    break;
-                case 3:
-                    ret = ((long long (*)(id, SEL, double))objc_msgSend)
-                    (target, selector, paraAry[0].doublePara);
-                    break;
-                default:
-                    break;
+                case 1:{
+                    typedef long long (*msgType)(id, SEL, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, msgSendOne(paraAry[0], paraAry[0].getParaSelector));
+                }break;
+                case 2:{
+                    typedef long long (*msgType)(id, SEL, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].longlongPara);
+                }break;
+                case 3:{
+                    typedef long long (*msgType)(id, SEL, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector, paraAry[0].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 2:{
             switch (paraTypeStr.integerValue) {
-                case 11:
-                    ret = ((long long (*)(id, SEL, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 12:
-                    ret = ((long long (*)(id, SEL, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara);
-                    break;
-                case 13:
-                    ret = ((long long (*)(id, SEL, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara);
-                    break;
-                case 21:
-                    ret = ((long long (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 22:
-                    ret = ((long long (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 23:
-                    ret = ((long long (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].longlongPara,
-                     paraAry[1].doublePara);
-                    break;
-                case 31:
-                    ret = ((long long (*)(id, SEL, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector));
-                    break;
-                case 32:
-                    ret = ((long long (*)(id, SEL, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].longlongPara);
-                    break;
-                case 33:
-                    ret = ((long long (*)(id, SEL, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[0].doublePara,
-                     paraAry[1].doublePara);
-                    break;
-                default:
-                    break;
+                case 11:{
+                    typedef long long (*msgType)(id, SEL, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 12:{
+                    typedef long long (*msgType)(id, SEL, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara);
+                }break;
+                case 13:{
+                    typedef long long (*msgType)(id, SEL, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara);
+                }break;
+                case 21:{
+                    typedef long long (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 22:{
+                    typedef long long (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 23:{
+                    typedef long long (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].longlongPara,
+                                  paraAry[1].doublePara);
+                }break;
+                case 31:{
+                    typedef long long (*msgType)(id, SEL, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector));
+                }break;
+                case 32:{
+                    typedef long long (*msgType)(id, SEL, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].longlongPara);
+                }break;
+                case 33:{
+                    typedef long long (*msgType)(id, SEL, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[0].doublePara,
+                                  paraAry[1].doublePara);
+                }break;
+                default:break;
             }
         }break;
         case 3:{
             switch (paraTypeStr.integerValue) {
-                case 111:
-                    ret = ((long long (*)(id, SEL, id, id, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 112:
-                    ret = ((long long (*)(id, SEL, id, id, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 113:
-                    ret = ((long long (*)(id, SEL, id, id, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 121:
-                    ret = ((long long (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 122:
-                    ret = ((long long (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 123:
-                    ret = ((long long (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 131:
-                    ret = ((long long (*)(id, SEL, id, long long, id))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 132:
-                    ret = ((long long (*)(id, SEL, id, long long, long long))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 133:
-                    ret = ((long long (*)(id, SEL, id, long long, double))objc_msgSend)
-                    (target, selector,
-                     objc_msgSend(paraAry[0], paraAry[0].getParaSelector),
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 111:{
+                    typedef long long (*msgType)(id, SEL, id, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 112:{
+                    typedef long long (*msgType)(id, SEL, id, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 113:{
+                    typedef long long (*msgType)(id, SEL, id, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 121:{
+                    typedef long long (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 122:{
+                    typedef long long (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 123:{
+                    typedef long long (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 131:{
+                    typedef long long (*msgType)(id, SEL, id, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 132:{
+                    typedef long long (*msgType)(id, SEL, id, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 133:{
+                    typedef long long (*msgType)(id, SEL, id, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  msgSendOne(paraAry[0], paraAry[0].getParaSelector),
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 211:
-                    ret = ((long long (*)(id, SEL, long long, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 212:
-                    ret = ((long long (*)(id, SEL, long long, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 213:
-                    ret = ((long long (*)(id, SEL, long long, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 221:
-                    ret = ((long long (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 222:
-                    ret = ((long long (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 223:
-                    ret = ((long long (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 231:
-                    ret = ((long long (*)(id, SEL, long long, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 232:
-                    ret = ((long long (*)(id, SEL, long long, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 233:
-                    ret = ((long long (*)(id, SEL, long long, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[2].longlongPara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
+                case 211:{
+                    typedef long long (*msgType)(id, SEL, long long, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 212:{
+                    typedef long long (*msgType)(id, SEL, long long, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 213:{
+                    typedef long long (*msgType)(id, SEL, long long, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 221:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 222:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 223:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 231:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 232:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 233:{
+                    typedef long long (*msgType)(id, SEL, long long, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[2].longlongPara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
                     
-                case 311:
-                    ret = ((long long (*)(id, SEL, double, id, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 312:
-                    ret = ((long long (*)(id, SEL, double, id, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].longlongPara);
-                    break;
-                case 313:
-                    ret = ((long long (*)(id, SEL, double, id, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[1], paraAry[1].getParaSelector),
-                     paraAry[2].doublePara);
-                    break;
-                case 321:
-                    ret = ((long long (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 322:
-                    ret = ((long long (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 323:
-                    ret = ((long long (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].longlongPara,
-                     paraAry[2].doublePara);
-                    break;
-                case 331:
-                    ret = ((long long (*)(id, SEL, double, long long, id))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     objc_msgSend(paraAry[2], paraAry[2].getParaSelector));
-                    break;
-                case 332:
-                    ret = ((long long (*)(id, SEL, double, long long, long long))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].longlongPara);
-                    break;
-                case 333:
-                    ret = ((long long (*)(id, SEL, double, long long, double))objc_msgSend)
-                    (target, selector,
-                     paraAry[1].doublePara,
-                     paraAry[1].doublePara,
-                     paraAry[2].doublePara);
-                    break;
-                default:
-                    break;
+                case 311:{
+                    typedef long long (*msgType)(id, SEL, double, id, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 312:{
+                    typedef long long (*msgType)(id, SEL, double, id, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].longlongPara);
+                }break;
+                case 313:{
+                    typedef long long (*msgType)(id, SEL, double, id, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[1], paraAry[1].getParaSelector),
+                                  paraAry[2].doublePara);
+                }break;
+                case 321:{
+                    typedef long long (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 322:{
+                    typedef long long (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 323:{
+                    typedef long long (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].longlongPara,
+                                  paraAry[2].doublePara);
+                }break;
+                case 331:{
+                    typedef long long (*msgType)(id, SEL, double, long long, id);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  msgSendOne(paraAry[2], paraAry[2].getParaSelector));
+                }break;
+                case 332:{
+                    typedef long long (*msgType)(id, SEL, double, long long, long long);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].longlongPara);
+                }break;
+                case 333:{
+                    typedef long long (*msgType)(id, SEL, double, long long, double);
+                    msgType msgSend = (msgType)objc_msgSend;
+                    ret = msgSend(target, selector,
+                                  paraAry[1].doublePara,
+                                  paraAry[1].doublePara,
+                                  paraAry[2].doublePara);
+                }break;
+                default:break;
             }
         }break;
-        default:
-            return 0;
-            break;
+        default:break;
     }
     return ret;
 }
