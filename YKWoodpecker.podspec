@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   spec.license      = "MIT"
   spec.name         = "YKWoodpecker"
-  spec.version      = "1.1.0"
+  spec.version      = "1.1.1"
   spec.summary      = "An in-app-debug tool for iOS."
 
   spec.description  = "This library provides a powerful collection of iOS develop tools, such as view picker, "  \
@@ -11,9 +11,10 @@ Pod::Spec.new do |spec|
                       "the view's all properties and member variables. With method listen-in tool you can spy "  \
                       "on an objective-C method, whenever the method is called, you can check the calling "      \
                       "parameters and return value in a screen-logger. There are more other convenient tools, "  \
-                      "download and check it!"
+                      "such as json-grabbing, po-command, sandbox, user defaults, crash log, touch indicator, "  \
+                      "performance tools and so on. Download and check it!"  \
 
-  spec.homepage     = "https://github.com/alibaba/youku-sdk-tool-woodpecker.git"
+  spec.homepage     = "https://github.com/alibaba/youku-sdk-tool-woodpecker"
   spec.author       = { "Zim" => "dingzm77@163.com" }
 
   spec.platform     = :ios
