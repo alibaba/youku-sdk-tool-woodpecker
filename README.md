@@ -4,22 +4,23 @@
 
 啄幕鸟，即手机屏幕上的啄木鸟，专抓App里的Bug。啄幕鸟集合了UI检查、对象查看、方法监听等多种开发工具，通过拾取UI控件、查看对象属性、监听方法调用、App内抓包等，不依赖电脑联调，直接获取运行时数据，快速定位Bug，提高开发效率。啄幕鸟提供了插件化的工具平台，简便易用，零侵入、零依赖、易接入、易扩展。   
 # 功能简介
-1.UI检查：快速查看页面布局、UI控件间距、字体颜色、UI控件类名、对象属性/成员变量、图片URL等。   
-2.方法监听：监听任意OC方法的调用，输出调用参数、返回值等信息，可以通过屏幕日志输入监听、KVC取值等命令，支持后台配置命令，在此基础上实现了App内抓包等功能。    
-3.系统信息：查看各种系统名称、版本、屏幕、UA等信息，支持外部添加信息。   
-4.po命令：执行类似LLDB的po命令。   
-5.SandBox：查看沙盒文件，导出文件等。   
-6.Bundle：查看、导出Bundle目录中的内容。   
-7.Crash：查看Crash日志，需先打开一次Crash插件以开启Crash监控。   
-8.Defaults：查看、新增、删除User Defaults。    
-9.清除数据：清除所有沙盒数据、User Default。   
-10.触点显示：显示手指触控。    
-11.UI对比：支持将设计图导入到App中进行对比，并可画线、标注需修改的地方，方便UI走查。   
-12.查看图片资源：查看、导出App中的资源图片。   
-13.CPU：查看CPU占用。   
-14.内存：查看内存占用。   
-15.FPS：查看App帧率。   
-16.网络流量：查看发送、接收网络流量。   
+1.UI检查：快速查看页面布局、UI控件间距、字体颜色、UI控件类名、对象属性/成员变量、图片URL等。
+2.JSON抓包：便捷JSON抓包工具，通过监听系统json解析抓包。
+3.方法监听：监听任意OC方法的调用，输出调用参数、返回值等信息，可以通过屏幕日志输入监听、KVC取值等命令，支持后台配置命令，在此基础上实现了App内抓包等功能。    
+4.系统信息：查看各种系统名称、版本、屏幕、UA等信息，支持外部添加信息。   
+5.po命令：执行类似LLDB的po命令。   
+6.SandBox：查看沙盒文件，导出文件等。   
+7.Bundle：查看、导出Bundle目录中的内容。   
+8.Crash：查看Crash日志，需先打开一次Crash插件以开启Crash监控。   
+9.Defaults：查看、新增、删除User Defaults。    
+10.清除数据：清除所有沙盒数据、User Default。   
+11.触点显示：显示手指触控。    
+12.UI对比：支持将设计图导入到App中进行对比，并可画线、标注需修改的地方，方便UI走查。   
+13.查看图片资源：查看、导出App中的资源图片。   
+14.CPU：查看CPU占用。   
+15.内存：查看内存占用。   
+16.FPS：查看App帧率。   
+17.网络流量：查看发送、接收网络流量。   
 
 <p align="center" style="font-size:11px;">
 <img src="https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerResources/master/woodpecker_all_plugins.PNG" style="border:1px solid black" height="500">
@@ -145,8 +146,22 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 <br>UI检查-测距条
 </p>
 
-## 2 方法监听插件
-### 2.1 屏幕日志
+## 2 JSON抓包插件
+JSON抓包插件通过监听[NSJSONSerialization JSONObjectWithData:options:error:]方法抓取数据，对于不使用此方法解析的JSON则无法抓包。
+
+#### JSON抓包功能
+◆ 打开插件自动开始监听JSON解析，抓取数据。
+◆ 可能会抓取多条数据，可通过数据长度区分。
+◆ 单击可查看、检索抓取到的JSON数据。
+◆ 长按数据可通过Airdrop等分享JSON数据。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerResources/master/woodpecker_json_grab.png" title="Woodpecker" height="600">
+  <br>
+</p>
+
+## 3 方法监听插件
+### 3.1 屏幕日志
 为方便各插件在App内显示日志、接受用户输入，啄幕鸟中添加了屏幕日志模块。   
 
 #### 屏幕日志功能
@@ -162,7 +177,7 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 <br>系统信息插件中直接使用了屏幕日志显示信息
 </p>
 
-### 2.2 方法监听
+### 3.2 方法监听
 方法监听利用OC的运行时机制，Hook被监听方法，输出方法调用参数、返回值、调用栈等信息，动态获取运行时数据，辅助Debug。监听网络方法即可实现App内抓包功能。  
 
 #### 方法监听功能
@@ -178,7 +193,7 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 <br>方法监听
 </p>
 
-### 2.3 方法监听命令
+### 3.3 方法监听命令
 方法监听需要输入类名、方法名、keypath等参数，故使用命令行交互，扩展性好，配合命令配置，输入也较方便。   
 
 #### 命令简介
@@ -258,7 +273,7 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 
 清空过滤正则列表： r/R clr
 
-### 2.4 自定义命令
+### 3.4 自定义命令
 方法监听支持命令扩展，通过 YKWCmdCoreCmdParseDelegate 协议可以获取命令并解析执行自定义操作。   
 >#import "YKWoodpecker.h"
 >```
@@ -281,7 +296,7 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 > ```
 > 
 
-### 2.5 后台命令配置
+### 3.5 后台命令配置
 后台命令配置会显示在屏幕日志下方，方便命令输入，使用如下格式的JSON提供命令配置。   
 <p align="center" style="font-size:11px;">
 <img src="https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerResources/master/woodpecker_demo_cmds.png" height="200">
@@ -290,7 +305,7 @@ App中所有的对象通过继承、代理、属性等关系，可以看作一�
 
 可在啄幕鸟初始化时指定配置JSON的获取地址，否则使用默认配置。推荐在 https://github.com/ZimWoodpecker/WoodpeckerCmdSource 工程中建立配置，方便命令共享。   
 
-## 3 po命令插件
+## 4 po命令插件
 po命令是iOS开发中最常用Debug命令，啄幕鸟让你在App运行时也可以随时随地执行po命令，随时随地Debug。
 
 #### po命令功能
@@ -304,7 +319,7 @@ po命令是iOS开发中最常用Debug命令，啄幕鸟让你在App运行时也�
 
 ⚠ 当前po命令仅支持入参为int、long、BOOL、float、double、NSString、NSNumber，返回值为空、int、long、BOOL、float、double、id类型的方法，且参数不超过3个，嵌套不超过两层调用，po命令还在进一步优化中，欢迎共建，敬请期待。
 
-## 4 系统信息插件
+## 5 系统信息插件
 系统信息插件可以方便的查看系统、版本、UA等信息。   
 <p align="center" style="font-size:11px;">
 <img src="https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerResources/master/woodpecker_demo_sysinfo.png" style="border:1px solid black" height="500">
@@ -328,22 +343,22 @@ po命令是iOS开发中最常用Debug命令，啄幕鸟让你在App运行时也�
 >
 > ```
 
-## 5 SandBox插件、Bundle插件
+## 6 SandBox插件、Bundle插件
 SandBox插件用以查看App沙盒文件，Bundle插件用以查看Bundle目录，支持打开文本、图片类文件，或通过AirDrop等方式导出文件。
 
-## 6 Crash插件
+## 7 Crash插件
 查看crash日志需要预先打开一次crash插件以开启crash监控，在crash发生后即可再次打开查看crash日志，可以通过AirDrop等方式分享日志。
 
-## 7 Defaults插件
+## 8 Defaults插件
 Defaults插件支持搜索、查看、删除User Defaults，新增、修改字符串类型或数字类型的User Defaults，
 
-## 8 清除数据插件
+## 9 清除数据插件
 清除数据插件会将App沙盒目录下各文件夹清空，清除所有相关数据以及user defaults。
 
-## 9 触点显示插件
+## 10 触点显示插件
 打开触点插件会交换UIWindow的sendEvent:方法，在每个点击处显示水波动画，方便录屏等场景显示触点。
 
-## 10 UI对比插件
+## 11 UI对比插件
 UI对比可以从系统相册中导入设计图片以与App对比设计还原度。
 
 ### UI对比功能
@@ -358,10 +373,10 @@ UI对比可以从系统相册中导入设计图片以与App对比设计还原度
 <br>UI对比插件
 </p>
 
-## 11 查看图片资源插件
+## 12 查看图片资源插件
 查看App中所有自带图片，Assets图片被加密压缩，暂不支持查看。   
 
-## 12 性能插件
+## 13 性能插件
 性能插件主要有CPU、内存、FPS、网络流量插件，可以实时查看App的相关性能。
 
 # 插件开发
