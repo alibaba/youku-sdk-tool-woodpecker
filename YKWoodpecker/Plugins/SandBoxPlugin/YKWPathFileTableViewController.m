@@ -36,7 +36,7 @@
 #define kYKWPathFileTableViewControllerImageTypes @[@"png", @"PNG", @"jpg", @"JPG"]
 
 @interface YKWPathFileTableViewController () {
-    NSArray *_subpathsAry;
+    NSMutableArray *_subpathsAry;
 }
 
 @end
@@ -54,9 +54,9 @@
         if (!self.title) {
             self.title = self.path.lastPathComponent;
         }
-        _subpathsAry = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:nil] sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
+        _subpathsAry = [[[[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.path error:nil] sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull obj1, NSString *  _Nonnull obj2) {
             return [obj1.lowercaseString compare:obj2.lowercaseString];
-        }];
+        }] mutableCopy];
     }
     
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"YKWPathFileTableViewControllerTip"]) {
@@ -109,6 +109,27 @@
 //    }
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *subpath = [_subpathsAry ykw_objectAtIndex:indexPath.row];
+        NSString *fullPath = [self.path stringByAppendingPathComponent:subpath];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath]) {
+            NSError *er = nil;
+            [[NSFileManager defaultManager] removeItemAtPath:fullPath error:&er];
+            if (er) {
+                [YKWoodpeckerMessage showMessage:er.description];
+            } else {
+                [_subpathsAry removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
