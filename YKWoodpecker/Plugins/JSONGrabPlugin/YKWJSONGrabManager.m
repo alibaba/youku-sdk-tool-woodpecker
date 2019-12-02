@@ -93,10 +93,18 @@
         _methodHook = [[YKWObjcMethodHook alloc] init];
         _methodHook.delegate = self;
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyWindowDidChange)
+                                                     name:UIWindowDidBecomeKeyNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hide)
                                                      name:YKWoodpeckerManagerPluginsDidShowNotification object:nil];
     }
     return self;
+}
+
+- (void)keyWindowDidChange {
+    if (_contentView.superview && _contentView.window != [UIApplication sharedApplication].keyWindow) {
+        [self show];
+    }
 }
 
 - (void)show {
@@ -106,9 +114,9 @@
     CGRect frame = _contentView.frame;
     frame.origin = [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint;
     _contentView.frame = frame;
-    [[UIApplication sharedApplication].windows.firstObject addSubview:_contentView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_contentView];
     [UIView animateWithDuration:0.2 animations:^{
-        self->_contentView.alpha = 1.0;
+        _contentView.alpha = 1.0;
     } completion:^(BOOL finished) {
 
     }];
