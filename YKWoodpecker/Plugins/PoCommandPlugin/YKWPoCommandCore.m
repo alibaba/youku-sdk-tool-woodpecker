@@ -107,7 +107,7 @@
 @implementation YKWPoCommandCore
 
 - (BOOL)parseInput:(NSString *)input {
-    if (![input hasPrefix:@"po "] && ![input hasPrefix:@"Po "]) {
+    if ((![input hasPrefix:@"po "] && ![input hasPrefix:@"Po "]) || [input rangeOfString:@"["].location == NSNotFound) {
         self.isLastPoCmd = NO;
         self.lastErrorInfo = @"Not po command.";
         return NO;
