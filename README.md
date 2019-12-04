@@ -380,22 +380,23 @@ UI对比可以从系统相册中导入设计图片以与App对比设计还原度
 性能插件主要有CPU、内存、FPS、网络流量插件，可以实时查看App的相关性能。
 
 # 插件开发
-## 内部插件
-啄幕鸟支持插件式开发，新插件需要实现YKWPluginProtocol协议中的方法，并在插件列表plist中添加相关插件信息即可添加新插件，测试无bug后即可提交pull request合并到项目中。   
+## 插件协议
+啄幕鸟使用插件式开发，所有插件须符合YKWPluginProtocol协议，实现runWithParameters: 方法，在点击插件时会执行此方法以开启插件。不会强制检查是否遵守YKWPluginProtocol，实现协议方法即可。
 
 >#import "YKWPluginProtocol.h"
 > ```
 >@protocol YKWPluginProtocol <NSObject>
 >
->@optional
 >- (void)runWithParameters:(NSDictionary *)paraDic;
 >
 >@end
 > ```
->
+
+## 内部插件
+内部插件会随啄幕鸟开源，新插件需实现YKWPluginProtocol协议中的方法，并在插件列表plist中添加相关插件信息，测试无bug后即可提交pull request合并到项目中。
 
 ## 外部插件
-可以注册外部类为插件在啄幕鸟中打开，使用如下方法注册插件：
+可以注册任意符合插件协议的第三方类为插件在啄幕鸟中打开，使用如下方法注册插件：
 
 >  #import "YKWoodpecker.h"
 > ```
@@ -422,7 +423,7 @@ UI对比可以从系统相册中导入设计图片以与App对比设计还原度
 >
 > ```
 
-推荐使用pluginCharIconText指定一个字符作为插件图标，以节省包大小。可以使用registerPluginCategory:atIndex:方法添加一个工具类别，并定制显示位置。
+推荐使用pluginCharIconText指定一个字符作为插件图标，以节省包大小。
 
 > ```
 >// Demo for registering a plugin
@@ -433,6 +434,18 @@ UI对比可以从系统相册中导入设计图片以与App对比设计还原度
 >                                                                     @"pluginCategoryName" : @"自定义",
 >                                                                     @"pluginClassName" : @"ClassName"}];
 >
+> ```
+
+可以使用registerPluginCategory:atIndex:方法添加一个工具类别，并定制显示位置。
+  
+> ```
+>  /**
+> Register a plugin category or change the position of a plugin category.
+>
+> @param pluginCategoryName Plugin category name.
+> @param index Position to show the category, 0...N-1, or -1 for the last.
+> */
+>- (void)registerPluginCategory:(NSString *)pluginCategoryName atIndex:(NSInteger)index;
 > ```
 
 ## 安全插件
