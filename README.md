@@ -311,6 +311,7 @@ po命令是iOS开发中最常用Debug命令，啄幕鸟让你在App运行时也�
 #### po命令功能
 ◆ 输入h可查看输入历史记录。   
 ◆ 其他几乎和LLDB po命令一样。
+◆ 输入po [N ...]即可对列表中第N个对象执行po命令。   
 
 <p align="center" style="font-size:11px;">
 <img src="https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerResources/master/woodpecker_po_cmd.png" style="border:1px solid black" height="500">
