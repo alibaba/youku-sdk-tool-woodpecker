@@ -36,6 +36,7 @@
 
 @interface YKWObjectTableView()<UITableViewDelegate,UITableViewDataSource> {
     NSMutableArray *_propertyListAry; // name<class>@p/i
+    UILabel *_objectIndexLabel;
 }
 
 @end
@@ -105,6 +106,24 @@
         _propertyListAry = temp;
         [self reloadData];
         self.contentOffset = CGPointZero;
+    }
+}
+
+- (void)setObjectIndex:(NSInteger)objectIndex {
+    _objectIndex = objectIndex;
+    if (!_objectIndexLabel) {
+        _objectIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        _objectIndexLabel.font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:100];
+        _objectIndexLabel.textAlignment = NSTextAlignmentCenter;
+        _objectIndexLabel.textColor = [YKWHighlightColor colorWithAlphaComponent:0.3];
+        [self insertSubview:_objectIndexLabel atIndex:0];
+    }
+    _objectIndexLabel.text = [NSString stringWithFormat:@"%ld", (long)_objectIndex];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_objectIndexLabel) {
+        _objectIndexLabel.top = scrollView.contentOffset.y;
     }
 }
 

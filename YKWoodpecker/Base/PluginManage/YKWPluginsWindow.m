@@ -52,6 +52,10 @@
     if (self) {
         _firstLoad = YES;
         
+        self.rootViewController = [UIViewController new];
+        self.rootViewController.view.backgroundColor = [UIColor clearColor];
+        self.rootViewController.view.userInteractionEnabled = NO;
+        
         self.backgroundColor = [UIColor clearColor];
         self.windowLevel = MAXFLOAT;
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
@@ -103,7 +107,9 @@
 }
 
 - (void)becomeKeyWindow {
-    [[UIApplication sharedApplication].windows.firstObject makeKeyAndVisible];
+    if (![[UIApplication sharedApplication].windows.firstObject isKindOfClass:[self class]]) {
+        [[UIApplication sharedApplication].windows.firstObject makeKeyAndVisible];
+    }
 }
 
 - (void)showWoodpecker {

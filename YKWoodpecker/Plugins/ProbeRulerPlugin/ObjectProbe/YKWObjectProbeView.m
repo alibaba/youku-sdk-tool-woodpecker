@@ -62,8 +62,8 @@
         _logView.delegate = self;
         [self addSubview:_logView];
         
-        [_logView logInfo:YKWLocalizedString(@"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po ...' to run po-command, input 'h' to show input history.>")];
-        
+        [_logView logInfo:YKWLocalizedString(@"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po [1/2.../class ...]' to run po-command, input 'h' to show input history.>")];
+
         _poCmdCore = [[YKWPoCommandCore alloc] init];
 
         _probeTableScrollView = [[UIScrollView alloc] init];
@@ -233,12 +233,25 @@
     tableView.probedObject = object;
     [_probeTableAry addObject:tableView];
     [_probeTableScrollView addSubview:tableView];
+    [self setupObjectIndex];
     _probeTableScrollView.contentSize = CGSizeMake(_probeTableAry.count * tableView.width, 0);
     if (_probeTableAry.count == 1) {
         [_probeTableScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     } else {
         [_probeTableScrollView setContentOffset:CGPointMake(_probeTableScrollView.contentSize.width - _probeTableScrollView.width, 0) animated:YES];
     }
+}
+
+- (void)setupObjectIndex {
+    NSMutableArray *objectAry = [NSMutableArray array];
+    for (int i = 0; i < _probeTableAry.count; i++) {
+        YKWObjectTableView *v = [_probeTableAry ykw_objectAtIndex:i];
+        v.objectIndex = i + 1;
+        if (v.probedObject) {
+            [objectAry addObject:v.probedObject];
+        }
+    }
+    _poCmdCore.objectsArray = objectAry;
 }
 
 - (BOOL)checkIfShowInfoObject:(NSObject *)object key:(NSString *)key {

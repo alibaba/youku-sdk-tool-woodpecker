@@ -195,6 +195,17 @@
                 return NO;
             }
             methodSignature = [target methodSignatureForSelector:selector];
+        } else if ([self inputIsPureNumber:first]) {
+            target = [self.objectsArray ykw_objectAtIndex:first.integerValue - 1];
+            if (!target) {
+                self.lastErrorInfo = [NSString stringWithFormat:@"Target object not found at index %@.", first];
+                return NO;
+            }
+            if (![target respondsToSelector:selector]) {
+                self.lastErrorInfo = @"Target object does not respond to selector.";
+                return NO;
+            }
+            methodSignature = [target methodSignatureForSelector:selector];
         } else {
             Class cls = NSClassFromString(first);
             if (!cls) {

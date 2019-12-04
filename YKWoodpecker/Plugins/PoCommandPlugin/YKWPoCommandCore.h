@@ -37,6 +37,8 @@
 
 @property (nonatomic) NSObject *lastReturnedObject;
 
+@property (nonatomic) NSArray *objectsArray;
+
 /**
  Command input
  

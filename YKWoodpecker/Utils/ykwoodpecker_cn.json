@@ -49,7 +49,7 @@
 	"Can't find image url": "图片URL未找到",
 	"Share": "分享",
 	"Show View": "屏显控件",
-	"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po ...' to run po-command, input 'h' to show input history.>": "<单击属性名称打开对象属性列表，双击打印对象描述信息，或输入'k/K Key.Path'格式读取KeyPath，输入'po ...'以运行po命令，输入'h'查看输入历史记录。>",
+    "<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po [1/2.../class ...]' to run po-command, input 'h' to show input history.>": "<单击属性名称打开对象属性列表，双击打印对象描述信息，或输入'k/K Key.Path'格式读取KeyPath，输入'po [1/2.../class ...]'以运行po命令，输入'h'查看输入历史记录。>",
 	"The object is not a view.": "当前对象不支持显示在屏幕上",
 	"Can't find object": "未找到对象",
 	"Can't find key": "未找到key",

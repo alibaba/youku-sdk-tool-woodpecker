@@ -49,9 +49,14 @@
 @property (nonatomic, weak) id<YKWObjectTableViewDelegate> objDelegate;
 
 /**
- The object ot probe.
+ The object to probe.
  */
 @property (nonatomic, strong) NSObject *probedObject;
+
+/**
+The object index to show.
+*/
+@property (nonatomic, assign) NSInteger objectIndex;
 
 /**
  The class level to probe.
