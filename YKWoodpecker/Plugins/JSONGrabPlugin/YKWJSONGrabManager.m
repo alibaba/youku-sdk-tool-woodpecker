@@ -75,7 +75,7 @@
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         hideButton.backgroundColor = [UIColor clearColor];
         hideButton.frame = CGRectMake(_contentView.width - 30, -12, 40, 40);
-        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
+        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
         [hideButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
@@ -83,8 +83,8 @@
         
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         clearButton.backgroundColor = [UIColor clearColor];
-        clearButton.frame = CGRectMake(_contentView.width - 30, _contentView.height - 30, 40, 40);
-        clearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
+        clearButton.frame = CGRectMake(_contentView.width - 30, _contentView.height - 32, 40, 40);
+        clearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [clearButton setTitle:@"☒" forState:UIControlStateNormal];
         [clearButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
         [clearButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];

@@ -75,7 +75,7 @@
         [self addSubview:_drawButton];
         
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        clearButton.frame = CGRectMake(self.width - 40, 0, 40, self.height);
+        clearButton.frame = CGRectMake(self.width - 45, 0, 40, self.height);
         clearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [clearButton setTitle:@"↺" forState:UIControlStateNormal];
         [clearButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -90,8 +90,8 @@
         [self addSubview:slider];
 
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        hideButton.frame = CGRectMake(self.width - 30, -12, 40, 40);
-        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
+        hideButton.frame = CGRectMake(self.width - 18, -3, 20, 20);
+        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
         [hideButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
