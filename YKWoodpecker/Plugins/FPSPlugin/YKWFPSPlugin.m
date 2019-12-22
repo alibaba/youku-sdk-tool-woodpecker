@@ -47,6 +47,7 @@ static YKWChartWindow *_chartWindow;
         [_chartWindow makeKeyAndVisible];
     }
     
+    _chartWindow.statusBarMode = [[paraDic objectForKey:@"statusBarMode"] boolValue];
     [[YKWFPSUtils sharedInstance] startFps];
     _chartWindow.hidden = NO;
     [_chartWindow clearData];

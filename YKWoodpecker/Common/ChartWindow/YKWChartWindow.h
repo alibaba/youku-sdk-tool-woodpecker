@@ -42,6 +42,7 @@
 @property (nonatomic, weak) id<YKWChartWindowDelegate> delegate;
 
 @property (nonatomic, copy) NSString *yTitle;
+@property (nonatomic, assign) BOOL statusBarMode;
 
 - (void)clearData;
 - (void)startQueryDataWithInterval:(NSTimeInterval)interval block:(void(^)(NSMutableArray *dataAry))block;

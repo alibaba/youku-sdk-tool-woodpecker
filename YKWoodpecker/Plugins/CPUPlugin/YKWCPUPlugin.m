@@ -46,6 +46,7 @@ static YKWChartWindow *_chartWindow;
         [_chartWindow makeKeyAndVisible];
     }
     
+    _chartWindow.statusBarMode = [[paraDic objectForKey:@"statusBarMode"] boolValue];
     _chartWindow.hidden = NO;
     [_chartWindow clearData];
     [_chartWindow startQueryDataWithInterval:1.0 block:^(NSMutableArray *dataAry) {

@@ -46,6 +46,7 @@ static unsigned int _lastDataFlow = 0;
         [_chartWindow makeKeyAndVisible];
     }
     
+    _chartWindow.statusBarMode = [[paraDic objectForKey:@"statusBarMode"] boolValue];
     _chartWindow.hidden = NO;
     [_chartWindow clearData];
     _lastDataFlow = [YKWDataFlowUtils netDataFlow];
