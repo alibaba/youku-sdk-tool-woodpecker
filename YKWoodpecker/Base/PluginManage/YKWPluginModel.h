@@ -47,6 +47,8 @@
 @property (nonatomic, copy) NSString *pluginClassName;          // The plugin's class name, it must conform to YKWPluginProtocol.
 @property (nonatomic, copy) NSDictionary *pluginParameters;     // The plugin's parameters to run with.
 
+@property (nonatomic, copy) NSDictionary *registerDictionary;     // The plugin's register dictionary.
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

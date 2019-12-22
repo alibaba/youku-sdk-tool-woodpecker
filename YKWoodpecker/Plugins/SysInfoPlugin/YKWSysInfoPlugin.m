@@ -61,6 +61,13 @@
 - (void)runWithParameters:(NSDictionary *)paraDic {
     NSMutableString *sysInfo = [NSMutableString string];
 
+    NSArray *allKeys = paraDic.allKeys;
+    if (allKeys.count) {
+        for (NSString *key in allKeys) {
+            [sysInfo appendFormat:@"%@: %@\n", key, [paraDic objectForKey:key]];
+        }
+    }
+    
     [sysInfo appendFormat:@"%@: %@\n", YKWLocalizedString(@"Name"), [UIDevice currentDevice].name];
 
     struct utsname systemInfo;

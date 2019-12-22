@@ -109,6 +109,14 @@ extern NSString *const YKWoodpeckerManagerPluginsDidHideNotification;   /**< = @
  */
 - (void)openPluginNamed:(NSString *)pluginName;
 
+/**
+ Open a plugin.
+
+ @param pluginName Plugin name.
+ @param parasDic Parameters to pass to the plugin.
+ */
+- (void)openPluginNamed:(NSString *)pluginName withParameters:(NSDictionary *)parasDic;
+
 
 // ----------------------------- Crash Plugin -----------------------------
 
