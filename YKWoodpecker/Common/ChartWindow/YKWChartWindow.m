@@ -170,10 +170,12 @@
             return;
         }
         
+        NSUInteger count = _dataAry.count;
         float minData = MAXFLOAT;
         float maxData = 0;
         float total = 0;
-        for (int i = 0; i < _dataAry.count; i++) {
+        float totalpow2 = 0;
+        for (int i = 0; i < count; i++) {
             float data = [_dataAry[i] floatValue];
             if (data > maxData) {
                 maxData = data;
@@ -182,14 +184,10 @@
                 minData = data;
             }
             total += data;
+            totalpow2 += data * data;
         }
-        float avg = total / _dataAry.count;
-        total = 0;
-        for (int i = 0; i < _dataAry.count; i++) {
-            float data = [_dataAry[i] floatValue];
-            total += pow(data - avg, 2);
-        }
-        float variance = sqrt(total / _dataAry.count);
+        float avg = total / count;
+        float variance = sqrt(totalpow2 / count - avg * avg);
         _statusBarLabel.text = [NSString stringWithFormat:@"%@: %@ (max:%.2f min:%.2f avg:%.2f σ:%.2f)", _yTitle, _dataAry.lastObject, maxData, minData, avg, variance];
     } else {
         _chartView.dataArray = _dataAry;

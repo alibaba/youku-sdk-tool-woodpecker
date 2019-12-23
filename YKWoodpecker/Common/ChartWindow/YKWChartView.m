@@ -89,10 +89,12 @@
         return;
     }
     
+    NSUInteger count = _dataArray.count;
     _minData = MAXFLOAT;
     _maxData = 0;
     float total = 0;
-    for (int i = 0; i < _dataArray.count; i++) {
+    float totalpow2 = 0;
+    for (int i = 0; i < count; i++) {
         float data = [_dataArray[i] floatValue];
         if (data > _maxData) {
             _maxData = data;
@@ -101,15 +103,10 @@
             _minData = data;
         }
         total += data;
+        totalpow2 += data * data;
     }
-    float avg = total / dataArray.count;
-    total = 0;
-    for (int i = 0; i < _dataArray.count; i++) {
-        float data = [_dataArray[i] floatValue];
-        total += pow(data - avg, 2);
-    }
-    float variance = sqrt(total / dataArray.count);
-    
+    float avg = total / count;
+    float variance = sqrt(totalpow2 / count - avg * avg);
     _yTitleLabel.text = [NSString stringWithFormat:@"%@/ max:%.2f min:%.2f avg:%.2f σ:%.2f", _yTitle, _maxData, _minData, avg, variance];
     [self setupYLabels];
     
