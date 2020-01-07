@@ -58,9 +58,7 @@
         return;
     }
     
-    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
-        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
-    }
+    [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
 }
 
 - (void)setCenter:(CGPoint)center {
@@ -70,9 +68,7 @@
         return;
     }
     
-    if (!(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) && !(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))) {
-        [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
-    }
+    [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
 }
 
 @end

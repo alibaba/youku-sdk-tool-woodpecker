@@ -51,7 +51,12 @@ static NSDictionary *_cnLocalizeDic = nil;
         [presentingVC.view removeFromSuperview];
     };
     
-    [presentingVC presentViewController:activityVC animated:YES completion:nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [presentingVC presentViewController:activityVC animated:YES completion:nil];
+    } else {
+        UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:activityVC];
+        [popoverController presentPopoverFromRect:CGRectMake(presentingVC.view.frame.size.width / 2, presentingVC.view.frame.size.height / 5, 0, 0) inView: presentingVC.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 + (void)presentViewControllerOnMainWindow:(UIViewController *)controller {
