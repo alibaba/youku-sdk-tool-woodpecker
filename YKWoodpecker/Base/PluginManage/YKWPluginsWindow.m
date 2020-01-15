@@ -176,12 +176,14 @@
             } completion:^(BOOL finished) {
                 self.width = 1.;
                 self.height = 1.;
+                [self checkFrameOrigin];
             }];
         } else {
             _contentView.width = 0;
             _contentView.height = 0;
             self.width = 1.;
             self.height = 1.;
+            [self checkFrameOrigin];
         }
     }
     
@@ -193,12 +195,21 @@
         if (animated) {
             [UIView animateWithDuration:0.2 animations:^{
                 [self setupSize];
+                [self checkFrameOrigin];
             }];
         } else {
             [self setupSize];
+            [self checkFrameOrigin];
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:YKWoodpeckerManagerPluginsDidShowNotification object:nil];
+    }
+}
+
+- (void)checkFrameOrigin {
+    if (!CGRectContainsPoint(UIEdgeInsetsInsetRect([UIScreen mainScreen].applicationFrame, UIEdgeInsetsMake(20, 20, 20, 20)), self.frame.origin)) {
+        self.left = 20;
+        self.top = 180;
     }
 }
 

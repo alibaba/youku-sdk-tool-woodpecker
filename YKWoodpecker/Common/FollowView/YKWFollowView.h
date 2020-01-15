@@ -42,7 +42,7 @@
 @property (nonatomic, readonly) UIPanGestureRecognizer *panGestureRecognizer;
 
 /**
- If following the woodpecker icon.
+ If following the woodpecker icon. Default is YES.
  */
 @property (nonatomic, assign) BOOL followWoodpeckerIcon;
 

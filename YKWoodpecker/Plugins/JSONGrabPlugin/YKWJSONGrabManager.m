@@ -58,7 +58,6 @@
         
         _contentView = [[YKWFollowView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         _contentView.backgroundColor = [YKWBackgroudColor colorWithAlphaComponent:0.9];
-        _contentView.followWoodpeckerIcon = YES;
         
         _tableView = [[UITableView alloc] initWithFrame:_contentView.bounds style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];

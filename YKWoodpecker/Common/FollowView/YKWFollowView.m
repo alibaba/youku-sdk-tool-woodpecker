@@ -34,7 +34,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.followVelocity = 1.0;
+        _followVelocity = 1.0;
+        _followWoodpeckerIcon = YES;
         
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
         _panGestureRecognizer.maximumNumberOfTouches = 1;
