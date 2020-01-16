@@ -115,7 +115,7 @@
     _contentView.frame = frame;
     [[UIApplication sharedApplication].keyWindow addSubview:_contentView];
     [UIView animateWithDuration:0.2 animations:^{
-        _contentView.alpha = 1.0;
+        self->_contentView.alpha = 1.0;
     } completion:^(BOOL finished) {
 
     }];
