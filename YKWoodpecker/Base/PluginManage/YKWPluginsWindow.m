@@ -102,13 +102,28 @@
 //        [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
 //        [hideButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
 //        [_contentView addSubview:hideButton];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRotation:) name:UIApplicationDidChangeStatusBarOrientationNotification  object:nil];
     }
     return self;
+}
+
+- (void)makeKeyAndVisible {
+    [super makeKeyAndVisible];
+    
+    [self bringSubviewToFront:_contentView];
+    [self bringSubviewToFront:_woodpeckerIcon];
 }
 
 - (void)becomeKeyWindow {
     if (![[UIApplication sharedApplication].windows.firstObject isKindOfClass:[self class]]) {
         [[UIApplication sharedApplication].windows.firstObject makeKeyAndVisible];
+    }
+}
+
+- (void)handleRotation:(NSNotification *)noti {
+    if (_contentView.width > 0) {
+        [self setupSize];
     }
 }
 
@@ -176,14 +191,12 @@
             } completion:^(BOOL finished) {
                 self.width = 1.;
                 self.height = 1.;
-                [self checkFrameOrigin];
             }];
         } else {
             _contentView.width = 0;
             _contentView.height = 0;
             self.width = 1.;
             self.height = 1.;
-            [self checkFrameOrigin];
         }
     }
     
@@ -195,11 +208,9 @@
         if (animated) {
             [UIView animateWithDuration:0.2 animations:^{
                 [self setupSize];
-                [self checkFrameOrigin];
             }];
         } else {
             [self setupSize];
-            [self checkFrameOrigin];
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:YKWoodpeckerManagerPluginsDidShowNotification object:nil];
@@ -260,6 +271,8 @@
             }
         }
     }
+    
+    [self checkFrameOrigin];
 }
 
 #pragma mark - UICollectionViewDataSource
