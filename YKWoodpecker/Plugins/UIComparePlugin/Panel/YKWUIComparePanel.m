@@ -42,7 +42,7 @@
 @implementation YKWUIComparePanel
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    frame.size.width = [UIApplication sharedApplication].keyWindow.width - 40.;
+    frame.size.width = [UIApplication sharedApplication].keyWindow.ykw_width - 40.;
     frame.size.height = 45;
     self = [super initWithFrame:frame];
     if (self) {
@@ -50,7 +50,7 @@
         _imagesAry = [NSMutableArray array];
         
         UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        addButton.frame = CGRectMake(0, 0, 40, self.height);
+        addButton.frame = CGRectMake(0, 0, 40, self.ykw_height);
         addButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [addButton setTitle:@"＋" forState:UIControlStateNormal];
         [addButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -58,7 +58,7 @@
         [self addSubview:addButton];
 
         UIButton *delButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        delButton.frame = CGRectMake(40, 0, 40, self.height);
+        delButton.frame = CGRectMake(40, 0, 40, self.ykw_height);
         delButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [delButton setTitle:@"﹣" forState:UIControlStateNormal];
         [delButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -66,7 +66,7 @@
         [self addSubview:delButton];
         
         _drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _drawButton.frame = CGRectMake(self.width - 80, 0, 40, self.height);
+        _drawButton.frame = CGRectMake(self.ykw_width - 80, 0, 40, self.ykw_height);
         _drawButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [_drawButton setTitle:@"✎" forState:UIControlStateNormal];
         [_drawButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -75,14 +75,14 @@
         [self addSubview:_drawButton];
         
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        clearButton.frame = CGRectMake(self.width - 45, 0, 40, self.height);
+        clearButton.frame = CGRectMake(self.ykw_width - 45, 0, 40, self.ykw_height);
         clearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [clearButton setTitle:@"↺" forState:UIControlStateNormal];
         [clearButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
         [clearButton addTarget:self action:@selector(clearDraw) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:clearButton];
         
-        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(delButton.right + 10, 0, _drawButton.left - delButton.right - 20, self.height)];
+        UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(delButton.ykw_right + 10, 0, _drawButton.ykw_left - delButton.ykw_right - 20, self.ykw_height)];
         slider.minimumValue = 0.1;
         slider.maximumValue = 1.0;
         slider.value = 0.5;
@@ -90,7 +90,7 @@
         [self addSubview:slider];
 
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        hideButton.frame = CGRectMake(self.width - 18, -3, 20, 20);
+        hideButton.frame = CGRectMake(self.ykw_width - 18, -3, 20, 20);
         hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -102,7 +102,7 @@
 
 - (void)show {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-    self.center = CGPointMake(keyWindow.width / 2., keyWindow.height - 50);
+    self.center = CGPointMake(keyWindow.ykw_width / 2., keyWindow.ykw_height - 50);
     [keyWindow addSubview:self];
 }
 
@@ -172,17 +172,17 @@
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.userInteractionEnabled = NO;
-        imageView.width = image.size.width / [UIScreen mainScreen].scale;
-        imageView.height = image.size.height / [UIScreen mainScreen].scale;
-        imageView.center = CGPointMake(keyWindow.width / 2., keyWindow.height / 2.);
+        imageView.ykw_width = image.size.width / [UIScreen mainScreen].scale;
+        imageView.ykw_height = image.size.height / [UIScreen mainScreen].scale;
+        imageView.center = CGPointMake(keyWindow.ykw_width / 2., keyWindow.ykw_height / 2.);
         imageView.userInteractionEnabled = NO;
         YKWFollowView *followView = [[YKWFollowView alloc] initWithFrame:imageView.frame];
         followView.backgroundColor = [UIColor clearColor];
         followView.alpha = 0.5;
-        imageView.left = 0;
-        imageView.top = 0;
+        imageView.ykw_left = 0;
+        imageView.ykw_top = 0;
         [followView addSubview:imageView];
-        if (followView.width == keyWindow.width && followView.height == keyWindow.height) {
+        if (followView.ykw_width == keyWindow.ykw_width && followView.ykw_height == keyWindow.ykw_height) {
             followView.userInteractionEnabled = NO;
         }
         if (_drawView.window) {

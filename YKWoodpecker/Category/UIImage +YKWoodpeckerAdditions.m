@@ -33,7 +33,7 @@
 
 + (UIImage *)iconImageFromString:(NSString *)string textColor:(NSString *)colorHex size:(CGSize)size{
     UILabel *label  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    label.layer.cornerRadius = label.width / 2.0;
+    label.layer.cornerRadius = label.ykw_width / 2.0;
     label.backgroundColor = [UIColor whiteColor];
     label.textColor = colorHex.length ? [UIColor colorWithHexString:colorHex] : [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;

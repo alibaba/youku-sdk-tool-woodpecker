@@ -45,6 +45,11 @@ extern NSString *const YKWoodpeckerManagerPluginsDidHideNotification;   /**< = @
 + (YKWoodpeckerManager *)sharedInstance;
 
 /**
+Automatically open 'UI Check' tool on show.
+*/
+@property (nonatomic, assign) BOOL autoOpenUICheckOnShow;
+
+/**
  Show woodpecker entrance.
  */
 - (void)show;

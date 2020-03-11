@@ -1,9 +1,9 @@
 //
-//  YKWPluginSectionHeader.m
+//  YKWRotationWindowRootViewController.h
 //  YKWoodpecker
 //
-//  Created by Zim on 2019/4/17.
-//  Copyright © 2019 Youku. All rights reserved.
+//  Created by Zim on 2020/3/5.
+//  Copyright © 2020 Youku. All rights reserved.
 //
 //  MIT License
 //
@@ -27,28 +27,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "YKWPluginSectionHeader.h"
+#import <UIKit/UIKit.h>
 
-@implementation YKWPluginSectionHeader
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [YKWForegroudColor colorWithAlphaComponent:0.1];
-        [self addSubview:self.titleLabel];
-    }
-    return self;
-}
-
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0 ,self.ykw_width - 20, self.ykw_height)];
-        _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.font = [UIFont systemFontOfSize:12];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    return _titleLabel;
-}
+@interface YKWRotationWindowRootViewController : UIViewController
 
 @end

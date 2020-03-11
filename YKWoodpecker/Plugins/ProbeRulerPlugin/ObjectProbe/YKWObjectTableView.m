@@ -112,7 +112,7 @@
 - (void)setObjectIndex:(NSInteger)objectIndex {
     _objectIndex = objectIndex;
     if (!_objectIndexLabel) {
-        _objectIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        _objectIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.ykw_width, self.ykw_height)];
         _objectIndexLabel.font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:100];
         _objectIndexLabel.textAlignment = NSTextAlignmentCenter;
         _objectIndexLabel.textColor = [YKWHighlightColor colorWithAlphaComponent:0.3];
@@ -123,7 +123,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (_objectIndexLabel) {
-        _objectIndexLabel.top = scrollView.contentOffset.y;
+        _objectIndexLabel.ykw_top = scrollView.contentOffset.y;
     }
 }
 
@@ -149,11 +149,11 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 30)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.ykw_width, 30)];
     header.backgroundColor = [UIColor colorWithWhite:0. alpha:0.75];
     
     UILabel *infoLabel = [UILabel new];
-    infoLabel.frame = CGRectMake(YKWObjectTableViewMargin, 0, tableView.width - YKWObjectTableViewMargin, 30);
+    infoLabel.frame = CGRectMake(YKWObjectTableViewMargin, 0, tableView.ykw_width - YKWObjectTableViewMargin, 30);
     infoLabel.font = [UIFont systemFontOfSize:12.];
     infoLabel.minimumScaleFactor = 0.2;
     infoLabel.adjustsFontSizeToFitWidth = YES;
@@ -336,10 +336,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    _txtLabel.left = YKWObjectTableViewMargin;
-    _txtLabel.width = self.width - YKWObjectTableViewMargin * 2;
-    _txtLabel.height = self.height - 4;
-    _txtLabel.centerY = self.height / 2;
+    _txtLabel.ykw_left = YKWObjectTableViewMargin;
+    _txtLabel.ykw_width = self.ykw_width - YKWObjectTableViewMargin * 2;
+    _txtLabel.ykw_height = self.ykw_height - 4;
+    _txtLabel.ykw_centerY = self.ykw_height / 2;
 }
 
 - (UILabel *)txtLabel {

@@ -29,6 +29,7 @@
 
 #import "YKWChartWindow.h"
 #import "YKWChartView.h"
+#import "YKWRotationWindowRootViewController.h"
 
 @interface YKWChartWindow() {
     YKWChartView *_chartView;
@@ -53,6 +54,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.rootViewController = [YKWRotationWindowRootViewController new];
+        self.rootViewController.view.backgroundColor = [UIColor clearColor];
+        self.rootViewController.view.userInteractionEnabled = NO;
+        
         self.backgroundColor = [UIColor whiteColor];
         self.windowLevel = UIWindowLevelStatusBar + 1;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -95,7 +101,7 @@
         [self addSubview:_pauseBtn];
         
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(self.width - 45., -5, 50., 50.);
+        _closeBtn.frame = CGRectMake(self.ykw_width - 45., -5, 50., 50.);
         _closeBtn.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin;
         _closeBtn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20.];
         [_closeBtn setTitle:@"×" forState:UIControlStateNormal];
@@ -138,7 +144,7 @@
 - (void)pan:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:sender.view];
     [sender setTranslation:CGPointZero inView:sender.view];
-    self.center = CGPointMake(self.centerX + translation.x, self.centerY + translation.y);
+    self.center = CGPointMake(self.ykw_centerX + translation.x, self.ykw_centerY + translation.y);
 }
 
 - (void)clearData {
@@ -229,14 +235,14 @@
     _statusBarMode = statusBarMode;
     if (_statusBarMode) {
         _previousFrame = self.frame;
-        self.frame = CGRectMake(self.left, self.top > 20 ? self.top : 20, self.width, 20);
+        self.frame = CGRectMake(self.ykw_left, self.ykw_top > 20 ? self.ykw_top : 20, self.ykw_width, 20);
         _statusBarLabel.frame = self.bounds;
         _chartView.hidden = YES;
         _pauseBtn.hidden = YES;
         _closeBtn.hidden = YES;
     } else {
-        self.frame = CGRectMake(self.left, self.top, self.width, _previousFrame.size.height);
-        _statusBarLabel.frame = CGRectMake(20, 15, self.width - 30, 15);
+        self.frame = CGRectMake(self.ykw_left, self.ykw_top, self.ykw_width, _previousFrame.size.height);
+        _statusBarLabel.frame = CGRectMake(20, 15, self.ykw_width - 30, 15);
         _statusBarLabel.text = nil;
         _chartView.hidden = NO;
         _pauseBtn.hidden = NO;

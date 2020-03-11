@@ -63,9 +63,9 @@
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem, [[UIBarButtonItem alloc] initWithTitle:@"╋" style:UIBarButtonItemStyleDone target:self action:@selector(addUserDefaults)]];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"╳" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 60)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.ykw_width, 60)];
     headerView.backgroundColor = [UIColor whiteColor];
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 15, headerView.width - 40, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 15, headerView.ykw_width - 40, 30)];
     textField.borderStyle = UITextBorderStyleNone;
     textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     textField.layer.cornerRadius = 2;

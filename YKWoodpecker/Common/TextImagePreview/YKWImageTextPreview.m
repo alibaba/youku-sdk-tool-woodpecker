@@ -46,10 +46,10 @@
     if (self) {
         float random = (arc4random() % 100)/100.;
         self.backgroundColor = [UIColor colorWithWhite:random alpha:1.0];
-    
+        
         _imageView = [[UIImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        _imageView.frame = CGRectMake(20, 70, self.width - 40, self.height - 90);
+        _imageView.frame = CGRectMake(20, 70, self.ykw_width - 40, self.ykw_height - 90);
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _imageView.layer.borderColor = [UIColor whiteColor].CGColor;
         _imageView.layer.borderWidth = 1 / [UIScreen mainScreen].scale;
@@ -79,14 +79,14 @@
         
         UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         shareBtn.backgroundColor = [UIColor blackColor];
-        shareBtn.frame = CGRectMake(self.width - 80, 40, 60, 30);
+        shareBtn.frame = CGRectMake(self.ykw_width - 80, 40, 60, 30);
         shareBtn.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin;
         [shareBtn setTitle:YKWLocalizedString(@"Share") forState:UIControlStateNormal];
         [shareBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [shareBtn addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:shareBtn];
         
-        _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(closeBtn.right, 40, shareBtn.left - closeBtn.right, 30)];
+        _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(closeBtn.ykw_right, 40, shareBtn.ykw_left - closeBtn.ykw_right, 30)];
         _infoLabel.textColor = [UIColor colorWithWhite:random > 0.5 ? 0:1 alpha:1.0];
         _infoLabel.textAlignment = NSTextAlignmentCenter;
         _infoLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;

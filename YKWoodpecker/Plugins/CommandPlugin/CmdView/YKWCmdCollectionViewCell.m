@@ -56,7 +56,7 @@
     [super layoutSubviews];
 
     self.layer.cornerRadius = 2;
-    self.titleLabel.frame = CGRectMake(0, 0, self.width, self.height);
+    self.titleLabel.frame = CGRectMake(0, 0, self.ykw_width, self.ykw_height);
 }
 
 - (void)setCmdModel:(YKWCmdModel *)cmdModel {

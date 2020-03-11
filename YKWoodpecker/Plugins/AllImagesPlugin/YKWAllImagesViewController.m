@@ -69,7 +69,7 @@
 
 - (void)createCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    _mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) collectionViewLayout:layout];
+    _mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.ykw_width, self.view.ykw_height) collectionViewLayout:layout];
     _mainCollectionView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_mainCollectionView];
     [_mainCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellId"];
@@ -194,7 +194,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, self.width/2, self.width/2)];
+        self.cover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, self.ykw_width/2, self.ykw_height/2)];
         self.cover.layer.borderWidth = 1.0/[UIScreen mainScreen].scale;
         self.cover.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.cover.contentMode = UIViewContentModeScaleAspectFit;
@@ -217,33 +217,33 @@
 - (void) setImage:(NSString*)image fit:(BOOL) fit {
     //    self.cover.image = [UIImage imageNamed:];
     self.cover.image = [UIImage imageNamed:image];
-    self.cover.width =  self.width/2;
-    self.cover.height = self.width/2;
+    self.cover.ykw_width =  self.ykw_width/2;
+    self.cover.ykw_height = self.ykw_width/2;
     if (fit) {
         [self.cover sizeToFit];
-        if (self.cover.width > self.width/2) {
-            self.cover.width = self.width/2;
+        if (self.cover.ykw_width > self.ykw_width/2) {
+            self.cover.ykw_width = self.ykw_width/2;
         }
-        if (self.cover.height > self.width/2) {
-            self.cover.height = self.width/2;
+        if (self.cover.ykw_height > self.ykw_width/2) {
+            self.cover.ykw_height = self.ykw_width/2;
         }
     }
 
     if (self.cover.image.size.width > self.cover.image.size.height) {
-        self.cover.height = self.cover.width * self.cover.image.size.height/self.cover.image.size.width;
+        self.cover.ykw_height = self.cover.ykw_width * self.cover.image.size.height/self.cover.image.size.width;
     } else {
-        self.cover.width = self.cover.height * self.cover.image.size.width/self.cover.image.size.height;
+        self.cover.ykw_width = self.cover.ykw_height * self.cover.image.size.width/self.cover.image.size.height;
     }
-    self.cover.center = CGPointMake(self.width/2.0f, self.height/2.0f);
+    self.cover.center = CGPointMake(self.ykw_width/2.0f, self.ykw_height/2.0f);
     
     self.sizeLabel.text = [NSString stringWithFormat:@"%.0fx%.0f", self.cover.image.size.width, self.cover.image.size.height];
     [self.sizeLabel sizeToFit];
-    self.sizeLabel.height += 5;
-    self.sizeLabel.width += 10;
+    self.sizeLabel.ykw_height += 5;
+    self.sizeLabel.ykw_width += 10;
     self.nameLabel.text = image;
     [self.nameLabel sizeToFit];
-    self.nameLabel.width = self.width;
-    self.nameLabel.bottom = self.height - 3;
+    self.nameLabel.ykw_width = self.ykw_width;
+    self.nameLabel.ykw_bottom = self.ykw_height - 3;
 }
 - (void) setImage:(NSString*)image {
     [self setImage:image fit:NO];

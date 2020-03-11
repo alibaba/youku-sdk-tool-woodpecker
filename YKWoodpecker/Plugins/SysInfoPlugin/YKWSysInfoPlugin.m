@@ -60,7 +60,7 @@
 
 - (void)runWithParameters:(NSDictionary *)paraDic {
     NSMutableString *sysInfo = [NSMutableString string];
-
+    
     NSArray *allKeys = paraDic.allKeys;
     if (allKeys.count) {
         for (NSString *key in allKeys) {
@@ -83,9 +83,9 @@
     [sysInfo appendFormat:@"%@: %.1f x %.1f @scale %.1f\n", YKWLocalizedString(@"Screen"), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].scale];
 
     [sysInfo appendFormat:@"IDFV: %@\n", [[[UIDevice currentDevice] identifierForVendor] UUIDString]];
-    
+   
     [sysInfo appendFormat:@"App Name: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
-    
+
     [sysInfo appendFormat:@"Build ID: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]];
 
     [sysInfo appendFormat:@"App Version: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];

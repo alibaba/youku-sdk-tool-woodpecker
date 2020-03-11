@@ -78,8 +78,8 @@
 
 - (void)handleRotation:(NSNotification *)notification {
     if (self.leftNoteView.superview) {
-        self.width = self.superview.width;
-        self.height = self.superview.height;
+        self.ykw_width = self.superview.ykw_width;
+        self.ykw_height = self.superview.ykw_height;
         
         [self didProbeView:self.probedView];
     }
@@ -128,55 +128,55 @@
         [self.bottomNoteView removeFromSuperview];
     }
     
-    CGFloat left = frame1.left;
-    CGFloat top = frame1.top;
-    CGFloat right = self.width - frame1.right;
-    CGFloat bottom = self.height - frame1.bottom;
+    CGFloat left = frame1.ykw_left;
+    CGFloat top = frame1.ykw_top;
+    CGFloat right = self.ykw_width - frame1.ykw_right;
+    CGFloat bottom = self.ykw_height - frame1.ykw_bottom;
 
     if (frame2) {
-        CGFloat delta1 = frame1.left;
-        CGFloat delta2 = frame1.left - frame2.left;
-        CGFloat delta3 = frame1.left - frame2.right;
+        CGFloat delta1 = frame1.ykw_left;
+        CGFloat delta2 = frame1.ykw_left - frame2.ykw_left;
+        CGFloat delta3 = frame1.ykw_left - frame2.ykw_right;
         left = [self getMinimumPositive:delta1 and:delta2 and:delta3];
         
-        delta1 = frame1.top;
-        delta2 = frame1.top - frame2.bottom;
-        delta3 = frame1.top - frame2.top;
+        delta1 = frame1.ykw_top;
+        delta2 = frame1.ykw_top - frame2.ykw_bottom;
+        delta3 = frame1.ykw_top - frame2.ykw_top;
         top = [self getMinimumPositive:delta1 and:delta2 and:delta3];
         
-        delta1 = self.width - frame1.right;
-        delta2 = frame2.right - frame1.right;
-        delta3 = frame2.left - frame1.right;
+        delta1 = self.ykw_width - frame1.ykw_right;
+        delta2 = frame2.ykw_right - frame1.ykw_right;
+        delta3 = frame2.ykw_left - frame1.ykw_right;
         right = [self getMinimumPositive:delta1 and:delta2 and:delta3];
 
-        delta1 = self.height - frame1.bottom;
-        delta2 = frame2.bottom - frame1.bottom;
-        delta3 = frame2.top - frame1.bottom;
+        delta1 = self.ykw_height - frame1.ykw_bottom;
+        delta2 = frame2.ykw_bottom - frame1.ykw_bottom;
+        delta3 = frame2.ykw_top - frame1.ykw_bottom;
         bottom = [self getMinimumPositive:delta1 and:delta2 and:delta3];
     }
 
-    self.leftNoteView.width = left;
-    self.leftNoteView.height = left - 1;
-    self.leftNoteView.centerY = frame1.centerY;
-    self.leftNoteView.right = frame1.left;
+    self.leftNoteView.ykw_width = left;
+    self.leftNoteView.ykw_height = left - 1;
+    self.leftNoteView.ykw_centerY = frame1.ykw_centerY;
+    self.leftNoteView.ykw_right = frame1.ykw_left;
     self.leftNoteView.note = [NSString stringWithFormat:@"%.1f", left];
     
-    self.topNoteView.height = top;
-    self.topNoteView.width = top - 1;
-    self.topNoteView.centerX = frame1.centerX;
-    self.topNoteView.bottom = frame1.top;
+    self.topNoteView.ykw_height = top;
+    self.topNoteView.ykw_width = top - 1;
+    self.topNoteView.ykw_centerX = frame1.ykw_centerX;
+    self.topNoteView.ykw_bottom = frame1.ykw_top;
     self.topNoteView.note = [NSString stringWithFormat:@"%.1f", top];
 
-    self.rightNoteView.width = right;
-    self.rightNoteView.height = right - 1;
-    self.rightNoteView.centerY = frame1.centerY;
-    self.rightNoteView.left = frame1.right;
+    self.rightNoteView.ykw_width = right;
+    self.rightNoteView.ykw_height = right - 1;
+    self.rightNoteView.ykw_centerY = frame1.ykw_centerY;
+    self.rightNoteView.ykw_left = frame1.ykw_right;
     self.rightNoteView.note = [NSString stringWithFormat:@"%.1f", right];
 
-    self.bottomNoteView.height = bottom;
-    self.bottomNoteView.width = bottom - 1;
-    self.bottomNoteView.centerX = frame1.centerX;
-    self.bottomNoteView.top = frame1.bottom;
+    self.bottomNoteView.ykw_height = bottom;
+    self.bottomNoteView.ykw_width = bottom - 1;
+    self.bottomNoteView.ykw_centerX = frame1.ykw_centerX;
+    self.bottomNoteView.ykw_top = frame1.ykw_bottom;
     self.bottomNoteView.note = [NSString stringWithFormat:@"%.1f", bottom];
 }
 

@@ -7,6 +7,6 @@ target 'YKWoodpeckerDemo' do
     
     pod  'YKWoodpecker', :path => './'
     pod  'AFNetworking',        '3.1.0'
-    pod  'SDWebImage'
+    pod  'SDWebImage',        '5.6.0'
 
 end

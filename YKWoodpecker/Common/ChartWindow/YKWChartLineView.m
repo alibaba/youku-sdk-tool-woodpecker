@@ -69,7 +69,7 @@
         return;
     }
     for (int i = 0; i < _pointsAry.count; i++) {
-        CGPoint point = CGPointMake(_xStep * i, (1 - ([_pointsAry[i] floatValue] - _baseValue) / (_maxValue - _baseValue)) * self.height);
+        CGPoint point = CGPointMake(_xStep * i, (1 - ([_pointsAry[i] floatValue] - _baseValue) / (_maxValue - _baseValue)) * self.ykw_height);
         if (i != 0) {
             [_drawPath addLineToPoint:point];
         }
@@ -78,7 +78,7 @@
         [_drawPath moveToPoint:point];
 
         _dataLabel.text = [NSString stringWithFormat:@"%.2f", [_pointsAry[i] floatValue]];
-        _dataLabel.center = CGPointMake(point.x, point.y - _dataLabel.height);
+        _dataLabel.center = CGPointMake(point.x, point.y - _dataLabel.ykw_height);
     }
     
     [self setNeedsDisplay];
