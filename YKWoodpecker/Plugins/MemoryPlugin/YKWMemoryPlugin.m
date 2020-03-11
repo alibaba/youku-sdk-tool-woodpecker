@@ -38,10 +38,10 @@ static YKWChartWindow *_chartWindow;
 - (void)runWithParameters:(NSDictionary *)paraDic {
     if (!_chartWindow) {
         CGFloat width = [UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
-        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             width /= 2.;
         }
-        _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(1, 20, width - 2, 180.)];
+        _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(0.5, 20, width - 1, 180.)];
         _chartWindow.yTitle = @"MB";
         [_chartWindow makeKeyAndVisible];
     }
@@ -51,7 +51,7 @@ static YKWChartWindow *_chartWindow;
     [_chartWindow clearData];
     [_chartWindow startQueryDataWithInterval:1.0 block:^(NSMutableArray *dataAry) {
         [dataAry addObject:[NSString stringWithFormat:@"%.2f", [YKWMemoryUtils memoryUsage] / 1024. / 1024.]];
-        while (dataAry.count > 50) {
+        while (dataAry.count > 100) {
             [dataAry removeObjectAtIndex:0];
         }
     }];

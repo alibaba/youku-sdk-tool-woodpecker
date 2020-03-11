@@ -125,7 +125,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    self.collectionView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.collectionView.frame = CGRectMake(0, 0, self.ykw_width, self.ykw_height);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -150,7 +150,7 @@
     if (indexPath.row < self.cmdsAry.count) {
         width = [YKWCmdCollectionViewCell sizeForCmdModel:self.cmdsAry[indexPath.row]].width;
     }
-    return CGSizeMake(width, collectionView.height - 10);
+    return CGSizeMake(width, collectionView.ykw_height - 10);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

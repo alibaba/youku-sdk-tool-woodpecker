@@ -138,7 +138,6 @@
         }
         return;
     }
-
     NSArray *components = [self parseComponents:cmdStr usingSeparator:@" "];
     
     // Save input history
@@ -182,7 +181,7 @@
             }
             
             // Output last listened call stack
-            if ([key caseInsensitiveCompare:@"callStack"] == NSOrderedSame) {
+            if ([key caseInsensitiveCompare:@"callstack"] == NSOrderedSame || [key caseInsensitiveCompare:@"calls"] == NSOrderedSame) {
                 if (self.lastCallStackArray.count) {
                     for (NSString *stackStr in self.lastCallStackArray) {
                         NSArray *parts = [self parseComponents:stackStr usingSeparator:@" "];
@@ -365,7 +364,7 @@
 - (void)ykwoodpecker_forwardInvocation:(NSInvocation *)anInvocation {
     if ([[YKWoodpeckerManager sharedInstance].cmdCore isListeningClass:[self class] selector:anInvocation.selector]) {
         [YKWoodpeckerManager sharedInstance].cmdCore.lastCallStackArray = [NSThread callStackSymbols];
-        
+
         NSMutableArray *parasAry = [NSMutableArray array];
         [parasAry addObject:self];
         

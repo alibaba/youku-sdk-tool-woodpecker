@@ -73,7 +73,7 @@
 
         UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
         hideButton.backgroundColor = [UIColor clearColor];
-        hideButton.frame = CGRectMake(_contentView.width - 30, -12, 40, 40);
+        hideButton.frame = CGRectMake(_contentView.ykw_width - 30, -12, 40, 40);
         hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [hideButton setTitle:@"×" forState:UIControlStateNormal];
         [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -82,7 +82,7 @@
         
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         clearButton.backgroundColor = [UIColor clearColor];
-        clearButton.frame = CGRectMake(_contentView.width - 30, _contentView.height - 32, 40, 40);
+        clearButton.frame = CGRectMake(_contentView.ykw_width - 30, _contentView.ykw_height - 32, 40, 40);
         clearButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
         [clearButton setTitle:@"☒" forState:UIControlStateNormal];
         [clearButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
@@ -180,7 +180,7 @@
     cell.textLabel.textColor = YKWForegroudColor;
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.numberOfLines = 3;
-    
+
     NSString *json = [_jsonsAry ykw_objectAtIndex:indexPath.row];
     NSInteger length = json.length;
     

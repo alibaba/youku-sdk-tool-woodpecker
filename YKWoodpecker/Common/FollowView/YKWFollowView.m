@@ -36,7 +36,7 @@
     if (self) {
         _followVelocity = 1.0;
         _followWoodpeckerIcon = YES;
-        
+
         _panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
         _panGestureRecognizer.maximumNumberOfTouches = 1;
         _panGestureRecognizer.minimumNumberOfTouches = 1;
@@ -49,7 +49,7 @@
 - (void)pan:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:sender.view];
     [sender setTranslation:CGPointZero inView:sender.view];
-    self.center = CGPointMake(self.centerX + translation.x * self.followVelocity, self.centerY + translation.y * self.followVelocity);
+    self.center = CGPointMake(self.ykw_centerX + translation.x * self.followVelocity, self.ykw_centerY + translation.y * self.followVelocity);
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -68,7 +68,7 @@
     if (!self.followWoodpeckerIcon) {
         return;
     }
-    
+
     [YKWoodpeckerManager sharedInstance].woodpeckerRestPoint = self.frame.origin;
 }
 

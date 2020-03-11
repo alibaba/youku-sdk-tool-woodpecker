@@ -65,17 +65,20 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    if (self.iconImageView.ykw_width == 40) {
+        return;
+    }
     
-    self.iconImageView.width = 40.;
-    self.iconImageView.height = self.iconImageView.width;
-    self.iconImageView.top = 5;
-    self.iconImageView.centerX = self.width / 2.;
-    self.iconImageView.layer.cornerRadius = self.iconImageView.width / 2.;
+    self.iconImageView.ykw_width = 40.;
+    self.iconImageView.ykw_height = self.iconImageView.ykw_width;
+    self.iconImageView.ykw_top = 5;
+    self.iconImageView.ykw_centerX = self.ykw_width / 2.;
+    self.iconImageView.layer.cornerRadius = self.iconImageView.ykw_width / 2.;
 
-    self.nameLabel.width = self.width;
-    self.nameLabel.height = 15.;
-    self.nameLabel.top = self.iconImageView.bottom + 5.;
-    self.nameLabel.centerX = self.width / 2.;
+    self.nameLabel.ykw_width = self.ykw_width;
+    self.nameLabel.ykw_height = 15.;
+    self.nameLabel.ykw_top = self.iconImageView.ykw_bottom + 5.;
+    self.nameLabel.ykw_centerX = self.ykw_width / 2.;
 }
 
 - (void)setPluginModel:(YKWPluginModel *)pluginModel {
@@ -92,9 +95,9 @@
 
 - (void)handleLongPress:(id)sender {
     if (self.pluginModel.pluginInfo.length) {
-        [YKWoodpeckerMessage showMessage:self.pluginModel.pluginInfo duration:(3.0 + self.pluginModel.pluginInfo.length / 10) inView:self.superview.superview.superview position:CGPointMake(self.superview.superview.superview.width / 2., -35. - self.pluginModel.pluginInfo.length)];
+        [YKWoodpeckerMessage showMessage:self.pluginModel.pluginInfo duration:(3.0 + self.pluginModel.pluginInfo.length / 10) inView:self.superview.superview.superview position:CGPointMake(self.superview.superview.superview.ykw_width / 2., -35. - self.pluginModel.pluginInfo.length)];
     } else {
-        [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"No plugin info") duration:2.0 inView:self.superview.superview.superview position:CGPointMake(self.superview.superview.superview.width / 2, -35.)];
+        [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"No plugin info") duration:2.0 inView:self.superview.superview.superview position:CGPointMake(self.superview.superview.superview.ykw_width / 2, -35.)];
     }
 }
 

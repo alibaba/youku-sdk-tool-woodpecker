@@ -56,38 +56,38 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.width > self.height) {
-        self.lineView.width = self.width;
-        self.lineView.height = 1;
+    if (self.ykw_width > self.ykw_height) {
+        self.lineView.ykw_width = self.ykw_width;
+        self.lineView.ykw_height = 1;
     } else {
-        self.lineView.width = 1;
-        self.lineView.height = self.height;
+        self.lineView.ykw_width = 1;
+        self.lineView.ykw_height = self.ykw_height;
     }
-    self.lineView.center = CGPointMake(self.width / 2, self.height / 2);
+    self.lineView.center = CGPointMake(self.ykw_width / 2, self.ykw_height / 2);
     [self.infoLabel sizeToFit];
-    self.infoLabel.width += 2;
-    self.infoLabel.height -= 2;
+    self.infoLabel.ykw_width += 2;
+    self.infoLabel.ykw_height -= 2;
     self.infoLabel.center = self.lineView.center;
-    if (self.infoLabel.left < 0) {
-        self.infoLabel.left = 0;
+    if (self.infoLabel.ykw_left < 0) {
+        self.infoLabel.ykw_left = 0;
     }
-    if (self.infoLabel.top < 0) {
-        self.infoLabel.top = 0;
+    if (self.infoLabel.ykw_top < 0) {
+        self.infoLabel.ykw_top = 0;
     }
-    if (self.infoLabel.right > self.width) {
-        self.infoLabel.right = self.width;
+    if (self.infoLabel.ykw_right > self.ykw_width) {
+        self.infoLabel.ykw_right = self.ykw_width;
     }
-    if (self.infoLabel.bottom > self.height) {
-        self.infoLabel.bottom = self.height;
+    if (self.infoLabel.ykw_bottom > self.ykw_height) {
+        self.infoLabel.ykw_bottom = self.ykw_height;
     }
-    if (self.left == 0) {
-        if (self.infoLabel.left < 0) {
-            self.infoLabel.left = 0;
+    if (self.ykw_left == 0) {
+        if (self.infoLabel.ykw_left < 0) {
+            self.infoLabel.ykw_left = 0;
         }
     }
-    if (self.top == 0) {
-        if (self.infoLabel.top < 0) {
-            self.infoLabel.top = 0;
+    if (self.ykw_top == 0) {
+        if (self.infoLabel.ykw_top < 0) {
+            self.infoLabel.ykw_top = 0;
         }
     }
 }

@@ -31,79 +31,79 @@
 
 @implementation UIView (YKWoodpeckerAdditions)
 
-- (CGFloat)left {
+- (CGFloat)ykw_left {
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)x {
+- (void)setYkw_left:(CGFloat)ykw_left {
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin.x = ykw_left;
     self.frame = frame;
 }
 
-- (CGFloat)top {
+- (CGFloat)ykw_top {
     return self.frame.origin.y;
 }
 
-- (void)setTop:(CGFloat)y {
+- (void)setYkw_top:(CGFloat)ykw_top {
     CGRect frame = self.frame;
-    frame.origin.y = y;
+    frame.origin.y = ykw_top;
     self.frame = frame;
 }
 
-- (CGFloat)right {
+- (CGFloat)ykw_right {
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (void)setRight:(CGFloat)right {
+- (void)setYkw_right:(CGFloat)ykw_right {
     CGRect frame = self.frame;
-    frame.origin.x = right - frame.size.width;
+    frame.origin.x = ykw_right - frame.size.width;
     self.frame = frame;
 }
 
-- (CGFloat)bottom {
+- (CGFloat)ykw_bottom {
     return self.frame.origin.y + self.frame.size.height;
 }
 
-- (void)setBottom:(CGFloat)bottom {
+- (void)setYkw_bottom:(CGFloat)ykw_bottom {
     CGRect frame = self.frame;
-    frame.origin.y = bottom - frame.size.height;
+    frame.origin.y = ykw_bottom - frame.size.height;
     self.frame = frame;
 }
 
-- (CGFloat)centerX {
+- (CGFloat)ykw_centerX {
     return self.center.x;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
-    self.center = CGPointMake(centerX, self.center.y);
+- (void)setYkw_centerX:(CGFloat)ykw_centerX {
+    self.center = CGPointMake(ykw_centerX, self.center.y);
 }
 
-- (CGFloat)centerY {
+- (CGFloat)ykw_centerY {
     return self.center.y;
 }
 
-- (void)setCenterY:(CGFloat)centerY {
-    self.center = CGPointMake(self.center.x, centerY);
+- (void)setYkw_centerY:(CGFloat)ykw_centerY {
+    self.center = CGPointMake(self.center.x, ykw_centerY);
 }
 
-- (CGFloat)width {
+- (CGFloat)ykw_width {
     return self.frame.size.width;
 }
 
-- (void)setWidth:(CGFloat)width {
+- (void)setYkw_width:(CGFloat)ykw_width {
     CGRect frame = self.frame;
-    frame.size.width = width;
+    frame.size.width = ykw_width;
     self.frame = frame;
 }
 
-- (CGFloat)height {
+- (CGFloat)ykw_height {
     return self.frame.size.height;
 }
 
-- (void)setHeight:(CGFloat)height {
+- (void)setYkw_height:(CGFloat)ykw_height {
     CGRect frame = self.frame;
-    frame.size.height = height;
+    frame.size.height = ykw_height;
     self.frame = frame;
 }
 

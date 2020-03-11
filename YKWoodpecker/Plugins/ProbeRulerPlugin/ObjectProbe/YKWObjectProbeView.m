@@ -55,7 +55,7 @@
         self.clipsToBounds = YES;
         self.followVelocity = 0.0;
         
-        _logView = [[YKWScreenLog alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height / 2 + 30)];
+        _logView = [[YKWScreenLog alloc] initWithFrame:CGRectMake(0, 0, self.ykw_width, self.ykw_height / 2 + 30)];
         _logView.followVelocity = 0;
         _logView.resizeable = NO;
         _logView.functionButtonTitle = YKWLocalizedString(@"Show View");
@@ -63,11 +63,11 @@
         [self addSubview:_logView];
         
         [_logView logInfo:YKWLocalizedString(@"<Tap an object to show its property list, double-tap to show description, or input as 'k/K Key.Path' to read KVC, input 'po [1/2.../class ...]' to run po-command, input 'h' to show input history.>")];
-
+        
         _poCmdCore = [[YKWPoCommandCore alloc] init];
 
         _probeTableScrollView = [[UIScrollView alloc] init];
-        _probeTableScrollView.frame = CGRectMake(10, _logView.bottom, _logView.width - 20, self.height - _logView.bottom - 10);
+        _probeTableScrollView.frame = CGRectMake(10, _logView.ykw_bottom, _logView.ykw_width - 20, self.ykw_height - _logView.ykw_bottom - 10);
         _probeTableScrollView.backgroundColor = [YKWHighlightColor colorWithAlphaComponent:0.3];
         _probeTableScrollView.directionalLockEnabled = YES;
         [self addSubview:_probeTableScrollView];
@@ -216,8 +216,8 @@
             [aTable removeFromSuperview];
             [_probeTableAry removeObject:aTable];
         }
-        _probeTableScrollView.contentSize = CGSizeMake(_probeTableAry.count * nextTable.width, 0);
-        [_probeTableScrollView setContentOffset:CGPointMake(_probeTableScrollView.contentSize.width - _probeTableScrollView.width, 0) animated:YES];
+        _probeTableScrollView.contentSize = CGSizeMake(_probeTableAry.count * nextTable.ykw_width, 0);
+        [_probeTableScrollView setContentOffset:CGPointMake(_probeTableScrollView.contentSize.width - _probeTableScrollView.ykw_width, 0) animated:YES];
     } else {
         [self setupTableViewWith:object class:cls];
     }
@@ -225,20 +225,20 @@
 
 - (void)setupTableViewWith:(NSObject *)object class:(Class)cls {
     YKWObjectTableView *tableView = [[YKWObjectTableView alloc] init];
-    tableView.width = _probeTableScrollView.width / 1.3;
-    tableView.left = _probeTableAry.count * tableView.width;
-    tableView.height = _probeTableScrollView.height;
+    tableView.ykw_width = _probeTableScrollView.ykw_width / 1.3;
+    tableView.ykw_left = _probeTableAry.count * tableView.ykw_width;
+    tableView.ykw_height = _probeTableScrollView.ykw_height;
     tableView.probeClass = cls;
     tableView.objDelegate = self;
     tableView.probedObject = object;
     [_probeTableAry addObject:tableView];
     [_probeTableScrollView addSubview:tableView];
     [self setupObjectIndex];
-    _probeTableScrollView.contentSize = CGSizeMake(_probeTableAry.count * tableView.width, 0);
+    _probeTableScrollView.contentSize = CGSizeMake(_probeTableAry.count * tableView.ykw_width, 0);
     if (_probeTableAry.count == 1) {
         [_probeTableScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     } else {
-        [_probeTableScrollView setContentOffset:CGPointMake(_probeTableScrollView.contentSize.width - _probeTableScrollView.width, 0) animated:YES];
+        [_probeTableScrollView setContentOffset:CGPointMake(_probeTableScrollView.contentSize.width - _probeTableScrollView.ykw_width, 0) animated:YES];
     }
 }
 

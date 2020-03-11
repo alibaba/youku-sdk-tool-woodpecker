@@ -286,7 +286,7 @@
         [parasAry addObject:self];
         
         NSInteger paraCount = anInvocation.methodSignature.numberOfArguments;
-        
+
         for (int i = 2; i < paraCount; i++) {
             [YKWObjcMethodHook parseArgumentType:anInvocation index:i parasAry:parasAry];
         }

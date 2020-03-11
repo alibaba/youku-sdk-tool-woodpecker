@@ -30,6 +30,7 @@
 #import "YKWPluginsWindow.h"
 #import "YKWPluginModelCell.h"
 #import "YKWPluginSectionHeader.h"
+#import "YKWRotationWindowRootViewController.h"
 
 #define kYKWPluginsWindowLastCenter @"YKWPluginsWindowLastCenter"
 
@@ -52,7 +53,7 @@
     if (self) {
         _firstLoad = YES;
         
-        self.rootViewController = [UIViewController new];
+        self.rootViewController = [[YKWRotationWindowRootViewController alloc] init];
         self.rootViewController.view.backgroundColor = [UIColor clearColor];
         self.rootViewController.view.userInteractionEnabled = NO;
         
@@ -64,7 +65,7 @@
         [panGestureRecognizer addTarget:self action:@selector(pan:)];
         [self addGestureRecognizer:panGestureRecognizer];
 
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.ykw_width, self.ykw_height)];
         _contentView.backgroundColor = [YKWBackgroudColor colorWithAlphaComponent:0.9];
         _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _contentView.clipsToBounds = YES;
@@ -95,9 +96,9 @@
         
 //        UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        hideButton.backgroundColor = [UIColor clearColor];
-//        hideButton.frame = CGRectMake(_contentView.width - 30, -12, 40, 40);
+//        hideButton.frame = CGRectMake(_contentView.ykw_width - 30, -12, 40, 40);
 //        hideButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleBottomMargin;
-//        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:15];
+//        hideButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
 //        [hideButton setTitle:@"×" forState:UIControlStateNormal];
 //        [hideButton setTitleColor:[YKWForegroudColor colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
 //        [hideButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
@@ -122,7 +123,7 @@
 }
 
 - (void)handleRotation:(NSNotification *)noti {
-    if (_contentView.width > 0) {
+    if (_contentView.ykw_width > 0) {
         [self setupSize];
     }
 }
@@ -137,7 +138,7 @@
         _woodpeckerIcon.backgroundColor = [YKWHighlightColor colorWithAlphaComponent:0.8];
         _woodpeckerIcon.clipsToBounds = YES;
         _woodpeckerIcon.layer.anchorPoint = CGPointMake(0.7, 0.7);
-        _woodpeckerIcon.layer.cornerRadius = _woodpeckerIcon.width / 2.0;
+        _woodpeckerIcon.layer.cornerRadius = _woodpeckerIcon.ykw_width / 2.0;
     }
     _woodpeckerIcon.center = CGPointMake(2, 2);
     _woodpeckerIcon.userInteractionEnabled = YES;
@@ -169,7 +170,7 @@
         }];
     }
     
-    if (_contentView.width > 10) {
+    if (_contentView.ykw_width > 10) {
         [self fold:YES];
     } else {
         [self unfold:YES];
@@ -179,24 +180,24 @@
 - (void)pan:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:sender.view];
     [sender setTranslation:CGPointZero inView:sender.view];
-    self.center = CGPointMake(self.centerX + translation.x, self.centerY + translation.y);
+    self.center = CGPointMake(self.ykw_centerX + translation.x, self.ykw_centerY + translation.y);
 }
 
 - (void)fold:(BOOL)animated {
-    if (_contentView.width > 0) {
+    if (_contentView.ykw_width > 0) {
         if (animated) {
             [UIView animateWithDuration:0.2 animations:^{
-                self->_contentView.width = 0;
-                self->_contentView.height = 0;
+                self->_contentView.ykw_width = 0;
+                self->_contentView.ykw_height = 0;
             } completion:^(BOOL finished) {
-                self.width = 1.;
-                self.height = 1.;
+                self.ykw_width = 1.;
+                self.ykw_height = 1.;
             }];
         } else {
-            _contentView.width = 0;
-            _contentView.height = 0;
-            self.width = 1.;
-            self.height = 1.;
+            _contentView.ykw_width = 0;
+            _contentView.ykw_height = 0;
+            self.ykw_width = 1.;
+            self.ykw_height = 1.;
         }
     }
     
@@ -204,7 +205,7 @@
 }
 
 - (void)unfold:(BOOL)animated {
-    if (_contentView.width <= 0) {
+    if (_contentView.ykw_width <= 0) {
         if (animated) {
             [UIView animateWithDuration:0.2 animations:^{
                 [self setupSize];
@@ -219,8 +220,8 @@
 
 - (void)checkFrameOrigin {
     if (!CGRectContainsPoint(UIEdgeInsetsInsetRect([UIScreen mainScreen].applicationFrame, UIEdgeInsetsMake(20, 20, 20, 20)), self.frame.origin)) {
-        self.left = 20;
-        self.top = 180;
+        self.ykw_left = 20;
+        self.ykw_top = 180;
     }
 }
 
@@ -239,7 +240,7 @@
 - (void)setPluginModelArray:(NSArray<NSArray<YKWPluginModel *> *> *)pluginModelArray {
     _pluginModelArray = pluginModelArray;
     
-    if (_contentView.width > 10) {
+    if (_contentView.ykw_width > 10) {
         [self setupSize];
     }
     [self.collectionView reloadData];
@@ -252,12 +253,12 @@
     for (NSArray *pluginAry in _pluginModelArray) {
         heightCount += (pluginAry.count + 3) / 4;
     }
-    self.width = widthCount * ([YKWPluginModelCell cellSizeForModel:nil].width + 10) + 10;
-    self.height = heightCount * ([YKWPluginModelCell cellSizeForModel:nil].height + 10)  + _pluginModelArray.count * 20;
-    if (self.height > [UIScreen mainScreen].bounds.size.height * 3. / 4.) {
-        self.height = [UIScreen mainScreen].bounds.size.height * 3. / 4.;
+    self.ykw_width = widthCount * ([YKWPluginModelCell cellSizeForModel:nil].width + 10) + 10;
+    self.ykw_height = heightCount * ([YKWPluginModelCell cellSizeForModel:nil].height + 10)  + _pluginModelArray.count * 20;
+    if (self.ykw_height > [UIScreen mainScreen].bounds.size.height * 3. / 4.) {
+        self.ykw_height = [UIScreen mainScreen].bounds.size.height * 3. / 4.;
     }
-    self.collectionView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.collectionView.frame = CGRectMake(0, 0, self.ykw_width, self.ykw_height);
 
     // Restore to previous postion on first show.
     if (_firstLoad) {
@@ -266,7 +267,7 @@
         if (centerStr.length) {
             CGPoint center = CGPointFromString(centerStr);
             // Position protection.
-            if (CGRectContainsPoint(UIEdgeInsetsInsetRect([UIApplication sharedApplication].keyWindow.bounds, UIEdgeInsetsMake(50, 50, 50, 50)), CGPointMake(center.x - self.width / 2., center.y - self.height / 2.))) {
+            if (CGRectContainsPoint(UIEdgeInsetsInsetRect([UIApplication sharedApplication].keyWindow.bounds, UIEdgeInsetsMake(50, 50, 50, 50)), CGPointMake(center.x - self.ykw_width / 2., center.y - self.ykw_height / 2.))) {
                 self.center = center;
             }
         }
@@ -318,7 +319,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(collectionView.width, 20);
+    return CGSizeMake(collectionView.ykw_width, 20);
 }
 
 #pragma mark - UICollectionViewDelegate

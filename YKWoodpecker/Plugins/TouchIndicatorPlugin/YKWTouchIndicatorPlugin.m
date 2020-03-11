@@ -99,13 +99,13 @@ void ykw_HSLtoRGB (float h, float s, float l, float* R, float* G, float* B) {
             v2 = (L+S) - (L*S);
         
         v1 = 2 * L - v2;
-        *R = 255 * ykw_HuetoRGB(v1, v2, H+(1.0/3.0));
-        *G = 255 * ykw_HuetoRGB(v1, v2, H);
-        *B = 255 * ykw_HuetoRGB(v1, v2, H-(1.0/3.0));
+        *R = 255 * ykw_Hue_2_RGB(v1, v2, H+(1.0/3.0));
+        *G = 255 * ykw_Hue_2_RGB(v1, v2, H);
+        *B = 255 * ykw_Hue_2_RGB(v1, v2, H-(1.0/3.0));
     }
 }
 
-float ykw_HuetoRGB (float v1, float v2, float vH) {
+float ykw_Hue_2_RGB (float v1, float v2, float vH) {
     if (vH < 0)
         vH += 1;
     if (vH > 1)
@@ -118,5 +118,6 @@ float ykw_HuetoRGB (float v1, float v2, float vH) {
         return (v1 + (v2-v1)*((2.0/3.0)-vH)*6);
     return v1;
 }
+
 
 @end

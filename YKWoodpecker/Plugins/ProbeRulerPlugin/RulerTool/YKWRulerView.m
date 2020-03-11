@@ -58,16 +58,16 @@
     [super setFrame:frame];
     
     NSString *width = nil;
-    if ([self isRoundInteger:self.width]) {
-        width = [NSString stringWithFormat:@"%.0f", self.width];
+    if ([self isRoundInteger:self.ykw_width]) {
+        width = [NSString stringWithFormat:@"%.0f", self.ykw_width];
     } else {
-        width = [NSString stringWithFormat:@"%.1f", self.width];
+        width = [NSString stringWithFormat:@"%.1f", self.ykw_width];
     }
     NSString *height = nil;
-    if ([self isRoundInteger:self.height]) {
-        height = [NSString stringWithFormat:@"%.0f", self.height];
+    if ([self isRoundInteger:self.ykw_height]) {
+        height = [NSString stringWithFormat:@"%.0f", self.ykw_height];
     } else {
-        height = [NSString stringWithFormat:@"%.1f", self.height];
+        height = [NSString stringWithFormat:@"%.1f", self.ykw_height];
     }
 
     _widthHeightLabel.text = [width stringByAppendingFormat:@"•%@", height];

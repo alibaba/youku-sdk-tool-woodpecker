@@ -76,13 +76,13 @@
 - (void)showWithDuratin:(NSTimeInterval)interval inView:(UIView *)view position:(CGPoint)postion  {
     if (!view) {
         view = [UIApplication sharedApplication].windows.firstObject;
-        postion = CGPointMake(view.width / 2, view.height / 2);
+        postion = CGPointMake(view.ykw_width / 2, view.ykw_height / 2);
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.width = view.bounds.size.width - 100.;
+        self.ykw_width = view.bounds.size.width - 100.;
         [self sizeToFit];
-        self.width += 40.;
-        self.height += 30.;
+        self.ykw_width += 40.;
+        self.ykw_height += 30.;
         self.center = postion;
         self.alpha = 0.0;
         [view addSubview:self];

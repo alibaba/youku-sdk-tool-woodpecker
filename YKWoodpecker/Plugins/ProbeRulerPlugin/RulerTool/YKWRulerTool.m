@@ -96,7 +96,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         
         UIButton *_addBtn = ({
             UIButton *btn = [self getABtn];
-            btn.frame = CGRectMake(10, _infoLabel.bottom + 5, 80, 30);
+            btn.frame = CGRectMake(10, _infoLabel.ykw_bottom + 5, 80, 30);
             btn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
             [btn setTitle:@"＋" forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(addRulerView) forControlEvents:UIControlEventTouchUpInside];
@@ -107,7 +107,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         _DpPxBtn = ({
             UIButton *btn = [self getABtn];
             btn.tag = 1;
-            btn.frame = CGRectMake(100, _addBtn.top, 80, 30);
+            btn.frame = CGRectMake(100, _addBtn.ykw_top, 80, 30);
             btn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:14];
             [btn setTitle:(_isDp ? @"Dp" : @"Px") forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(switchDpPx) forControlEvents:UIControlEventTouchUpInside];
@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
             btn;
         });
         
-        _sizeTxtField = [[UITextField alloc] initWithFrame:CGRectMake(10, _addBtn.bottom + 10, frame.size.width - 20, 30)];
+        _sizeTxtField = [[UITextField alloc] initWithFrame:CGRectMake(10, _addBtn.ykw_bottom + 10, frame.size.width - 20, 30)];
         _sizeTxtField.backgroundColor = YKWBackgroudColor;
         _sizeTxtField.textColor = YKWForegroudColor;
         _sizeTxtField.textAlignment = NSTextAlignmentCenter;
@@ -132,14 +132,14 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeAddX;
-            label.center = CGPointMake(self.width / 4 + 25, _sizeTxtField.bottom + 55);
+            label.center = CGPointMake(self.ykw_width / 4 + 25, _sizeTxtField.ykw_bottom + 55);
             label.text = @"▷";
         }
         
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeAddY;
-            label.center = CGPointMake(self.width / 4, _sizeTxtField.bottom + 80);
+            label.center = CGPointMake(self.ykw_width / 4, _sizeTxtField.ykw_bottom + 80);
             label.text = @"▷";
             label.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeMinusX;
-            label.center = CGPointMake(self.width / 4 - 25, _sizeTxtField.bottom + 55);
+            label.center = CGPointMake(self.ykw_width / 4 - 25, _sizeTxtField.ykw_bottom + 55);
             label.text = @"▷";
             label.transform = CGAffineTransformMakeRotation(M_PI);
         }
@@ -155,7 +155,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeMinusY;
-            label.center = CGPointMake(self.width / 4, _sizeTxtField.bottom + 30);
+            label.center = CGPointMake(self.ykw_width / 4, _sizeTxtField.ykw_bottom + 30);
             label.text = @"▷";
             label.transform = CGAffineTransformMakeRotation(-M_PI_2);
         }
@@ -163,21 +163,21 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeAddWidth;
-            label.center = CGPointMake(self.width * 3 / 4 - 25, _sizeTxtField.bottom + 30);
+            label.center = CGPointMake(self.ykw_width * 3 / 4 - 25, _sizeTxtField.ykw_bottom + 30);
             label.text = @"◁▷";
         }
         
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeMinusWidth;
-            label.center = CGPointMake(self.width * 3 / 4 + 25, _sizeTxtField.bottom + 30);
+            label.center = CGPointMake(self.ykw_width * 3 / 4 + 25, _sizeTxtField.ykw_bottom + 30);
             label.text = @"▷◁";
         }
 
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeAddHeight;
-            label.center = CGPointMake(self.width * 3 / 4 - 25, _sizeTxtField.bottom + 80);
+            label.center = CGPointMake(self.ykw_width * 3 / 4 - 25, _sizeTxtField.ykw_bottom + 80);
             label.text = @"◁▷";
             label.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
@@ -185,7 +185,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
         {
             UILabel *label = [self getAControlLabel];
             label.tag = YKWRulerToolControlTypeMinusHeight;
-            label.center = CGPointMake(self.width * 3 / 4 + 25, _sizeTxtField.bottom + 80);
+            label.center = CGPointMake(self.ykw_width * 3 / 4 + 25, _sizeTxtField.ykw_bottom + 80);
             label.text = @"▷◁";
             label.transform = CGAffineTransformMakeRotation(M_PI_2);
         }
@@ -211,7 +211,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
     label.backgroundColor = [UIColor clearColor];
     label.userInteractionEnabled = YES;
     label.clipsToBounds = YES;
-    label.layer.cornerRadius = label.width / 2.0;
+    label.layer.cornerRadius = label.ykw_width / 2.0;
     label.layer.borderWidth = 0.5;
     label.textAlignment = NSTextAlignmentCenter;
     label.layer.borderColor = YKWForegroudColor.CGColor;
@@ -241,8 +241,8 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
             if (!view) {
                 view = self.rulerViewAry.lastObject;
             }
-            view.width = width;
-            view.height = height;
+            view.ykw_width = width;
+            view.ykw_height = height;
             [textField resignFirstResponder];
         } else {
             [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"Input Error")];
@@ -257,8 +257,8 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
     view.center = [UIApplication sharedApplication].keyWindow.center;
     if (!CGRectIsEmpty([[self.rulerViewAry ykw_objectAtIndex:_currentIndex] frame])) {
         view.frame = [[self.rulerViewAry ykw_objectAtIndex:_currentIndex] frame];
-        view.centerX += 10;
-        view.centerY += 10;
+        view.ykw_centerX += 10;
+        view.ykw_centerY += 10;
     } else {
         NSString *rectStr = [[NSUserDefaults standardUserDefaults] objectForKey:kYKWRulerToolLastFrame];
         CGRect lastRect = CGRectFromString(rectStr);
@@ -270,7 +270,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
     
     CGRect intersectionRect = CGRectIntersection(view.frame, [UIApplication sharedApplication].keyWindow.bounds);
     if (CGRectIsEmpty(intersectionRect)) {
-        view.frame = CGRectMake([UIApplication sharedApplication].keyWindow.centerX, [UIApplication sharedApplication].keyWindow.centerY, 100, 100);
+        view.frame = CGRectMake([UIApplication sharedApplication].keyWindow.ykw_centerX, [UIApplication sharedApplication].keyWindow.ykw_centerY, 100, 100);
     }
     
     [self.rulerViewAry addObject:view];
@@ -363,48 +363,48 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
     }
     switch (_controlType) {
         case YKWRulerToolControlTypeAddX:
-            view.left += step;
+            view.ykw_left += step;
             if (!CGRectIntersectsRect(view.superview.bounds, view.frame)) {
-                view.left -= step;
+                view.ykw_left -= step;
             }
             break;
         case YKWRulerToolControlTypeAddY:
-            view.top += step;
+            view.ykw_top += step;
             if (!CGRectIntersectsRect(view.superview.bounds, view.frame)) {
-                view.top -= step;
+                view.ykw_top -= step;
             }
             break;
         case YKWRulerToolControlTypeMinusX:
-            view.left -= step;
+            view.ykw_left -= step;
             if (!CGRectIntersectsRect(view.superview.bounds, view.frame)) {
-                view.left += step;
+                view.ykw_left += step;
             }
             break;
         case YKWRulerToolControlTypeMinusY:
-            view.top -= step;
+            view.ykw_top -= step;
             if (!CGRectIntersectsRect(view.superview.bounds, view.frame)) {
-                view.top += step;
+                view.ykw_top += step;
             }
             break;
         case YKWRulerToolControlTypeMinusWidth:
-            if (view.width - step <= 0) {
-                view.width = step;
+            if (view.ykw_width - step <= 0) {
+                view.ykw_width = step;
             } else {
-                view.width -= step;
+                view.ykw_width -= step;
             }
             break;
         case YKWRulerToolControlTypeMinusHeight:
-            if (view.height - step <= 0) {
-                view.height = step;
+            if (view.ykw_height - step <= 0) {
+                view.ykw_height = step;
             } else {
-                view.height -= step;
+                view.ykw_height -= step;
             }
             break;
         case YKWRulerToolControlTypeAddWidth:
-            view.width += step;
+            view.ykw_width += step;
             break;
         case YKWRulerToolControlTypeAddHeight:
-            view.height += step;
+            view.ykw_height += step;
             break;
         default:
             break;
@@ -428,7 +428,7 @@ typedef NS_ENUM(NSUInteger, YKWRulerToolControlType) {
 }
 
 - (void)showInView:(UIView *)view {
-    self.centerX = view.width / 2;
+    self.ykw_centerX = view.ykw_width / 2;
     [view addSubview:self];
     [self addRulerView];
 }

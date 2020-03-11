@@ -90,12 +90,14 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
     if (_pluginsEntrance) {
         [_pluginsEntrance show];
     } else {
-        _pluginsEntrance = [[YKWPluginsWindow alloc] initWithFrame:CGRectMake(22, 120, 0, 0)];
+        _pluginsEntrance = [[YKWPluginsWindow alloc] initWithFrame:CGRectMake(22, 150, 0, 0)];
         [_pluginsEntrance showWoodpecker];
         _pluginsEntrance.delegate = self;
         _pluginsEntrance.pluginModelArray = _pluginsArray;
         
-        [self openPluginNamed:YKWLocalizedString(@"UI Check")];
+        if (self.autoOpenUICheckOnShow) {
+            [self openPluginNamed:YKWLocalizedString(@"UI Check")];
+        }
 
         [_pluginsEntrance makeKeyAndVisible];
     }
@@ -113,8 +115,8 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
 
 - (void)setWoodpeckerRestPoint:(CGPoint)woodpeckerRestPoint {
     if (CGRectContainsPoint(UIEdgeInsetsInsetRect([UIScreen mainScreen].applicationFrame, UIEdgeInsetsMake(20, 20, 20, 20)), woodpeckerRestPoint)) {
-        _pluginsEntrance.left = woodpeckerRestPoint.x;
-        _pluginsEntrance.top = woodpeckerRestPoint.y;
+        _pluginsEntrance.ykw_left = woodpeckerRestPoint.x;
+        _pluginsEntrance.ykw_top = woodpeckerRestPoint.y;
     }
 }
 
@@ -243,6 +245,9 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
 }
 
 - (void)openPluginNamed:(NSString *)pluginName withParameters:(NSDictionary *)parasDic {
+    // May close other open plugins
+    [[NSNotificationCenter defaultCenter] postNotificationName:YKWoodpeckerManagerPluginsDidShowNotification object:nil];
+    
     YKWPluginModel *plugin = nil;
     for (NSMutableArray *array in _pluginsArray) {
         for (YKWPluginModel *p in array) {
@@ -254,8 +259,6 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
     }
 
     if (plugin) {
-        // May close other open plugins
-        [[NSNotificationCenter defaultCenter] postNotificationName:YKWoodpeckerManagerPluginsDidShowNotification object:nil];
         [_pluginsEntrance fold:NO];
         if (parasDic) {
             NSDictionary *previousParas = plugin.pluginParameters;

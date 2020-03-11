@@ -36,56 +36,56 @@
  *
  * Sets frame.origin.x = left
  */
-@property (nonatomic) CGFloat left;
+@property (nonatomic) CGFloat ykw_left;
 
 /**
  * Shortcut for frame.origin.y
  *
  * Sets frame.origin.y = top
  */
-@property (nonatomic) CGFloat top;
+@property (nonatomic) CGFloat ykw_top;
 
 /**
  * Shortcut for frame.origin.x + frame.size.width
  *
  * Sets frame.origin.x = right - frame.size.width
  */
-@property (nonatomic) CGFloat right;
+@property (nonatomic) CGFloat ykw_right;
 
 /**
  * Shortcut for frame.origin.y + frame.size.height
  *
  * Sets frame.origin.y = bottom - frame.size.height
  */
-@property (nonatomic) CGFloat bottom;
+@property (nonatomic) CGFloat ykw_bottom;
 
 /**
  * Shortcut for frame.size.width
  *
  * Sets frame.size.width = width
  */
-@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat ykw_width;
 
 /**
  * Shortcut for frame.size.height
  *
  * Sets frame.size.height = height
  */
-@property (nonatomic) CGFloat height;
+@property (nonatomic) CGFloat ykw_height;
 
 /**
  * Shortcut for center.x
  *
  * Sets center.x = centerX
  */
-@property (nonatomic) CGFloat centerX;
+@property (nonatomic) CGFloat ykw_centerX;
 
 /**
  * Shortcut for center.y
  *
  * Sets center.y = centerY
  */
-@property (nonatomic) CGFloat centerY;
+@property (nonatomic) CGFloat ykw_centerY;
 
 /**
  * Removes all subviews.
