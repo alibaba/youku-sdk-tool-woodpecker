@@ -41,10 +41,12 @@
 #define kYKWScreenLogPreInputCacheCount 20
 
 #define YKWScreenLogAutoPlainLength 20000
+#define YKWScreenLogAutoHideLength 2000
 
 @interface YKWScreenLog()<UITextViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, YKWCmdViewDelegate> {
     UITextView *_txtView;
     BOOL _isDeleting;
+    NSMutableString *_allLogString;
     
     UIButton *_functionBtn;
     
@@ -52,6 +54,8 @@
     UILabel *_sizeLabel;
     CGFloat _originalHeight;
     
+    UILabel *_showHideLogLabel;
+
     UIView *_searchView;
     UITextField *_searchTxtField;
     UILabel *_searchResultNumLabel;
@@ -93,6 +97,7 @@
         _inputable = YES;
         _isDeleting = NO;
         _parseCommands = YES;
+        _showLog = YES;
         
         _appendedAry = [NSMutableArray array];
         
@@ -108,6 +113,8 @@
         tap.delegate = self;
         [self addGestureRecognizer:tap];
         
+        _allLogString = [NSMutableString string];
+
         _txtView = [[UITextView alloc] init];
         _txtView.frame = CGRectMake(10, 20, self.ykw_width - 20, self.ykw_height - 70);
         _txtView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -131,19 +138,19 @@
         CGFloat y = _txtView.ykw_bottom + 10;
         {
             UIButton *btn = [self getBtn];
-            btn.frame = CGRectMake(10, y, 65, 30);
-            [btn setTitle:YKWLocalizedString(@"Clear log") forState:UIControlStateNormal];
+            btn.frame = CGRectMake(10, y, 45, 30);
+            [btn setTitle:YKWLocalizedString(@"Clear") forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(clearTxt) forControlEvents:UIControlEventTouchUpInside];
         }
         {
             UIButton *btn = [self getBtn];
-            btn.frame = CGRectMake(85, y, 65, 30);
-            [btn setTitle:YKWLocalizedString(@"Share log") forState:UIControlStateNormal];
+            btn.frame = CGRectMake(65, y, 45, 30);
+            [btn setTitle:YKWLocalizedString(@"Share") forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(shareTxt) forControlEvents:UIControlEventTouchUpInside];
         }
         {
             _functionBtn = [self getBtn];
-            _functionBtn.frame = CGRectMake(160, y, 65, 30);
+            _functionBtn.frame = CGRectMake(120, y, 65, 30);
             [_functionBtn setTitle:YKWLocalizedString(@"Function") forState:UIControlStateNormal];
             [_functionBtn addTarget:self action:@selector(handleFunction) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -179,6 +186,21 @@
         [_sizeLabel addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSizeGesture:)]];
         self.panGestureRecognizer.delegate = self;
         [self addSubview:_sizeLabel];
+        
+        _showHideLogLabel = [[UILabel alloc] init];
+        _showHideLogLabel.backgroundColor = YKWForegroudColor;
+        _showHideLogLabel.frame = CGRectMake(self.ykw_width - 160, y, 30, 30);
+        _showHideLogLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin;
+        _showHideLogLabel.layer.cornerRadius = 2;
+        _showHideLogLabel.clipsToBounds = YES;
+        _showHideLogLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:18];
+        _showHideLogLabel.textAlignment = NSTextAlignmentCenter;
+        _showHideLogLabel.textColor = YKWBackgroudColor;
+        _showHideLogLabel.text = _showLog ? @"◉" : @"○";
+
+        _showHideLogLabel.userInteractionEnabled = YES;
+        [_showHideLogLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleShowHideLogGesture:)]];
+        [self addSubview:_showHideLogLabel];
     }
     return self;
 }
@@ -250,6 +272,17 @@
     _preLoc = loc;
 }
 
+- (void)handleShowHideLogGesture:(UIPanGestureRecognizer *)sender {
+    if (_showLog) {
+        [self logInfo:YKWLocalizedString(@"<Hiding log, check log via share...>")];
+        _showLog = NO;
+    } else {
+        _showLog = YES;
+        [self logInfo:YKWLocalizedString(@"<Showing log...>")];
+    }
+    _showHideLogLabel.text = _showLog ? @"◉" : @"○";
+}
+    
 - (NSString *)functionButtonTitle {
     return [_functionBtn titleForState:UIControlStateNormal];
 }
@@ -270,13 +303,7 @@
 }
 
 - (void)shareTxt {
-    NSString *string = nil;
-    if (_txtView.text.length) {
-        string = _txtView.text;
-    }
-    if (_txtView.attributedText.length) {
-        string = _txtView.attributedText.string;
-    }
+    NSString *string = _allLogString;
     if (string.length) {
         [YKWoodpeckerUtils showShareActivityWithItems:@[string]];
     } else {
@@ -285,6 +312,7 @@
 }
 
 - (void)clearTxt {
+    _allLogString = [NSMutableString string];
     _txtView.text = @"";
     _txtView.attributedText = [NSAttributedString new];
     _searchResultAry = nil;
@@ -391,12 +419,23 @@
         logStr = [self regFilterLog:logStr];
     }
     
+    [_allLogString appendString:logStr];
+    
+    if (logStr.length > YKWScreenLogAutoHideLength) {
+        logStr = YKWLocalizedString(@"<Log is too long to show, check it via share>");
+    }
+    
     if (!color) {
         color = [UIColor whiteColor];
     }
     
     if (!keepline) {
         logStr = [logStr stringByAppendingString:@"\n"];
+        [_allLogString appendString:@"\n"];
+    }
+    
+    if (!_showLog) {
+        return;
     }
     
     BOOL autoScrl = NO;

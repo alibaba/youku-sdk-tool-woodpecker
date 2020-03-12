@@ -177,6 +177,7 @@
         imageView.center = CGPointMake(keyWindow.ykw_width / 2., keyWindow.ykw_height / 2.);
         imageView.userInteractionEnabled = NO;
         YKWFollowView *followView = [[YKWFollowView alloc] initWithFrame:imageView.frame];
+        followView.followWoodpeckerIcon = NO;
         followView.backgroundColor = [UIColor clearColor];
         followView.alpha = 0.5;
         imageView.ykw_left = 0;

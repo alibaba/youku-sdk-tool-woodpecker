@@ -51,6 +51,11 @@
 @property (nonatomic, assign) BOOL resizeable;
 
 /**
+ Show log or hide log, default is YES.
+ */
+@property (nonatomic, assign) BOOL showLog;
+
+/**
  Whether inputable, default is YES.
  */
 @property (nonatomic, assign) BOOL inputable;
