@@ -42,7 +42,7 @@ iOS 8.0及以上。
 > #import "YKWoodpecker.h"
 > ```
 >    // 方法监听命令配置JSON地址 * 可选，如无单独配置，可使用 https://github.com/ZimWoodpecker/WoodpeckerCmdSource 上的配置
->    [YKWoodpeckerManager shareInstance].cmdSourceUrl = @"https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerCmdSource/master/cmdSource/default/cmds_cn.json";
+>    [YKWoodpeckerManager sharedInstance].cmdSourceUrl = @"https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerCmdSource/master/cmdSource/default/cmds_cn.json";
 >    
 >    // Release 下可开启安全模式，只支持打开安全插件 * 可选
 >#ifndef DEBUG
@@ -50,10 +50,10 @@ iOS 8.0及以上。
 >#endif
 >
 >    // 设置 parseDelegate，可通过 YKWCmdCoreCmdParseDelegate 协议实现自定义命令 * 可选
->    [YKWoodpeckerManager shareInstance].cmdCore.parseDelegate = self;
+>    [YKWoodpeckerManager sharedInstance].cmdCore.parseDelegate = self;
 >    
 >    // 显示啄幕鸟
->    [[YKWoodpeckerManager shareInstance] show];
+>    [[YKWoodpeckerManager sharedInstance] show];
 >    
 >    // 启动时可直接打开某一插件 * 可选
 >//    [[YKWoodpeckerManager sharedInstance] openPluginNamed:@"xxx"];
@@ -288,7 +288,7 @@ JSON抓包插件通过监听[NSJSONSerialization JSONObjectWithData:options:erro
 >        // 处理自定义命令
 >        // -----------
 >        // 显示日志
->        [[YKWoodpeckerManager shareInstance].screenLog log:@"Calling my cmd"];
+>        [[YKWoodpeckerManager sharedInstance].screenLog log:@"Calling my cmd"];
 >        return NO;
 >    }
 >    return YES;
