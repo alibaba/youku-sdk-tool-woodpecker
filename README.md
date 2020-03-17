@@ -52,7 +52,7 @@ iOS 8.0及以上。
 >    // 设置 parseDelegate，可通过 YKWCmdCoreCmdParseDelegate 协议实现自定义命令 * 可选
 >    [YKWoodpeckerManager shareInstance].cmdCore.parseDelegate = self;
 >    
->    // 显示啄幕鸟，启动默认打开UI检查插件
+>    // 显示啄幕鸟
 >    [[YKWoodpeckerManager shareInstance] show];
 >    
 >    // 启动时可直接打开某一插件 * 可选
