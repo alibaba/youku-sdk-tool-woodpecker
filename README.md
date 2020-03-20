@@ -469,5 +469,5 @@ All source code is licensed under the [MIT License](https://github.com/alibaba/y
 # Architecture
 
 <p align="center" style="font-size:11px;">
-<img src="https://github.com/ZimWoodpecker/WoodpeckerResources/blob/master/woodpecker_arch.png" style="border:1px solid black" height="600">
+<img src="https://github.com/ZimWoodpecker/WoodpeckerResources/blob/master/woodpecker_arch.png" style="border:1px solid black" height="500">
 </p>
