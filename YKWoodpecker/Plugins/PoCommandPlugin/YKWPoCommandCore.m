@@ -154,7 +154,19 @@
                     component = [component substringToIndex:component.length - 1];
                 }
             }
-            NSArray *methodComponents = [component componentsSeparatedByString:@":"];
+            NSMutableArray *methodComponents = [[component componentsSeparatedByString:@":"] mutableCopy];
+            for (int i = 0; i < methodComponents.count; i++) {
+                NSString *s = methodComponents[i];
+                if ([s.lowercaseString hasSuffix:@"http"] || [s.lowercaseString hasSuffix:@"https"]) {
+                    if (i+1 < methodComponents.count) {
+                        s = [s stringByAppendingFormat:@":%@", methodComponents[i+1]];
+                        [methodComponents removeObjectAtIndex:i];
+                        [methodComponents insertObject:s atIndex:i];
+                        [methodComponents removeObjectAtIndex:i+1];
+                        i--;
+                    }
+                }
+            }
             if (i != components.count - 1 && methodComponents.count < 2) {
                 self.lastErrorInfo = @"Syntax error.";
                 return NO;
