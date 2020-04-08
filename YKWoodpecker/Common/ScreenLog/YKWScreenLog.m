@@ -40,8 +40,9 @@
 #define kYKWScreenLogPreInputCache @"YKWScreenLogPreInputCache"
 #define kYKWScreenLogPreInputCacheCount 20
 
-#define YKWScreenLogAutoPlainLength 20000
+#define YKWScreenLogAutoPlainLength 6000
 #define YKWScreenLogAutoHideLength 2000
+#define YKWScreenLogAutoCleanLogLength 15000
 
 @interface YKWScreenLog()<UITextViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, YKWCmdViewDelegate> {
     UITextView *_txtView;
@@ -436,6 +437,11 @@
     
     if (!_showLog) {
         return;
+    }
+    
+    if (_txtView.text.length > YKWScreenLogAutoCleanLogLength) {
+        _txtView.text = nil;
+        _txtView.attributedText = nil;
     }
     
     BOOL autoScrl = NO;
