@@ -58,7 +58,7 @@
     btn1.frame = CGRectMake(0, 0, 180, 50);
     btn1.center = CGPointMake(self.view.frame.size.width / 2, 140);
     [btn1 setTitleColor:[UIColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:1.0] forState:UIControlStateNormal];
-    [btn1 setTitle:@"啄幕鸟" forState:UIControlStateNormal];
+    [btn1 setTitle:@"显示啄幕鸟" forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(handleBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
     

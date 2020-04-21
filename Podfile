@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-use_frameworks!
+install! 'cocoapods', :disable_input_output_paths => true
 
 target 'YKWoodpeckerDemo' do
   	platform :ios, '8.0'

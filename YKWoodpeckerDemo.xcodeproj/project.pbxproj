@@ -13,11 +13,12 @@
 		2800D0DA21D5CA1D008BFD90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2800D0D921D5CA1D008BFD90 /* main.m */; };
 		2800D0E121D5CEA7008BFD90 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2800D0E021D5CEA7008BFD90 /* Launch Screen.storyboard */; };
 		2853408F232F671C00FB55D9 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2853408E232F671C00FB55D9 /* TableViewController.m */; };
-		D0A100D9F8D5B704066C8F9C /* Pods_YKWoodpeckerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */; };
+		5D336D78FED656F1753663B2 /* libPods-YKWoodpeckerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DA1FDE9F9767501A19FA7D /* libPods-YKWoodpeckerDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1960BDFD464B505D7816C07A /* Pods-YKWoodpeckerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKWoodpeckerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		24DA1FDE9F9767501A19FA7D /* libPods-YKWoodpeckerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YKWoodpeckerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2800D0C721D5CA1B008BFD90 /* YKWoodpeckerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YKWoodpeckerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2800D0CA21D5CA1B008BFD90 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2800D0CB21D5CA1B008BFD90 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,7 +31,6 @@
 		2800D0FB21D64B1C008BFD90 /* YKWoodpecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YKWoodpecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2853408D232F671C00FB55D9 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		2853408E232F671C00FB55D9 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YKWoodpeckerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF516241C38EDC4F97F28BC /* Pods-YKWoodpeckerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YKWoodpeckerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0A100D9F8D5B704066C8F9C /* Pods_YKWoodpeckerDemo.framework in Frameworks */,
+				5D336D78FED656F1753663B2 /* libPods-YKWoodpeckerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				2800D0FB21D64B1C008BFD90 /* YKWoodpecker.framework */,
-				6EE74CEA6515EEB1D552B6F1 /* Pods_YKWoodpeckerDemo.framework */,
+				24DA1FDE9F9767501A19FA7D /* libPods-YKWoodpeckerDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,7 +110,7 @@
 				2800D0C321D5CA1B008BFD90 /* Sources */,
 				2800D0C421D5CA1B008BFD90 /* Frameworks */,
 				2800D0C521D5CA1B008BFD90 /* Resources */,
-				9F3AEDFE221822F1BACAA5AF /* [CP] Embed Pods Frameworks */,
+				83C515EC7120BCC78AFE34F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,7 +168,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9F3AEDFE221822F1BACAA5AF /* [CP] Embed Pods Frameworks */ = {
+		83C515EC7120BCC78AFE34F9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -176,22 +176,15 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/YKWoodpecker/YKWoodpecker.framework",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YKWoodpecker.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YKWoodpeckerDemo/Pods-YKWoodpeckerDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC70EDE0062ABC2C3F41F5BF /* [CP] Check Pods Manifest.lock */ = {
