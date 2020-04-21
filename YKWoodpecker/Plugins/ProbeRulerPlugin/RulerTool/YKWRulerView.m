@@ -41,6 +41,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [[UIColor colorWithHexString:@"ff00e6"] colorWithAlphaComponent:0.5];
+        self.followWoodpeckerIcon = NO;
         
         _widthHeightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _widthHeightLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
