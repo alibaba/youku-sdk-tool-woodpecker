@@ -109,8 +109,8 @@
     return self;
 }
 
-- (void)makeKeyAndVisible {
-    [super makeKeyAndVisible];
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
     
     [self bringSubviewToFront:_contentView];
     [self bringSubviewToFront:_woodpeckerIcon];
@@ -227,7 +227,6 @@
 
 - (void)show {
     self.hidden = NO;
-    [self makeKeyAndVisible];
 }
 
 - (void)hide {

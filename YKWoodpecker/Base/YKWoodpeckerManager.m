@@ -99,7 +99,7 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
             [self openPluginNamed:YKWLocalizedString(@"UI Check")];
         }
 
-        [_pluginsEntrance makeKeyAndVisible];
+        [_pluginsEntrance show];
     }
 }
 

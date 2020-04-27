@@ -44,7 +44,7 @@ static YKWChartWindow *_chartWindow;
         _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(0.5, 20, width - 1, 180.)];
         _chartWindow.yTitle = @"fps";
         _chartWindow.delegate = (id<YKWChartWindowDelegate>)[YKWFPSUtils sharedInstance];
-        [_chartWindow makeKeyAndVisible];
+        _chartWindow.hidden = NO;
     }
     
     _chartWindow.statusBarMode = [[paraDic objectForKey:@"statusBarMode"] boolValue];

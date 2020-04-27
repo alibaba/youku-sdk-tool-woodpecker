@@ -43,7 +43,7 @@ static unsigned int _lastDataFlow = 0;
             width /= 2.;
         }
         _chartWindow = [[YKWChartWindow alloc] initWithFrame:CGRectMake(0.5, 20, width - 1, 180.)];
-        [_chartWindow makeKeyAndVisible];
+        _chartWindow.hidden = NO;
     }
     
     _chartWindow.statusBarMode = [[paraDic objectForKey:@"statusBarMode"] boolValue];
