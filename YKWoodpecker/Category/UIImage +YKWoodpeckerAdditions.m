@@ -31,11 +31,11 @@
 
 @implementation UIImage(YKWoodpeckerAdditions)
 
-+ (UIImage *)iconImageFromString:(NSString *)string textColor:(NSString *)colorHex size:(CGSize)size{
++ (UIImage *)ykw_iconImageFromString:(NSString *)string textColor:(NSString *)colorHex size:(CGSize)size{
     UILabel *label  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     label.layer.cornerRadius = label.ykw_width / 2.0;
     label.backgroundColor = [UIColor whiteColor];
-    label.textColor = colorHex.length ? [UIColor colorWithHexString:colorHex] : [UIColor blackColor];
+    label.textColor = colorHex.length ? [UIColor ykw_colorWithHexString:colorHex] : [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:25.];
     label.numberOfLines = 2;
@@ -50,7 +50,7 @@
     return image;
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
++ (UIImage *)ykw_imageWithColor:(UIColor *)color size:(CGSize)size {
     UIView *view  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     view.backgroundColor = color;
 

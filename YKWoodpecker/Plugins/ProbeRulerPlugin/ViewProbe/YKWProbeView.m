@@ -252,7 +252,7 @@
     }
     UIView *first = self.frameViewAry.firstObject;
     if (first) {
-        first.layer.borderColor = [UIColor colorWithHexString:@"fff400"].CGColor;
+        first.layer.borderColor = [UIColor ykw_colorWithHexString:@"fff400"].CGColor;
     }
     UIView *frameView = [[UIView alloc] init];
     frameView.frame = [view.superview convertRect:view.frame toView:nil];

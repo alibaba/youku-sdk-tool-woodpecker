@@ -77,7 +77,7 @@
         
         UIView *line = [[UIView alloc] init];
         line.frame = CGRectMake(0, self.ykw_height, self.ykw_width, 0.5);
-        line.backgroundColor = [UIColor colorWithHexString:@"3F3F3F"];
+        line.backgroundColor = [UIColor ykw_colorWithHexString:@"3F3F3F"];
         [_contentView addSubview:line];
         
         _probeBtn = ({

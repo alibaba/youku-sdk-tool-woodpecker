@@ -31,6 +31,6 @@
 
 @interface UIColor(YKWoodpeckerAdditions)
 
-+ (UIColor *)colorWithHexString:(NSString *)color;
++ (UIColor *)ykw_colorWithHexString:(NSString *)color;
 
 @end

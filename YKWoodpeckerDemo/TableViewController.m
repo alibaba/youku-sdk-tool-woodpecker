@@ -52,7 +52,7 @@ static NSString *_readme = nil;
         
         _label = [[UILabel alloc] init];
         _label.font = [UIFont systemFontOfSize:15];
-        _label.textColor = [UIColor colorWithWhite:.0 alpha:0.9];
+        _label.textColor = [UIColor colorWithRed:(arc4random() % 100 / 200.) green:(arc4random() % 100 / 200.) blue:(arc4random() % 100 / 200.) alpha:1];
         _label.numberOfLines = 0;
         [self addSubview:_label];
         

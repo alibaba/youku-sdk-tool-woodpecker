@@ -44,7 +44,7 @@
 
 #define YKWForegroudColor [UIColor whiteColor]
 #define YKWBackgroudColor [UIColor blackColor]
-#define YKWHighlightColor [UIColor colorWithHexString:@"ff00e6"]
-#define YKWINFOCOLOR [UIColor colorWithHexString:@"999999"]
+#define YKWHighlightColor [UIColor ykw_colorWithHexString:@"ff00e6"]
+#define YKWINFOCOLOR [UIColor ykw_colorWithHexString:@"999999"]
 
 #endif /* PrefixHeader_pch */

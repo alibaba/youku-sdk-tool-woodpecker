@@ -44,7 +44,7 @@
         if (self.pluginIconName.length) {
             self.pluginIcon = [UIImage imageNamed:self.pluginIconName];
         } else {
-            self.pluginIcon = [UIImage iconImageFromString:self.pluginCharIconText textColor:self.pluginCharIconColorHex size:CGSizeMake(40., 40.)];
+            self.pluginIcon = [UIImage ykw_iconImageFromString:self.pluginCharIconText textColor:self.pluginCharIconColorHex size:CGSizeMake(40., 40.)];
         }
         
         self.pluginCategoryName = [dictionary objectForKey:@"pluginCategoryName"];

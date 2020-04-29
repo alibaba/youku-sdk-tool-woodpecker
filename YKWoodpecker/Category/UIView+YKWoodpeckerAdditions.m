@@ -107,11 +107,4 @@
     self.frame = frame;
 }
 
-- (void)removeAllSubviews {
-    while (self.subviews.count) {
-        UIView* child = self.subviews.lastObject;
-        [child removeFromSuperview];
-    }
-}
-
 @end

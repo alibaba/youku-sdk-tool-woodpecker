@@ -31,7 +31,7 @@
 
 @interface UIImage(YKWoodpeckerAdditions)
 
-+ (UIImage *)iconImageFromString:(NSString *)string textColor:(NSString *)colorHex size:(CGSize)size;
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *)ykw_iconImageFromString:(NSString *)string textColor:(NSString *)colorHex size:(CGSize)size;
++ (UIImage *)ykw_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end

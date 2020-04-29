@@ -87,9 +87,4 @@
  */
 @property (nonatomic) CGFloat ykw_centerY;
 
-/**
- * Removes all subviews.
- */
-- (void)removeAllSubviews;
-
 @end
