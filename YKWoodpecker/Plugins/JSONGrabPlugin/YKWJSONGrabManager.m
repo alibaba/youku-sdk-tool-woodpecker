@@ -153,10 +153,12 @@
             if (jsonData) {
                 NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self->_jsonsAry addObject:jsonStr];
-                    [self->_tableView reloadData];
-                });
+                if (jsonStr) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self->_jsonsAry addObject:jsonStr];
+                        [self->_tableView reloadData];
+                    });
+                }
             }
         }
     }
