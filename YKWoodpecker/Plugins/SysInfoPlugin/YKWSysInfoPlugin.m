@@ -97,16 +97,15 @@
     [sysInfo appendFormat:@"Build Version: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
 
     [sysInfo appendFormat:@"Locale: %@\n", [[NSLocale currentLocale] localeIdentifier]];
+    
+    [[YKWoodpeckerManager sharedInstance] showLog:sysInfo];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:YKWPluginSendMessageNotification object:@"SysInfoPluginNotification"];
+    
     // User-Agent
     _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
     [_webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
-        
-        [sysInfo appendFormat:@"User-Agent: %@\n", result];
-
-        [[YKWoodpeckerManager sharedInstance] showLog:sysInfo];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:YKWPluginSendMessageNotification object:@"SysInfoPluginNotification"];
-        
+        [[YKWoodpeckerManager sharedInstance] showLog:[NSString stringWithFormat:@"User-Agent: %@\n",result]];
         self->_webView = nil;
     }];
 }
