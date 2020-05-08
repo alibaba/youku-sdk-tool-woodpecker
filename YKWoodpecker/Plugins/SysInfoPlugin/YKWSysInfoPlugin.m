@@ -33,8 +33,12 @@
 #import <arpa/inet.h>
 #import <sys/sysctl.h>
 #import <objc/runtime.h>
+#import <WebKit/WebKit.h>
 
 @implementation YKWSysInfoPlugin
+{
+    __block WKWebView *_webView;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -94,13 +98,17 @@
 
     [sysInfo appendFormat:@"Locale: %@\n", [[NSLocale currentLocale] localeIdentifier]];
     // User-Agent
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    [sysInfo appendFormat:@"User-Agent: %@\n", userAgent];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    [_webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+        
+        [sysInfo appendFormat:@"User-Agent: %@\n", result];
 
-    [[YKWoodpeckerManager sharedInstance] showLog:sysInfo];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:YKWPluginSendMessageNotification object:@"SysInfoPluginNotification"];
+        [[YKWoodpeckerManager sharedInstance] showLog:sysInfo];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:YKWPluginSendMessageNotification object:@"SysInfoPluginNotification"];
+        
+        self->_webView = nil;
+    }];
 }
 
 // Credit to https://www.jianshu.com/p/82becd09b6f5
