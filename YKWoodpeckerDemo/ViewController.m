@@ -55,7 +55,7 @@
     [self.view addSubview:imageView];
     
     UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(0, 0, 180, 50);
+    btn1.frame = CGRectMake(0, 0, 180, 40);
     btn1.center = CGPointMake(self.view.frame.size.width / 2, 140);
     [btn1 setTitleColor:[UIColor colorWithRed:0.1 green:0.2 blue:0.3 alpha:1.0] forState:UIControlStateNormal];
     [btn1 setTitle:@"显示啄幕鸟" forState:UIControlStateNormal];
@@ -63,8 +63,12 @@
     [self.view addSubview:btn1];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(0, 0, 180, 50);
+    btn2.frame = CGRectMake(0, 0, 180, 40);
     btn2.center = CGPointMake(self.view.frame.size.width / 2, 190);
+    btn2.clipsToBounds = YES;
+    btn2.layer.cornerRadius = 2;
+    btn2.layer.borderWidth = 0.5;
+    btn2.layer.borderColor = [UIColor orangeColor].CGColor;
     [btn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn2 setTitle:@"AF请求配置JSON" forState:UIControlStateNormal];
     [btn2 addTarget:self action:@selector(request) forControlEvents:UIControlEventTouchUpInside];

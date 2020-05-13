@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   spec.license      = "MIT"
   spec.name         = "YKWoodpecker"
-  spec.version      = "1.2.4"
+  spec.version      = "1.2.5"
   spec.summary      = "An in-app-debug tool for iOS."
 
   spec.description  = "This library provides a powerful collection of iOS develop tools, such as view picker, "  \

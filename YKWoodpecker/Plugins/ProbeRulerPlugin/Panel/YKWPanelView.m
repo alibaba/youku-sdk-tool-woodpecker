@@ -335,10 +335,9 @@
     [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Corner Radius"), view.layer.cornerRadius];
     if (view.layer.borderWidth > 0) {
         [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Border Width"), view.layer.borderWidth];
-        [info appendFormat:@"%@: %@", YKWLocalizedString(@"Border Color"), [YKWPanelView colorToString:_probeView.probedView.layer.borderColor]];
+        [info appendFormat:@"%@: %@\n", YKWLocalizedString(@"Border Color"), [YKWPanelView colorToString:_probeView.probedView.layer.borderColor]];
     }
-    [info appendFormat:@"%@: %@", YKWLocalizedString(@"Background Color"), [YKWPanelView colorToString:_probeView.probedView.backgroundColor.CGColor]];
-    [info appendString:@"\n"];
+    [info appendFormat:@"%@: %@\n", YKWLocalizedString(@"Background Color"), [YKWPanelView colorToString:_probeView.probedView.backgroundColor.CGColor]];
 
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
