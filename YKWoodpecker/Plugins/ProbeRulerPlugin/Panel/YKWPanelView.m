@@ -331,42 +331,21 @@
     [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Opacity"), view.alpha];
     [info appendFormat:@"Hidden: %@\n", view.hidden ? @"YES" : @"NO"];
     [info appendFormat:@"ClipsToBounds: %@\n", view.clipsToBounds ? @"YES" : @"NO"];
+    [info appendFormat:@"UserInteractionEnabled: %@\n", view.userInteractionEnabled ? @"YES" : @"NO"];
     [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Corner Radius"), view.layer.cornerRadius];
-    [info appendFormat:@"%@: ", YKWLocalizedString(@"Background Color")];
-    if (_probeView.probedView.backgroundColor) {
-        const CGFloat *components = CGColorGetComponents(_probeView.probedView.backgroundColor.CGColor);
-        NSUInteger componentsCount = CGColorGetNumberOfComponents(_probeView.probedView.backgroundColor.CGColor);
-        NSMutableString *hexColor = [NSMutableString stringWithString:@"0x"];
-        for (int i = 0; i < componentsCount; i++) {
-            [info appendFormat:@"%.2f ", components[i]];
-            [hexColor appendString:[YKWPanelView getHexByDecimal:components[i] * 255]];
-        }
-        if (componentsCount == 4) {
-            [info appendString:@" "];
-            [info appendString:hexColor];
-        }
-    } else {
-        [info appendString:YKWLocalizedString(@"<Empty>")];
+    if (view.layer.borderWidth > 0) {
+        [info appendFormat:@"%@: %.2f\n", YKWLocalizedString(@"Border Width"), view.layer.borderWidth];
+        [info appendFormat:@"%@: %@", YKWLocalizedString(@"Border Color"), [YKWPanelView colorToString:_probeView.probedView.layer.borderColor]];
     }
+    [info appendFormat:@"%@: %@", YKWLocalizedString(@"Background Color"), [YKWPanelView colorToString:_probeView.probedView.backgroundColor.CGColor]];
     [info appendString:@"\n"];
 
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
         [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Text"), label.text];
         [info appendFormat:@"%@:%@ %.1f\n", YKWLocalizedString(@"Font"), label.font.fontName , label.font.pointSize];
-        [info appendFormat:@"%@:", YKWLocalizedString(@"Color")];
-        const CGFloat *components = CGColorGetComponents(label.textColor.CGColor);
-        NSUInteger componentsCount = CGColorGetNumberOfComponents(label.textColor.CGColor);
-        NSMutableString *hexColor = [NSMutableString stringWithString:@"0x"];
-        for (int i = 0; i < componentsCount; i++) {
-            [info appendFormat:@"%.2f ", components[i]];
-            [hexColor appendString:[YKWPanelView getHexByDecimal:components[i] * 255]];
-        }
-        if (componentsCount == 4) {
-            [info appendString:@" "];
-            [info appendString:hexColor];
-        }
-        [info appendString:@"\n"];
+        [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Color"), [YKWPanelView colorToString:label.textColor.CGColor]];
+
         [_probeFuncBtn2 setTitle:YKWLocalizedString(@"CopyText") forState:UIControlStateNormal];
         _probeFuncBtn3.hidden = YES;
     } else if ([view isKindOfClass:[UIImageView class]]) {
@@ -401,40 +380,18 @@
         UITextView *label = (UITextView *)view;
         [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Text"), label.text];
         [info appendFormat:@"%@:%@ %.1f\n", YKWLocalizedString(@"Font"), label.font.fontName , label.font.pointSize];
-        [info appendFormat:@"%@:", YKWLocalizedString(@"Color")];
-        const CGFloat *components = CGColorGetComponents(label.textColor.CGColor);
-        NSUInteger componentsCount = CGColorGetNumberOfComponents(label.textColor.CGColor);
-        NSMutableString *hexColor = [NSMutableString stringWithString:@"0x"];
-        for (int i = 0; i < componentsCount; i++) {
-            [info appendFormat:@"%.2f ", components[i]];
-            [hexColor appendString:[YKWPanelView getHexByDecimal:components[i] * 255]];
-        }
-        if (componentsCount == 4) {
-            [info appendString:@" "];
-            [info appendString:hexColor];
-        }
-        [info appendString:@"\n"];
+        [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Color"), [YKWPanelView colorToString:label.textColor.CGColor]];
+
         _probeFuncBtn2.hidden = YES;
         _probeFuncBtn3.hidden = YES;
     } else if ([view isKindOfClass:[UITextField class]]) {
         UITextField *label = (UITextField *)view;
         [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Text"), label.text];
         [info appendFormat:@"%@:%@ %.1f\n", YKWLocalizedString(@"Font"), label.font.fontName , label.font.pointSize];
-        [info appendFormat:@"%@:", YKWLocalizedString(@"Color")];
-        const CGFloat *components = CGColorGetComponents(label.textColor.CGColor);
-        NSUInteger componentsCount = CGColorGetNumberOfComponents(label.textColor.CGColor);
-        NSMutableString *hexColor = [NSMutableString stringWithString:@"0x"];
-        for (int i = 0; i < componentsCount; i++) {
-            [info appendFormat:@"%.2f ", components[i]];
-            [hexColor appendString:[YKWPanelView getHexByDecimal:components[i] * 255]];
-        }
-        if (componentsCount == 4) {
-            [info appendString:@" "];
-            [info appendString:hexColor];
-        }
+        [info appendFormat:@"%@:%@\n", YKWLocalizedString(@"Color"), [YKWPanelView colorToString:label.textColor.CGColor]];
+
         _probeFuncBtn2.hidden = YES;
         _probeFuncBtn3.hidden = YES;
-        [info appendString:@"\n"];
     } else {
         [_probeFuncBtn2 setTitle:YKWLocalizedString(@"Image") forState:UIControlStateNormal];
         _probeFuncBtn3.hidden = YES;
@@ -553,6 +510,25 @@
 }
 
 #pragma mark - Class Method
++ (NSString *)colorToString:(CGColorRef)colorRef {
+    if (!colorRef) {
+        return YKWLocalizedString(@"<Empty>");
+    }
+    NSMutableString *colorInfo = [NSMutableString string];
+    const CGFloat *components = CGColorGetComponents(colorRef);
+    NSUInteger componentsCount = CGColorGetNumberOfComponents(colorRef);
+    NSMutableString *hexColor = [NSMutableString stringWithString:@"0x"];
+    for (int i = 0; i < componentsCount; i++) {
+        [colorInfo appendFormat:@"%.2f ", components[i]];
+        [hexColor appendString:[YKWPanelView getHexByDecimal:components[i] * 255]];
+    }
+    if (componentsCount == 4) {
+        [colorInfo appendString:@" "];
+        [colorInfo appendString:hexColor];
+    }
+    return colorInfo;
+}
+
 + (NSString *)getHexByDecimal:(NSInteger)decimal {
     if (decimal == 0) {
         return @"00";
