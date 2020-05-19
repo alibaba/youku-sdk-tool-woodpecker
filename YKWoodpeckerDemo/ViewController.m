@@ -90,7 +90,7 @@
 #pragma mark - Actions
 /// Open woodpecker
 - (void)handleBtn:(id)sender {
-    // Specify the command source URL for method-listening-in commands, the commands will loaded automatically after set * Optional, if you don't have your specifications, you can use command sources in https://github.com/ZimWoodpecker/WoodpeckerCmdSource
+    // Specify the command source URL for method-listening-in commands, the commands will be loaded automatically after setting * Optional, if you don't have your specifications, you can use the command sources at https://github.com/ZimWoodpecker/WoodpeckerCmdSource
     [YKWoodpeckerManager sharedInstance].cmdSourceUrl = @"https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerCmdSource/master/cmdSource/default/demo.json";
     
     // It's suggested to open 'safePluginMode' in release mode, so that only safe plugins can be open * Optional
@@ -102,9 +102,10 @@
     [YKWoodpeckerManager sharedInstance].cmdCore.parseDelegate = self;
     
     // Show the woodpecker, the 'ViewPicker' plugin will be open on launch.
+    [YKWoodpeckerManager sharedInstance].autoOpenUICheckOnShow = YES;
     [[YKWoodpeckerManager sharedInstance] show];
     
-    // Register the crash Handler to log crashed * Optional
+    // Register the crash handler to log crash * Optional
     [[YKWoodpeckerManager sharedInstance] registerCrashHandler];
 
     // Demo for registering a plugin * Optional
