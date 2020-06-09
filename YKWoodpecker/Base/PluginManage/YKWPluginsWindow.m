@@ -31,6 +31,7 @@
 #import "YKWPluginModelCell.h"
 #import "YKWPluginSectionHeader.h"
 #import "YKWRotationWindowRootViewController.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define kYKWPluginsWindowLastCenter @"YKWPluginsWindowLastCenter"
 

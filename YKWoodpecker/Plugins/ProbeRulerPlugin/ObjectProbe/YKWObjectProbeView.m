@@ -34,6 +34,7 @@
 #import "YKWPoCommandCore.h"
 #import "YKWScreenLog.h"
 #import <objc/runtime.h>
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWObjectProbeView()<YKWObjectTableViewDelegate, YKWScreenLogDelegate> {
     YKWScreenLog *_logView;

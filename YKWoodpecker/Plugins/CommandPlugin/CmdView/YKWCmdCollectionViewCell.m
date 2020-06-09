@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWCmdCollectionViewCell.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWCmdCollectionViewCell()
 

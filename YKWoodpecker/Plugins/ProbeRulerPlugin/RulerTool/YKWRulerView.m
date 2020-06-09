@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWRulerView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWRulerView() {
     UILabel *_widthHeightLabel;

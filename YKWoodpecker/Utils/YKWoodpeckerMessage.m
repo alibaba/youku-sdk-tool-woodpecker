@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWoodpeckerMessage.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define kYKWoodpeckerMessageTag -28588
 

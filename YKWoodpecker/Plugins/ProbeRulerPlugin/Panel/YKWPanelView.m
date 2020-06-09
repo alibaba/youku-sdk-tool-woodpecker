@@ -34,6 +34,7 @@
 #import "YKWImageTextPreview.h"
 #import "YKWObjectProbeView.h"
 #import "YKWoodpeckerManager.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define YKWPanelViewHeight 36
 #define YKWPanelViewFont ([YKWoodpeckerUtils isCnLocaleLanguage] ? 14 : 12)

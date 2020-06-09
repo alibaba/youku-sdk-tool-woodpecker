@@ -29,6 +29,7 @@
 
 #import "YKWImageTextPreview.h"
 #import "YKWoodpeckerMessage.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWImageTextPreview() {
     UIImageView *_imageView;

@@ -29,6 +29,7 @@
 
 #import "YKWUIComparePanel.h"
 #import "YKWDrawView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWUIComparePanel()<UINavigationControllerDelegate,UIImagePickerControllerDelegate> {
     NSMutableArray *_imagesAry;

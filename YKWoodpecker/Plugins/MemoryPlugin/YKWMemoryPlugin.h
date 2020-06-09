@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWMemoryPlugin : NSObject<YKWPluginProtocol>
 

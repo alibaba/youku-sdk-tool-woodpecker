@@ -34,6 +34,7 @@
 #import "YKWScreenLog.h"
 #import "YKWCmdModel.h"
 #import "YKWPoCommandCore.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWCmdCore() {
     NSMutableArray *_listeningAry;      // @"Class -/+ method:para:"

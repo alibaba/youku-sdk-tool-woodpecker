@@ -33,6 +33,7 @@
 #import <objc/message.h>
 #import "YKWoodpeckerManager.h"
 #import "YKWCmdView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define kYKWScreenLogPreInputCache @"YKWScreenLogPreInputCache"
 #define kYKWScreenLogRegExpression @"YKWScreenLogRegExpression"

@@ -29,6 +29,7 @@
 
 #import "YKWAllImagesViewController.h"
 #import "YKWImageTextPreview.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define COVER_WIDTH (([UIScreen mainScreen].bounds.size.width)/5)
 #define COVER_HEIGHT (COVER_WIDTH)

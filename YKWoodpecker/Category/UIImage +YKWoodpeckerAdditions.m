@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "UIImage+YKWoodpeckerAdditions.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @implementation UIImage(YKWoodpeckerAdditions)
 

@@ -29,6 +29,7 @@
 
 #import "YKWPluginModelCell.h"
 #import "YKWoodpeckerMessage.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWPluginModelCell()
 

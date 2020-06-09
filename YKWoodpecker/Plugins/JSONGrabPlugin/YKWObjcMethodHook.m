@@ -31,6 +31,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "YKWJSONGrabManager.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWObjcMethodHook() {
     NSMutableArray *_listeningAry;      // @"Class -/+ method:para:"

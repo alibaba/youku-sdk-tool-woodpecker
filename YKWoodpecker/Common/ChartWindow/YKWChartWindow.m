@@ -30,6 +30,7 @@
 #import "YKWChartWindow.h"
 #import "YKWChartView.h"
 #import "YKWRotationWindowRootViewController.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWChartWindow() {
     YKWChartView *_chartView;

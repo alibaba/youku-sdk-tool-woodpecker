@@ -23,7 +23,6 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/alibaba/youku-sdk-tool-woodpecker.git", :tag => "#{spec.version}" }
  
   spec.source_files = "YKWoodpecker/**/*.{h,m}"
-  spec.prefix_header_file = "YKWoodpecker/PrefixHeader.pch"
   spec.public_header_files = "YKWoodpecker/YKWoodpecker.h", 
                              "YKWoodpecker/Base/**/*.h", 
                              "YKWoodpecker/Common/**/*.h", 

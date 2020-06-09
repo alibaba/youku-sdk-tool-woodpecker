@@ -31,6 +31,7 @@
 #import "YKWObjcMethodHook.h"
 #import "YKWScreenLog.h"
 #import "YKWoodpeckerMessage.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWJSONGrabManager()<YKWObjcMethodHookDelegate, UITableViewDelegate, UITableViewDataSource> {
     YKWFollowView *_contentView;

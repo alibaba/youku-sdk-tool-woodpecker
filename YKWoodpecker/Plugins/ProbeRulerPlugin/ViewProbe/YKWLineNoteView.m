@@ -29,6 +29,7 @@
 
 #import "YKWLineNoteView.h"
 #import "YKWFollowView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWLineNoteView()
 

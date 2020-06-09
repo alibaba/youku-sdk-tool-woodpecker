@@ -30,6 +30,7 @@
 #import "YKWPoCommandCore.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWPoCommandPara : NSObject {
     NSString *_parsedParaStr;

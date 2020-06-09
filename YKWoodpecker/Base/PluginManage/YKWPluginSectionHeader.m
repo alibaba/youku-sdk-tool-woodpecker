@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWPluginSectionHeader.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @implementation YKWPluginSectionHeader
 

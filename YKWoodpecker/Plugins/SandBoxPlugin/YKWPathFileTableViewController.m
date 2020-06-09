@@ -31,6 +31,7 @@
 #import "YKWTextViewController.h"
 #import "YKWoodpeckerMessage.h"
 #import "YKWImageTextPreview.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 #define kYKWPathFileTableViewControllerTxtTypes @[@"", @"txt", @"plist", @"json", @"xml", @"strings", @"log", @"setting", @"js", @"config"]
 #define kYKWPathFileTableViewControllerImageTypes @[@"png", @"PNG", @"jpg", @"JPG"]

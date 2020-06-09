@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWChartLineView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @interface YKWChartLineView() {
     NSMutableArray *_pointsAry;
