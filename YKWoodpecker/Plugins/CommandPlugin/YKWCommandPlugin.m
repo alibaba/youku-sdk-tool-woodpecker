@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "YKWCommandPlugin.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 @implementation YKWCommandPlugin
 

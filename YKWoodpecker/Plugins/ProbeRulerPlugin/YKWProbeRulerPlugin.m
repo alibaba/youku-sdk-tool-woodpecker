@@ -29,6 +29,7 @@
 
 #import "YKWProbeRulerPlugin.h"
 #import "YKWPanelView.h"
+#import "YKWoodpeckerCommonHeaders.h"
 
 static YKWPanelView *_panelView;
 

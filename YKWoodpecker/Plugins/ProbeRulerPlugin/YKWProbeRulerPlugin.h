@@ -28,7 +28,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "YKWoodpeckerCommonHeaders.h"
+#import "YKWPluginProtocol.h"
 
 @interface YKWProbeRulerPlugin : NSObject<YKWPluginProtocol>
 
