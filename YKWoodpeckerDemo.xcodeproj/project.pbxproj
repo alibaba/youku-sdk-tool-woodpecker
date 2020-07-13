@@ -336,7 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CM479A392;
+				DEVELOPMENT_TEAM = K356S4D63Q;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = YKWoodpeckerDemo/Info.plist;
@@ -366,7 +366,7 @@
 					"\"UIKit\"",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,7 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CM479A392;
+				DEVELOPMENT_TEAM = K356S4D63Q;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				INFOPLIST_FILE = YKWoodpeckerDemo/Info.plist;
@@ -408,7 +408,7 @@
 					"\"UIKit\"",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demo1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

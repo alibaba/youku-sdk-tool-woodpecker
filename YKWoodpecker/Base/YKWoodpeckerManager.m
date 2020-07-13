@@ -189,27 +189,29 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
 
 -(void)registerPluginWithParameters:(NSDictionary *)parasDic atIndex:(NSInteger)index {
     if (parasDic) {
-        YKWPluginModel *model = [[YKWPluginModel alloc] initWithDictionary:parasDic];
-        if (model.pluginName.length && !model.pluginOff) {
-            // Prevent duplicate plugin
-            for (NSMutableArray *array in _pluginsArray) {
-                for (YKWPluginModel *m in array) {
-                    if ([m.pluginName isEqualToString:model.pluginName]) {
-                        NSMutableDictionary *allParasDic = [m.registerDictionary mutableCopy];
-                        [allParasDic addEntriesFromDictionary:parasDic];
-                        model = [[YKWPluginModel alloc] initWithDictionary:allParasDic];
-                        [array removeObject:m];
-                        break;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            YKWPluginModel *model = [[YKWPluginModel alloc] initWithDictionary:parasDic];
+            if (model.pluginName.length && !model.pluginOff) {
+                // Prevent duplicate plugin
+                for (NSMutableArray *array in self->_pluginsArray) {
+                    for (YKWPluginModel *m in array) {
+                        if ([m.pluginName isEqualToString:model.pluginName]) {
+                            NSMutableDictionary *allParasDic = [m.registerDictionary mutableCopy];
+                            [allParasDic addEntriesFromDictionary:parasDic];
+                            model = [[YKWPluginModel alloc] initWithDictionary:allParasDic];
+                            [array removeObject:m];
+                            break;
+                        }
                     }
                 }
+                
+                [self addPluginModel:model atIndex:index];
+               
+                if (self->_pluginsEntrance) {
+                    self->_pluginsEntrance.pluginModelArray = self->_pluginsArray;
+                }
             }
-            
-            [self addPluginModel:model atIndex:index];
-           
-            if (_pluginsEntrance) {
-                _pluginsEntrance.pluginModelArray = _pluginsArray;
-            }
-        }
+        });
     }
 }
 
