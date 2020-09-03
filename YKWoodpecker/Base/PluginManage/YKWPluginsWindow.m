@@ -117,6 +117,13 @@
     [self bringSubviewToFront:_woodpeckerIcon];
 }
 
+- (void)didAddSubview:(UIView *)subview {
+    [super didAddSubview:subview];
+    
+    [self bringSubviewToFront:_contentView];
+    [self bringSubviewToFront:_woodpeckerIcon];
+}
+
 - (void)becomeKeyWindow {
     if (![[UIApplication sharedApplication].windows.firstObject isKindOfClass:[self class]]) {
         [[UIApplication sharedApplication].windows.firstObject makeKeyAndVisible];
