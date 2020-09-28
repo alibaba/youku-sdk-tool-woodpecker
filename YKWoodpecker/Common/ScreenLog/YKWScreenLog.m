@@ -441,12 +441,17 @@
     }
     
     if (_txtView.text.length > YKWScreenLogAutoCleanLogLength) {
-        _txtView.text = nil;
-        _txtView.attributedText = nil;
+        if (_txtView.attributedText) {
+            NSMutableAttributedString *mLog = [[NSMutableAttributedString alloc] initWithAttributedString:_txtView.attributedText];
+            [mLog replaceCharactersInRange:NSMakeRange(0, YKWScreenLogAutoCleanLogLength) withString:YKWLocalizedString(@"<Previous log is hidden, check it via share>\n")];
+            _txtView.attributedText = mLog;
+        } else {
+            _txtView.text = [_txtView.text stringByReplacingCharactersInRange:NSMakeRange(0, YKWScreenLogAutoCleanLogLength) withString:YKWLocalizedString(@"<Previous log is hidden, check it via share>\n")];
+        }
     }
     
     BOOL autoScrl = NO;
-    if (_txtView.contentSize.height < _txtView.ykw_height || _txtView.contentSize.height - _txtView.ykw_height - _txtView.contentOffset.y < 50) {
+    if (_txtView.contentSize.height < _txtView.ykw_height || _txtView.contentSize.height - _txtView.ykw_height - _txtView.contentOffset.y < 200) {
         autoScrl = YES;
     }
     

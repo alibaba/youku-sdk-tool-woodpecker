@@ -19,6 +19,7 @@
     "<No reg matches>": "<日志不匹配正则>",
     "<No to-find string matches>": "<日志不包含目标字符串>",
     "<Log is too long to show, check it via share>": "<日志过长未显示，请分享导出查看>",
+    "<Previous log is hidden, check it via share>": "<更早的日志未显示，请分享导出查看>\n",
     "<Hiding log, check log via share...>": "<开启隐藏日志，请分享导出查看...>",
     "<Showing log...>": "<开启显示日志...>",
     "Are you sure to clear all data?": "确定清除所有数据？",
