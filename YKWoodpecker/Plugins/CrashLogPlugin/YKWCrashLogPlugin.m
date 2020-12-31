@@ -55,7 +55,7 @@ static NSUncaughtExceptionHandler *previousExceptionHandler = NULL;
 
 static void ykwoodpecker_uncaughtExceptionHandler(NSException * exception) {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSString *timeStamp = [formatter stringFromDate:[NSDate date]];
     NSString *crashLog = [NSString stringWithFormat:@"Time:%@\nName:%@\nReason:\n%@\nCallStackSymbols:\n%@", timeStamp, exception.name, exception.reason, [exception.callStackSymbols componentsJoinedByString:@"\n"]];
     
