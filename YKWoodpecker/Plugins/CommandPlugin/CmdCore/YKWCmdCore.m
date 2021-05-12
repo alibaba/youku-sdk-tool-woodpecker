@@ -94,8 +94,13 @@
     if (components.count) {
         [self output:@""];
         for (NSString *inputLine in components) {
-            if (inputLine.length && ![self checkIfAddToPostListenCmd:inputLine]) {
+            if (inputLine.length) {
                 [self output:inputLine];
+                if ([inputLine hasPrefix:@"k"] || [inputLine hasPrefix:@"K"]) {
+                    [_postListenCmdAry addObject:inputLine];
+                    [self output:YKWLocalizedString(@"Post command added")];
+                    continue;
+                }
                 if (![[YKWoodpeckerManager sharedInstance].screenLog parseCommandString:inputLine]) {
                     [self parseCmd:inputLine];
                 }
@@ -103,15 +108,6 @@
         }
         [self output:@""];
     }
-}
-
-- (BOOL)checkIfAddToPostListenCmd:(NSString *)cmdStr {
-    // Post commands, such as k command.
-    if ([cmdStr hasPrefix:@"k"] || [cmdStr hasPrefix:@"K"]) {
-        [_postListenCmdAry addObject:cmdStr];
-        return YES;
-    }
-    return NO;
 }
 
 - (void)parseInput:(NSString *)input {
@@ -221,11 +217,8 @@
             } else {
                 NSMutableArray *mComponents = [NSMutableArray arrayWithArray:components];
                 [mComponents removeObjectAtIndex:0];
-                if ([self checkIfAddToPostListenCmd:[mComponents componentsJoinedByString:@" "]]) {
-                    [self output:YKWLocalizedString(@"Post command added")];
-                } else {
-                    [self output:YKWLocalizedString(@"Invalid post command")];
-                }
+                [_postListenCmdAry addObject:[mComponents componentsJoinedByString:@" "]];
+                [self output:YKWLocalizedString(@"Post command added")];
             }
         } else {
             [self output:YKWLocalizedString(@"Input format error")];

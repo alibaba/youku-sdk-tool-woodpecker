@@ -113,6 +113,7 @@
         self.lastErrorInfo = @"Not po command.";
         return NO;
     }
+    self.lastErrorInfo = nil;
     self.isLastPoCmd = YES;
     
     input = [input substringFromIndex:[input rangeOfString:@"["].location];
