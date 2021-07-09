@@ -85,6 +85,7 @@ Automatically open 'UI Check' tool on show.
  @"pluginCharIconColorHex" : @"",
  @"pluginCategoryName" : @"",
  @"pluginClassName" : @"",
+ @"pluginBagdeInfo" : @"",
  @"pluginParameters" : @{}
  }
  @param index The plugin's position in its category, 0...N-1, or -1 for the last.
@@ -122,6 +123,13 @@ Automatically open 'UI Check' tool on show.
  */
 - (void)openPluginNamed:(NSString *)pluginName withParameters:(NSDictionary *)parasDic;
 
+/**
+ Update a plugin's info.
+
+ @param pluginName Plugin name.
+ @param infoDic infoDic , such as pluginBagdeInfo. etc.
+ */
+- (void)updatePluginNamed:(NSString *)pluginName withInfo:(NSDictionary *)infoDic;
 
 // ----------------------------- Crash Plugin -----------------------------
 

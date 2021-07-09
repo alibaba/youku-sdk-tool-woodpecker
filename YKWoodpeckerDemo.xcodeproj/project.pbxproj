@@ -366,7 +366,7 @@
 					"\"UIKit\"",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demoz;
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demozim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -408,7 +408,7 @@
 					"\"UIKit\"",
 				);
 				PODS_ROOT = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demoz;
+				PRODUCT_BUNDLE_IDENTIFIER = Youku.YKWoodpecker.Demozim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

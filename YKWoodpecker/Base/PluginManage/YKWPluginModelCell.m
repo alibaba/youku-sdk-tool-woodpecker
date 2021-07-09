@@ -30,11 +30,13 @@
 #import "YKWPluginModelCell.h"
 #import "YKWoodpeckerMessage.h"
 #import "YKWoodpeckerCommonHeaders.h"
+#import "UIView+YKWoodpeckerAdditions.h"
 
 @interface YKWPluginModelCell()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *badgeLabel;
 
 @end
 
@@ -60,15 +62,22 @@
         self.nameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:[YKWoodpeckerUtils isCnLocaleLanguage] ? 12. : 11.];
         self.nameLabel.textColor = [UIColor whiteColor];
         [self.contentView addSubview:self.nameLabel];
+        
+        self.badgeLabel = [[UILabel alloc] init];
+        self.badgeLabel.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.9];
+        self.badgeLabel.textAlignment = NSTextAlignmentCenter;
+        self.badgeLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        self.badgeLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:9.];
+        self.badgeLabel.textColor = [UIColor whiteColor];
+        self.badgeLabel.clipsToBounds = YES;
+        self.badgeLabel.layer.cornerRadius = 2;
+        [self.contentView addSubview:self.badgeLabel];
     }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.iconImageView.ykw_width == 40) {
-        return;
-    }
     
     self.iconImageView.ykw_width = 40.;
     self.iconImageView.ykw_height = self.iconImageView.ykw_width;
@@ -80,18 +89,31 @@
     self.nameLabel.ykw_height = 15.;
     self.nameLabel.ykw_top = self.iconImageView.ykw_bottom + 5.;
     self.nameLabel.ykw_centerX = self.ykw_width / 2.;
+    
+    [self.badgeLabel sizeToFit];
+    self.badgeLabel.ykw_width += 3;
+    self.badgeLabel.ykw_height += 2;
+    if (self.badgeLabel.ykw_width > 50) {
+        self.badgeLabel.ykw_width = 50;
+    }
+    self.badgeLabel.ykw_top = 0;
+    self.badgeLabel.ykw_right = self.ykw_width;
 }
 
 - (void)setPluginModel:(YKWPluginModel *)pluginModel {
     _pluginModel = pluginModel;
     self.iconImageView.image = _pluginModel.pluginIcon;
     self.nameLabel.text = _pluginModel.pluginName;
+    self.badgeLabel.text = _pluginModel.pluginBagdeInfo;
+    self.badgeLabel.hidden = self.badgeLabel.text.length == 0;
     
     if ([YKWoodpeckerManager sharedInstance].safePluginMode && _pluginModel.isSafePlugin) {
         self.iconImageView.layer.borderWidth = 2. / [UIScreen mainScreen].scale;
     } else {
         self.iconImageView.layer.borderWidth = 0.;
     }
+    
+    [self setNeedsLayout];
 }
 
 - (void)handleLongPress:(id)sender {

@@ -278,6 +278,27 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
     }
 }
 
+- (void)updatePluginNamed:(NSString *)pluginName withInfo:(NSDictionary *)infoDic {
+    YKWPluginModel *plugin = nil;
+    for (NSMutableArray *array in _pluginsArray) {
+        for (YKWPluginModel *p in array) {
+            if ([p.pluginName isEqualToString:pluginName]) {
+                plugin = p;
+                break;
+            }
+        }
+    }
+
+    if (plugin) {
+        plugin.pluginBagdeInfo = [infoDic objectForKey:@"pluginBagdeInfo"];
+        if (_pluginsEntrance) {
+            _pluginsEntrance.pluginModelArray = _pluginsArray;
+        }
+    } else {
+        [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"Plugin not found")];
+    }
+}
+
 #pragma mark - YKWPluginsViewDelegate
 - (void)pluginsWindow:(YKWPluginsWindow *)pluginsWindow didSelectPlugin:(YKWPluginModel *)pluginModel {
     if (pluginModel.pluginClassName.length) {

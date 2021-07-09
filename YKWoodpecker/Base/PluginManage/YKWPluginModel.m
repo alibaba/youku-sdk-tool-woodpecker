@@ -53,6 +53,8 @@
         self.pluginClassName = [dictionary objectForKey:@"pluginClassName"];
         self.pluginParameters = [dictionary objectForKey:@"pluginParameters"];
         
+        self.pluginBagdeInfo = [dictionary objectForKey:@"pluginBagdeInfo"];
+
         self.registerDictionary = dictionary;
     }
     return self;
