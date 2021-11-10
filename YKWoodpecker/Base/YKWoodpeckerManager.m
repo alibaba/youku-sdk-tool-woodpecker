@@ -81,6 +81,16 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
         } else {
             _cmdSourceUrl = @"https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerCmdSource/master/cmdSource/default/cmds_en.json";
         }
+        
+        if (@available(iOS 13, *)) {
+            [NSNotificationCenter.defaultCenter addObserverForName:UISceneWillConnectNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+                UIWindowScene *scene = note.object;
+                if (scene && [scene isKindOfClass:UIWindowScene.class]) {
+                    [self addWindow2Scene:scene];
+                }
+            }];
+        }
+        
         [self loadPlugins];
     }
     return self;
@@ -296,6 +306,28 @@ NSString *const YKWPluginReceiveMessageNotification = @"YKWPluginReceiveMessageN
         }
     } else {
         [YKWoodpeckerMessage showMessage:YKWLocalizedString(@"Plugin not found")];
+    }
+}
+
+#pragma mark - UIScene Adaptive
+
+- (void)addWindow2Scene:(nullable UIWindowScene *)windowScene  API_AVAILABLE(ios(13.0)){
+    if (!_pluginsEntrance || ![windowScene isKindOfClass:[UIWindowScene class]]) {
+        return;
+    }
+    UIWindowScene *targetWindowScene = nil;
+    if (windowScene) {
+        targetWindowScene = windowScene;
+    } else {
+        for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive) {
+                targetWindowScene = scene;
+                break;
+            }
+        }
+    }
+    if (targetWindowScene && _pluginsEntrance.windowScene != targetWindowScene) {
+        _pluginsEntrance.windowScene = targetWindowScene;
     }
 }
 
