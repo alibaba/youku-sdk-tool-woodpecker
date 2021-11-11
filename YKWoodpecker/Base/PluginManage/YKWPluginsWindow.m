@@ -106,8 +106,19 @@
 //        [_contentView addSubview:hideButton];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRotation:) name:UIApplicationDidChangeStatusBarOrientationNotification  object:nil];
+        if (@available(iOS 13, *)) {
+            [self addWindow2Scene:nil];
+            [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(windowSceneChanged:) name:UISceneWillConnectNotification object:nil];
+        }
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    if (@available(iOS 13, *)) {
+        [NSNotificationCenter.defaultCenter removeObserver:self name:UISceneWillConnectNotification object:nil];
+    }
 }
 
 - (void)setHidden:(BOOL)hidden {
@@ -152,6 +163,37 @@
     _woodpeckerIcon.userInteractionEnabled = YES;
     [_woodpeckerIcon addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleIconTap:)]];
     [self addSubview:_woodpeckerIcon];
+}
+
+#pragma mark - UIScene Adaptive
+
+- (void)windowSceneChanged:(NSNotification *)note {
+    if (@available(iOS 13, *)) {
+        UIWindowScene *scene = note.object;
+        if (scene && [scene isKindOfClass:UIWindowScene.class]) {
+            [self addWindow2Scene:scene];
+        }
+    }
+}
+
+- (void)addWindow2Scene:(nullable UIWindowScene *)windowScene  API_AVAILABLE(ios(13.0)){
+    if (![windowScene isKindOfClass:[UIWindowScene class]]) {
+        return;
+    }
+    UIWindowScene *targetWindowScene = nil;
+    if (windowScene) {
+        targetWindowScene = windowScene;
+    } else {
+        for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive) {
+                targetWindowScene = scene;
+                break;
+            }
+        }
+    }
+    if (targetWindowScene && self.windowScene != targetWindowScene) {
+        self.windowScene = targetWindowScene;
+    }
 }
 
 #pragma mark - Icon
