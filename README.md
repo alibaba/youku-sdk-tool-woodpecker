@@ -456,7 +456,7 @@ UI对比可以从系统相册中导入设计图片以与App对比设计还原度
 在安全模式下只能打开安全插件，注册安全插件时需设置isSafePlugin=YES。
 
 # Author
-- [Zim](https://github.com/ZimWoodpecker)
+- [ZimTing](https://github.com/ZimWoodpecker)
 
 # Collaborators
 - [Betterjbp](https://github.com/betterjbp)
